@@ -1,0 +1,12 @@
+{
+  "pages": {
+    "impersonate": {
+      "path": "/_v/impersonate"
+    }
+  },
+  "extensions": {
+    "login": {
+      "component": "index"
+    }
+  }
+}
