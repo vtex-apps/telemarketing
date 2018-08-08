@@ -1,6 +1,10 @@
 {
   "parser": "babel-eslint",
-  "extends": ["vtex", "vtex-react", "plugin:import/recommended"],
+  "extends": [
+    "vtex",
+    "vtex-react",
+    "plugin:import/recommended"
+  ],
   "plugins": ["import"],
   "rules": {
     "import/no-unresolved": [

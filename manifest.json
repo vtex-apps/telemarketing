@@ -17,5 +17,14 @@
   },
   "dependencies": {
     "vtex.styleguide": "5.x"
-  }
+  },
+  "policies": [
+    {
+      "name": "outbound-access",
+      "attrs": {
+        "host": "{{account}}.vtexcommercestable.com.br",
+        "path": "/api/sessions/*"
+      }
+    }
+  ]
 }
