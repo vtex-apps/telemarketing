@@ -17,22 +17,51 @@ class Impersonate extends Component {
     canImpersonate: false,
     email: '',
     loading: false,
-    sessionToken: '',
+    firstName: '',
+    lastName: '',
+    logged: false,
   }
 
-  handleLoadSession = session => {
+  componentDidMount = () => {
+    request('/api/sessions?items=*')
+      .then(res => {
+        this.processSession(res, true)
+      })
+      .catch(err => console.log(err))
+  }
+
+  processSession = (session, shouldInitilize) => {
     const {
       namespaces: {
-        impersonate: { canImpersonate: value },
+        impersonate: {
+          canImpersonate: { value },
+        },
+        profile: { isAuthenticated, email, firstName, lastName },
       },
     } = session
 
-    value &&
-      request('/api/sessions', {
-        method: 'POST',
-      }).then(() => {
-        this.setState({ canImpersonate: value })
+    const canImp = value === 'true'
+
+    console.log('processSession', session)
+    if (isAuthenticated.value === 'False') {
+      this.setState({
+        email: '',
+        firstName: '',
+        lastName: '',
+        logged: false,
+        canImpersonate: canImp,
       })
+    } else {
+      this.setState({
+        canImpersonate: canImp,
+        email: email.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        logged: true,
+      })
+    }
+
+    value && shouldInitilize && request('/api/sessions', { method: 'POST' })
   }
 
   handleInputChange = event => {
@@ -46,6 +75,8 @@ class Impersonate extends Component {
       },
     }
 
+    console.log('setSession', email)
+
     this.setState({ loading: true })
 
     request('/api/sessions', {
@@ -53,71 +84,72 @@ class Impersonate extends Component {
       body: JSON.stringify({
         public: params,
       }),
-    }).then(
-      res => {
-        console.log('res set session', res)
-        this.setState({ sessionToken: res.sessionToken, loading: false })
-      },
-      () => {
-        this.setState({ loading: false })
-      }
-    )
-  }
-
-  componentDidMount() {
-    request('/api/sessions?items=*').then(res => this.handleLoadSession(res))
+    })
+      .then(() => {
+        request('/api/sessions?items=*').then(session =>
+          this.processSession(session)
+        )
+      })
+      .finally(() => {
+        this.setState({
+          loading: false,
+        })
+      })
   }
 
   render() {
     const { intl } = this.props
-    const { canImpersonate, email, sessionToken, loading } = this.state
+    const {
+      canImpersonate,
+      email,
+      loading,
+      lastName,
+      firstName,
+      logged,
+    } = this.state
 
-    const isLogged = sessionToken !== ''
-
-    if (canImpersonate) {
-      return (
-        <div className="vtex-impersonate gray">
-          {isLogged ? (
-            <Fragment>
-              <span className="vtex-impersonate__message mr3">
-                <span className="mr3">
-                  {translate('impersonated.message', intl)}:
-                </span>
-                <Badge bgColor="#E3E4E6" color="#979899">
-                  {email}
-                </Badge>
+    return canImpersonate ? (
+      <div className="vtex-impersonate gray">
+        {logged ? (
+          <Fragment>
+            <span className="vtex-impersonate__message mr3">
+              <span className="mr3">
+                {translate('impersonated.message', intl)}:
               </span>
-              <Button
-                size="small"
-                onClick={() => this.handleSetSesssion('')}
-                isLoading={loading}
-              >
-                {translate('impersonout.button', intl)}
-              </Button>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <span className="vtex-impersonate__email-input w-50 w-25-l mr3">
-                <Input
-                  value={email}
-                  onChange={this.handleInputChange}
-                  placeholder={'Ex: example@mail.com'}
-                />
-              </span>
-              <Button
-                size="small"
-                onClick={() => this.handleSetSesssion(email)}
-                isLoading={loading}
-              >
-                {translate('impersonate.button', intl)}
-              </Button>
-            </Fragment>
-          )}
-        </div>
-      )
-    }
-
-    return <span />
+              <Badge bgColor="#E3E4E6" color="#979899">
+                {firstName ? `${firstName} ${lastName}` : email}
+              </Badge>
+            </span>
+            <Button
+              size="small"
+              onClick={() => this.handleSetSesssion('')}
+              isLoading={loading}
+            >
+              {translate('impersonout.button', intl)}
+            </Button>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <span className="vtex-impersonate__email-input w-50 w-25-l mr3">
+              <Input
+                value={email}
+                onChange={this.handleInputChange}
+                placeholder={'Ex: example@mail.com'}
+              />
+            </span>
+            <Button
+              size="small"
+              onClick={() => this.handleSetSesssion(email)}
+              isLoading={loading}
+            >
+              {translate('impersonate.button', intl)}
+            </Button>
+          </Fragment>
+        )}
+      </div>
+    ) : (
+      <span />
+    )
   }
 }
 
