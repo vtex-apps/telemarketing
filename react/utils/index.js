@@ -1,8 +1,24 @@
+const MAX_RETRIES = 3
+
 export const translate = (id, intl) => {
   return intl.formatMessage({ id: `${id}` })
 }
 
-export const request = (url, params) => {
+const requestWithRetry = (url, params, retries, err) => {
+  retries = retries || MAX_RETRIES
+
+  if (retries > 1) {
+    return request(url, params).catch(err => {
+      return requestWithRetry(url, params, retries - 1, err)
+    })
+  } else {
+    return Promise.reject(err)
+  }
+}
+
+export { requestWithRetry as request }
+
+const request = (url, params) => {
   params = params || {}
 
   if (fetch) {
@@ -28,7 +44,7 @@ export const setCookie = (key, value, expireDays) => {
   let cookieString = key + '=' + value
 
   if (expireDays) {
-    var expireDate = new Date()
+    const expireDate = new Date()
     expireDate.setDate(expireDate.getDate() + expireDays)
     cookieString += '; expires=' + expireDate.toUTCString()
   }
@@ -45,9 +61,11 @@ function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response
   }
-  var error = new Error(response.statusText)
+
+  const error = new Error(response.statusText)
   error.response = response
-  throw error
+
+  return Promise.reject(error)
 }
 
 function parseJSON(response) {

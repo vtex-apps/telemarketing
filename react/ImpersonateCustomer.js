@@ -25,12 +25,12 @@ class ImpersonateCustomer extends Component {
   }
 
   componentDidMount = () => {
-    request('/api/sessions', { method: 'POST' }).then(res1 => {
+    request('/api/sessions', { method: 'POST' }).then(() => {
       request('/api/sessions?items=*')
         .then(res => {
           this.processSession(res)
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log('Error initializing session', err))
     })
   }
 
