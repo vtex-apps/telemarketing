@@ -1,10 +1,10 @@
 {
   "vendor": "vtex",
-  "name": "impersonate",
+  "name": "impersonate-customer",
   "version": "0.0.1",
-  "title": "VTEX Impersonate",
+  "title": "VTEX Impersonate Customer",
   "defaultLocale": "pt-BR",
-  "description": "The VTEX Impersonate app",
+  "description": "The VTEX ImpersonateCustomer app",
   "builders": {
     "react": "2.x"
   },

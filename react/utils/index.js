@@ -19,6 +19,28 @@ export const request = (url, params) => {
   console.error('You need fetch to vtexjs.session to work!')
 }
 
+// Helper cookie function
+export const setCookie = (key, value, expireDays) => {
+  key = key.replace(/[^#$&+\^`|]/g, encodeURIComponent)
+  key = key.replace(/\(/g, '%28').replace(/\)/g, '%29')
+  value = (value + '').replace(/[^!#$&-+\--:<-\[\]-~]/g, encodeURIComponent)
+
+  let cookieString = key + '=' + value
+
+  if (expireDays) {
+    var expireDate = new Date()
+    expireDate.setDate(expireDate.getDate() + expireDays)
+    cookieString += '; expires=' + expireDate.toUTCString()
+  }
+
+  document.cookie = cookieString
+}
+
+// Helper cookie function
+export const deleteCookie = name => {
+  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response

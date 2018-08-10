@@ -1,11 +1,11 @@
 {
   "pages": {
-    "impersonate": {
-      "path": "/_v/impersonate"
+    "impersonate-customer": {
+      "path": "/_v/impersonate-customer"
     }
   },
   "extensions": {
-    "login": {
+    "impersonate-customer": {
       "component": "index"
     }
   }

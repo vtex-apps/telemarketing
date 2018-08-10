@@ -3,11 +3,13 @@ import { Input, Button, Badge } from 'vtex.styleguide'
 
 import { injectIntl, intlShape } from 'react-intl'
 
-import { request, translate } from './utils'
+import { request, translate, setCookie, deleteCookie } from './utils'
 import './global.css'
 
+var IMPERSONATED_KEY = 'vtex-impersonated-customer-email'
+
 /** Canonical Impersonate component */
-class Impersonate extends Component {
+class ImpersonateCustomer extends Component {
   static propTypes = {
     /** Intl object*/
     intl: intlShape,
@@ -23,14 +25,16 @@ class Impersonate extends Component {
   }
 
   componentDidMount = () => {
-    request('/api/sessions?items=*')
-      .then(res => {
-        this.processSession(res, true)
-      })
-      .catch(err => console.log(err))
+    request('/api/sessions', { method: 'POST' }).then(() =>
+      request('/api/sessions?items=*')
+        .then(res => {
+          this.processSession(res)
+        })
+        .catch(err => console.log(err))
+    )
   }
 
-  processSession = (session, shouldInitilize) => {
+  processSession = session => {
     const {
       namespaces: {
         impersonate: {
@@ -60,8 +64,6 @@ class Impersonate extends Component {
         logged: true,
       })
     }
-
-    value && shouldInitilize && request('/api/sessions', { method: 'POST' })
   }
 
   handleInputChange = event => {
@@ -78,6 +80,9 @@ class Impersonate extends Component {
     console.log('setSession', email)
 
     this.setState({ loading: true })
+
+    if (email === '') deleteCookie(IMPERSONATED_KEY)
+    else setCookie(IMPERSONATED_KEY, email, 1)
 
     request('/api/sessions', {
       method: 'POST',
@@ -109,12 +114,12 @@ class Impersonate extends Component {
     } = this.state
 
     return canImpersonate ? (
-      <div className="vtex-impersonate gray">
+      <div className="vtex-impersonate-customer gray">
         {logged ? (
           <Fragment>
-            <span className="vtex-impersonate__message mr3">
+            <span className="vtex-impersonate-customer__message mr3">
               <span className="mr3">
-                {translate('impersonated.message', intl)}:
+                {translate('impersonate-customer.message', intl)}:
               </span>
               <Badge bgColor="#E3E4E6" color="#979899">
                 {firstName ? `${firstName} ${lastName}` : email}
@@ -125,12 +130,12 @@ class Impersonate extends Component {
               onClick={() => this.handleSetSesssion('')}
               isLoading={loading}
             >
-              {translate('impersonout.button', intl)}
+              {translate('impersonate-customer-logout.button', intl)}
             </Button>
           </Fragment>
         ) : (
           <Fragment>
-            <span className="vtex-impersonate__email-input w-50 w-25-l mr3">
+            <span className="vtex-impersonate-customer__email-input w-50 w-25-l mr3">
               <Input
                 value={email}
                 onChange={this.handleInputChange}
@@ -142,7 +147,7 @@ class Impersonate extends Component {
               onClick={() => this.handleSetSesssion(email)}
               isLoading={loading}
             >
-              {translate('impersonate.button', intl)}
+              {translate('impersonate-customer.button', intl)}
             </Button>
           </Fragment>
         )}
@@ -153,4 +158,4 @@ class Impersonate extends Component {
   }
 }
 
-export default injectIntl(Impersonate)
+export default injectIntl(ImpersonateCustomer)
