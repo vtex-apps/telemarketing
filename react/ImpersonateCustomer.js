@@ -6,7 +6,7 @@ import { injectIntl, intlShape } from 'react-intl'
 import { request, translate, setCookie, deleteCookie } from './utils'
 import './global.css'
 
-var IMPERSONATED_KEY = 'vtex-impersonated-customer-email'
+const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
 
 /** Canonical Impersonate component */
 class ImpersonateCustomer extends Component {
@@ -25,13 +25,13 @@ class ImpersonateCustomer extends Component {
   }
 
   componentDidMount = () => {
-    request('/api/sessions', { method: 'POST' }).then(() =>
+    request('/api/sessions', { method: 'POST' }).then(res1 => {
       request('/api/sessions?items=*')
         .then(res => {
           this.processSession(res)
         })
         .catch(err => console.log(err))
-    )
+    })
   }
 
   processSession = session => {
@@ -46,7 +46,6 @@ class ImpersonateCustomer extends Component {
 
     const canImp = value === 'true'
 
-    console.log('processSession', session)
     if (isAuthenticated.value === 'False') {
       this.setState({
         email: '',
@@ -77,12 +76,10 @@ class ImpersonateCustomer extends Component {
       },
     }
 
-    console.log('setSession', email)
-
     this.setState({ loading: true })
 
-    if (email === '') deleteCookie(IMPERSONATED_KEY)
-    else setCookie(IMPERSONATED_KEY, email, 1)
+    if (email === '') deleteCookie(IMPERSONATED_CUSTOMER_EMAIL)
+    else setCookie(IMPERSONATED_CUSTOMER_EMAIL, email, 1)
 
     request('/api/sessions', {
       method: 'POST',
