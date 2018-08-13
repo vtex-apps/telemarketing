@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { Input, Button, Badge } from 'vtex.styleguide'
 import { injectIntl, intlShape } from 'react-intl'
 
-import { request, translate, setCookie, deleteCookie } from './utils'
+import { setCookie, deleteCookie } from './utils/cookies'
+import { request } from './utils/request'
+import { translate } from './utils/translate'
 import './global.css'
 
 const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
