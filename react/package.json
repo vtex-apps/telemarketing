@@ -1,5 +1,5 @@
 {
-  "name": "vtex.impersonate",
+  "name": "vtex.impersonate-customer",
   "scripts": {
     "test": "jest"
   },
