@@ -128,7 +128,13 @@ class ImpersonateCustomer extends Component {
               Assistente
             </div>
           </div>
-          {logged ? <ImpersonateLogout /> : <ImpersonateLogin />}
+          <div className="mh9">
+            {logged ? (
+              <ImpersonateLogout {...this.props} />
+            ) : (
+              <ImpersonateLogin {...this.props} />
+            )}
+          </div>
         </div>
       )
     }
