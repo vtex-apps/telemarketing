@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "title": "VTEX Impersonate Customer",
   "defaultLocale": "pt-BR",
-  "description": "The VTEX ImpersonateCustomer app",
+  "description": "The VTEX Impersonate Customer app",
   "builders": {
     "react": "2.x"
   },

@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import { Input, Button, Badge } from 'vtex.styleguide'
-
 import { injectIntl, intlShape } from 'react-intl'
 
 import { request, translate, setCookie, deleteCookie } from './utils'
@@ -111,7 +110,7 @@ class ImpersonateCustomer extends Component {
     } = this.state
 
     return canImpersonate ? (
-      <div className="vtex-impersonate-customer gray">
+      <div className="vtex-impersonate-customer gray flex items-center w100 bg-white z-999 flex-wrap pa3">
         {logged ? (
           <Fragment>
             <span className="vtex-impersonate-customer__message mr3">
