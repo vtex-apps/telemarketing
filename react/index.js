@@ -112,16 +112,20 @@ class ImpersonateCustomer extends Component {
       logged,
     } = this.state
 
-    if (canImpersonate) {
+    if (canImpersonate || true) {
       return (
         <div
-          className={`vtex-impersonate-customer gray flex items-end w100 ${
-            logged ? 'bg-red' : 'bg-near-black'
-          } z-999 pa3  justify-between`}
+          className={`vtex-impersonate-customer gray flex items-end w-100 justify-end ${
+            logged ? 'bg-red' : 'bg-black-90'
+          } z-999 pa3`}
         >
-          <span>
-            <AttendantIcon /> teste
-          </span>
+          <div className="flex align-center">
+            <AttendantIcon />
+            <div className="pa3">
+              {translate('impersonate-customer.attendant', intl)}: Nome da
+              Assistente
+            </div>
+          </div>
           {logged ? <ImpersonateLogout /> : <ImpersonateLogin />}
         </div>
       )

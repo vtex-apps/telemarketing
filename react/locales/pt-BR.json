@@ -1,5 +1,6 @@
 {
   "impersonate-customer.message": "Logado como",
   "impersonate-customer.button": "Entrar como",
-  "impersonate-customer-logout.button": "Sair"
+  "impersonate-customer-logout.button": "Sair",
+  "impersonate-customer.attendant": "Atendente"
 }
