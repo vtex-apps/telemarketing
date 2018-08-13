@@ -1,11 +1,11 @@
 {
   "pages": {
-    "impersonate-customer": {
-      "path": "/_v/impersonate-customer"
+    "telemarketing": {
+      "path": "/_v/telemarketing"
     }
   },
   "extensions": {
-    "impersonate-customer": {
+    "telemarketing": {
       "component": "index"
     }
   }

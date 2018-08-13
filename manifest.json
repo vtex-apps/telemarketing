@@ -1,22 +1,27 @@
 {
   "vendor": "vtex",
-  "name": "impersonate-customer",
-  "version": "0.0.1",
-  "title": "VTEX Impersonate Customer",
+  "name": "telemarketing",
+  "version": "0.1.0",
+  "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
-  "description": "The VTEX Impersonate Customer app",
+  "description": "The VTEX telemarketing app",
   "builders": {
     "react": "2.x"
   },
   "mustUpdateAt": "2019-04-02",
   "categories": [],
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "settingsSchema": {},
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.styleguide": "5.x"
+    "vtex.styleguide": "5.x",
+    "vtex.checkout-session": "0.x",
+    "vtex.rnb-session": "0.x",
+    "vtex.store-session": "0.x"
   },
   "policies": [
     {
