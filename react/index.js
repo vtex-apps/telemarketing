@@ -112,7 +112,7 @@ class ImpersonateCustomer extends Component {
     } = this.state
 
     return canImpersonate ? (
-      <div className="vtex-impersonate-customer gray flex items-center w100 bg-white z-999 flex-wrap pa3">
+      <div className="vtex-impersonate-customer gray flex items-center w-100 bg-white z-999 flex-wrap pa3">
         {logged ? (
           <Fragment>
             <span className="vtex-impersonate-customer__message mr3">
