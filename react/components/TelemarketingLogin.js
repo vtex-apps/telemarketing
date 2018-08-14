@@ -9,7 +9,6 @@ import { translate } from '../utils/translate'
 
 export default class TelemarketingLogin extends Component {
   static propTypes = {
-    attendantName: PropTypes.string.isRequired,
     attendantEmail: PropTypes.string.isRequired,
     clientEmail: PropTypes.string.isRequired,
     onInputChange: PropTypes.func.isRequired,
@@ -32,7 +31,6 @@ export default class TelemarketingLogin extends Component {
 
   render() {
     const {
-      attendantName,
       attendantEmail,
       onInputChange,
       onSetSesssion,
@@ -47,9 +45,6 @@ export default class TelemarketingLogin extends Component {
           <div className="bg-black-90 w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">
               <AttendantIcon size={50} />
-            </div>
-            <div className="vtex-telemarketing__popover-header-name">
-              {attendantName}
             </div>
             <div className="vtex-telemarketing__popover-header-email">
               {attendantEmail}

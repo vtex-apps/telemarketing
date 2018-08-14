@@ -8,6 +8,7 @@ import AttendantIcon from './icons/AttendantIcon'
 import { setCookie, deleteCookie } from './utils/cookies'
 import { request } from './utils/request'
 import { translate } from './utils/translate'
+import { truncateString } from './utils/format-string'
 import './global.css'
 
 const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
@@ -20,15 +21,12 @@ class Telemarketing extends Component {
   }
 
   state = {
-    canImpersonate: false,
+    logged: false,
+    loading: false,
     clientName: '',
     clientEmail: '',
-    loading: false,
-    firstName: '',
-    lastName: '',
-    attendantName: 'Ana Beatriz',
-    attendantEmail: 'anabeatriz@mail.com',
-    logged: false,
+    attendantEmail: '',
+    canImpersonate: false,
   }
 
   componentDidMount = () => {
@@ -42,12 +40,14 @@ class Telemarketing extends Component {
   }
 
   processSession = session => {
+    console.log('session', session)
     const {
       namespaces: {
         impersonate: {
           canImpersonate: { value },
         },
         profile: { isAuthenticated, email, firstName, lastName },
+        authentication: { adminUserEmail },
       },
     } = session
 
@@ -55,18 +55,18 @@ class Telemarketing extends Component {
 
     if (isAuthenticated.value === 'False') {
       this.setState({
+        clientName: '',
         clientEmail: '',
-        firstName: '',
-        lastName: '',
         logged: false,
         canImpersonate: canImp,
+        attendantEmail: adminUserEmail ? adminUserEmail.value : '',
       })
     } else {
       this.setState({
         canImpersonate: canImp,
+        attendantEmail: adminUserEmail.value,
+        clientName: `${firstName.value} ${lastName.value}`,
         clientEmail: email.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
         logged: true,
       })
     }
@@ -113,7 +113,6 @@ class Telemarketing extends Component {
       clientEmail,
       clientName,
       loading,
-      attendantName,
       attendantEmail,
       logged,
     } = this.state
@@ -121,23 +120,23 @@ class Telemarketing extends Component {
     if (canImpersonate) {
       return (
         <div
-          className={`vtex-telemarketing white flex items-end w-100 justify-end ${
+          className={`vtex-telemarketing white flex items-end w-100 justify-end f6 ${
             logged ? 'bg-red' : 'bg-black-90'
-          } z-999 pa3`}
+          } z-999 pa2`}
         >
           <div className="flex align-center">
             <AttendantIcon />
             <div className="pa3">
-              {translate('telemarketing.attendant', intl)}: {attendantName}
+              {translate('telemarketing.attendant', intl)}
+              <b>{`: ${truncateString(attendantEmail)}`}</b>
             </div>
           </div>
-          <div className="mh9">
+          <div className="mh10">
             {logged ? (
               <TelemarketingLogout
                 intl={intl}
                 clientName={clientName}
                 clientEmail={clientEmail}
-                attendantName={attendantName}
                 attendantEmail={attendantEmail}
                 onSetSesssion={this.handleSetSesssion}
               />
@@ -146,7 +145,6 @@ class Telemarketing extends Component {
                 intl={intl}
                 clientEmail={clientEmail}
                 loading={loading}
-                attendantName={attendantName}
                 attendantEmail={attendantEmail}
                 onSetSesssion={this.handleSetSesssion}
                 onInputChange={this.handleInputChange}
