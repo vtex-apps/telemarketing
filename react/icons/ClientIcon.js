@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class ClientIcon extends Component {
+  static propTypes = {
+    size: PropTypes.number,
+  }
+
+  static defaultProps = {
+    size: 30,
+  }
+
   render() {
+    const { size } = this.props
     return (
       <svg
-        width="30"
-        height="30"
+        width={size}
+        height={size}
         viewBox="0 0 21 21"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

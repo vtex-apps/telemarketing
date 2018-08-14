@@ -1,2 +1,33 @@
-.vtex-impersonate-customer {
+.vtex-impersonate-customer .vtex-popover__arrow-up {
+  background-color: rgba(0, 0, 0, 0.9);
+  right: 20px;
+}
+
+.vtex-impersonate-customer .vtex-popover__box {
+  top: 3rem;
+  min-width: 320px;
+}
+
+.vtex-telemarketing__login {
+  text-align: center;
+}
+
+/* Popover css */
+
+.vtex-popover__arrow-up {
+  transform: rotate(45deg);
+  width: 25px;
+  height: 25px;
+  right: 7px;
+  z-index: 2147483646;
+}
+
+.vtex-popover__box {
+  top: 100%;
+  visibility: visible;
+  min-width: 310px;
+}
+
+.vtex-popover__content-container {
+  min-width: 100%;
 }
