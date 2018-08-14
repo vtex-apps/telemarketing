@@ -9,7 +9,7 @@ export default class Popover extends Component {
   boxRef_ = React.createRef()
 
   state = {
-    isBoxOpen: true,
+    isBoxOpen: false,
   }
 
   handleDocumentMouseUp = e => {
@@ -47,7 +47,9 @@ export default class Popover extends Component {
 
     return (
       <div className="vtex-popover relative">
-        <div onClick={this.handleHeaderClick}>{renderHeader()}</div>
+        <div className="pointer" onClick={this.handleHeaderClick}>
+          {renderHeader()}
+        </div>
         <div
           className={`vtex-popover__box absolute right-0 ${
             this.state.isBoxOpen ? 'flex' : 'dn'
@@ -55,10 +57,7 @@ export default class Popover extends Component {
           ref={this.boxRef_}
         >
           <div className="vtex-popover__arrow-up absolute top-0 right-0 shadow-3 bg-white" />
-          <div
-            className="vtex-popover__content-container shadow-
-3 mt3 z-max bg-white"
-          >
+          <div className="vtex-popover__content-container shadow-3 mt3 z-max bg-white">
             {children}
           </div>
         </div>

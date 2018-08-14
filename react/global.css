@@ -1,15 +1,29 @@
-.vtex-impersonate-customer .vtex-popover__arrow-up {
+.vtex-telemarketing {
+  text-align: center;
+}
+
+.vtex-telemarketing .vtex-popover__arrow-up {
   background-color: rgba(0, 0, 0, 0.9);
   right: 20px;
 }
 
-.vtex-impersonate-customer .vtex-popover__box {
+.vtex-telemarketing .vtex-popover__box {
   top: 3rem;
   min-width: 320px;
 }
 
-.vtex-telemarketing__login {
-  text-align: center;
+.vtex-telemarketing__login-form-message {
+  text-align: left;
+}
+
+.vtex-telemarketing__popover-header-email {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Logout */
+
+.vtex-telemarketing .vtex-telemarketing__logout .vtex-popover__arrow-up {
+  background-color: #ff4c4c;
 }
 
 /* Popover css */

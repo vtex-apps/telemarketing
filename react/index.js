@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react'
-import { Input, Button, Badge } from 'vtex.styleguide'
+import React, { Component } from 'react'
+
 import { injectIntl, intlShape } from 'react-intl'
 
-import ImpersonateLogin from './components/ImpersonateLogin'
-import ImpersonateLogout from './components/ImpersonateLogout'
+import TelemarketingLogin from './components/TelemarketingLogin'
+import TelemarketingLogout from './components/TelemarketingLogout'
 import AttendantIcon from './icons/AttendantIcon'
 import { setCookie, deleteCookie } from './utils/cookies'
 import { request } from './utils/request'
@@ -12,8 +12,8 @@ import './global.css'
 
 const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
 
-/** Canonical Impersonate component */
-class ImpersonateCustomer extends Component {
+/** Canonical Telemarketing component */
+class Telemarketing extends Component {
   static propTypes = {
     /** Intl object*/
     intl: intlShape,
@@ -21,10 +21,13 @@ class ImpersonateCustomer extends Component {
 
   state = {
     canImpersonate: false,
-    email: '',
+    clientName: '',
+    clientEmail: '',
     loading: false,
     firstName: '',
     lastName: '',
+    attendantName: 'Ana Beatriz',
+    attendantEmail: 'anabeatriz@mail.com',
     logged: false,
   }
 
@@ -52,7 +55,7 @@ class ImpersonateCustomer extends Component {
 
     if (isAuthenticated.value === 'False') {
       this.setState({
-        email: '',
+        clientEmail: '',
         firstName: '',
         lastName: '',
         logged: false,
@@ -61,7 +64,7 @@ class ImpersonateCustomer extends Component {
     } else {
       this.setState({
         canImpersonate: canImp,
-        email: email.value,
+        clientEmail: email.value,
         firstName: firstName.value,
         lastName: lastName.value,
         logged: true,
@@ -70,7 +73,7 @@ class ImpersonateCustomer extends Component {
   }
 
   handleInputChange = event => {
-    this.setState({ email: event.target.value })
+    this.setState({ clientEmail: event.target.value })
   }
 
   handleSetSesssion = email => {
@@ -107,32 +110,47 @@ class ImpersonateCustomer extends Component {
     const { intl } = this.props
     const {
       canImpersonate,
-      email,
+      clientEmail,
+      clientName,
       loading,
-      lastName,
-      firstName,
+      attendantName,
+      attendantEmail,
       logged,
     } = this.state
 
-    if (canImpersonate || true) {
+    if (canImpersonate) {
       return (
         <div
-          className={`vtex-impersonate-customer gray flex items-end w-100 justify-end ${
+          className={`vtex-telemarketing white flex items-end w-100 justify-end ${
             logged ? 'bg-red' : 'bg-black-90'
           } z-999 pa3`}
         >
           <div className="flex align-center">
             <AttendantIcon />
             <div className="pa3">
-              {translate('impersonate-customer.attendant', intl)}: Nome da
-              Assistente
+              {translate('telemarketing.attendant', intl)}: {attendantName}
             </div>
           </div>
           <div className="mh9">
             {logged ? (
-              <ImpersonateLogout {...this.props} />
+              <TelemarketingLogout
+                intl={intl}
+                clientName={clientName}
+                clientEmail={clientEmail}
+                attendantName={attendantName}
+                attendantEmail={attendantEmail}
+                onSetSesssion={this.handleSetSesssion}
+              />
             ) : (
-              <ImpersonateLogin {...this.props} />
+              <TelemarketingLogin
+                intl={intl}
+                clientEmail={clientEmail}
+                loading={loading}
+                attendantName={attendantName}
+                attendantEmail={attendantEmail}
+                onSetSesssion={this.handleSetSesssion}
+                onInputChange={this.handleInputChange}
+              />
             )}
           </div>
         </div>
@@ -140,50 +158,7 @@ class ImpersonateCustomer extends Component {
     }
 
     return null
-
-    // return canImpersonate ? (
-    //   <div className="vtex-impersonate-customer gray flex items-center w100 bg-white z-999 flex-wrap pa3">
-    //     {logged ? (
-    //       <Fragment>
-    //         <span className="vtex-impersonate-customer__message mr3">
-    //           <span className="mr3">
-    //             {translate('impersonate-customer.message', intl)}:
-    //           </span>
-    //           <Badge bgColor="#E3E4E6" color="#979899">
-    //             {firstName ? `${firstName} ${lastName}` : email}
-    //           </Badge>
-    //         </span>
-    //         <Button
-    //           size="small"
-    //           onClick={() => this.handleSetSesssion('')}
-    //           isLoading={loading}
-    //         >
-    //           {translate('impersonate-customer-logout.button', intl)}
-    //         </Button>
-    //       </Fragment>
-    //     ) : (
-    //       <Fragment>
-    //         <span className="vtex-impersonate-customer__email-input w-50 w-25-l mr3">
-    //           <Input
-    //             value={email}
-    //             onChange={this.handleInputChange}
-    //             placeholder={'Ex: example@mail.com'}
-    //           />
-    //         </span>
-    //         <Button
-    //           size="small"
-    //           onClick={() => this.handleSetSesssion(email)}
-    //           isLoading={loading}
-    //         >
-    //           {translate('impersonate-customer.button', intl)}
-    //         </Button>
-    //       </Fragment>
-    //     )}
-    //   </div>
-    // ) : (
-    //   <span />
-    // )
   }
 }
 
-export default injectIntl(ImpersonateCustomer)
+export default injectIntl(Telemarketing)
