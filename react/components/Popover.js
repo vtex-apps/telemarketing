@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+/** Component that shows a content when it´s header is clicked*/
 export default class Popover extends Component {
   static propTypes = {
+    /** Function that will display the header */
     renderHeader: PropTypes.func.isRequired,
   }
 

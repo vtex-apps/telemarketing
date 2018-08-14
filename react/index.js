@@ -13,7 +13,7 @@ import './global.css'
 
 const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
 
-/** Canonical Telemarketing component */
+/** Canonical Telemarketing component that receives an client email and impersonates that client if the attendant has the correct permission for it. */
 class Telemarketing extends Component {
   static propTypes = {
     /** Intl object*/
@@ -40,7 +40,6 @@ class Telemarketing extends Component {
   }
 
   processSession = session => {
-    console.log('session', session)
     const {
       namespaces: {
         impersonate: {

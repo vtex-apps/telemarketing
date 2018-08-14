@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
+import { intlShape } from 'react-intl'
 
 import { translate } from '../utils/translate'
 import { truncateString } from '../utils/format-string'
@@ -7,7 +9,23 @@ import Popover from './Popover'
 import AttendantIcon from '../icons/AttendantIcon'
 import ClientIcon from '../icons/ClientIcon'
 
+/** Component that shows the client info calls the setSession function  to logout. */
 export default class TelemarketingLogout extends Component {
+  static propTypes = {
+    /** Intl info */
+    intl: intlShape,
+    /** Signed in client name */
+    clientName: PropTypes.string.isRequired,
+    /** Signed in client email */
+    clientEmail: PropTypes.string.isRequired,
+    /** Current signedin attendant email */
+    attendantEmail: PropTypes.string.isRequired,
+    /** Calls the setSession on the parent component */
+    onSetSesssion: PropTypes.func.isRequired,
+    /** Loading Status */
+    loading: PropTypes.bool.isRequired,
+  }
+
   handleHeaderRendering = () => {
     const { intl, clientName } = this.props
 
