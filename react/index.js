@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-
 import { injectIntl, intlShape } from 'react-intl'
+import {
+  orderFormConsumer,
+  contextPropTypes,
+} from 'vtex.store/OrderFormContext'
 
 import LoginAsCustomer from './components/LoginAsCustomer'
 import LogoutCustomerSession from './components/LogoutCustomerSession'
@@ -18,6 +21,8 @@ class Telemarketing extends Component {
   static propTypes = {
     /** Intl object*/
     intl: intlShape,
+    /** Function to set the ProfileData */
+    orderFormContext: contextPropTypes,
   }
 
   state = {
@@ -36,6 +41,35 @@ class Telemarketing extends Component {
           this.processSession(res)
         })
         .catch(err => console.log('Error initializing session', err))
+    })
+  }
+
+  setClientProfileData(session) {
+    const {
+      namespaces: {
+        profile: { firstName, lastName, document, phone, email },
+      },
+    } = session
+
+    const {
+      orderFormContext: { orderForm, updateOrderFormProfile },
+    } = this.props
+
+    const profileData = {
+      email: email && email.value,
+      firstName: firstName && firstName.value,
+      lastName: lastName && lastName.value,
+      document: document && document.value,
+      phone: phone && phone.value,
+    }
+
+    const variables = {
+      orderFormId: orderForm.orderFormId,
+      fields: profileData,
+    }
+
+    updateOrderFormProfile({ variables }).then(res => {
+      console.log('result', res)
     })
   }
 
@@ -68,6 +102,8 @@ class Telemarketing extends Component {
         clientEmail: email.value,
         logged: true,
       })
+
+      this.setClientProfileData(session)
     }
   }
 
@@ -136,6 +172,7 @@ class Telemarketing extends Component {
                 intl={intl}
                 clientName={clientName}
                 clientEmail={clientEmail}
+                loading={loading}
                 attendantEmail={attendantEmail}
                 onSetSesssion={this.handleSetSesssion}
               />
@@ -158,4 +195,4 @@ class Telemarketing extends Component {
   }
 }
 
-export default injectIntl(Telemarketing)
+export default injectIntl(orderFormConsumer(Telemarketing))
