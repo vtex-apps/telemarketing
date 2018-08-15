@@ -1,7 +1,7 @@
 {
   "telemarketing.attendant": "Asistente",
   "telemarketing.client": "Cliente",
-  "telemarketing-login.message": "Entrar como cliente",
-  "telemarketing-login.button": "Entrar",
+  "telemarketing-login.message": "Ingresá como cliente",
+  "telemarketing-login.button": "Ingresá",
   "telemarketing-logout.button": "Salir"
 }
