@@ -61,7 +61,7 @@ export default class Popover extends Component {
           <div className="vtex-popover__content-container shadow-3 mt3 bg-white">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute rotate-45 top-0 right-0 bg-white" />
+          <div className="vtex-popover__arrow-up absolute top-0 right-0 bg-white" />
         </div>
       </div>
     )

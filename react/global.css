@@ -17,6 +17,7 @@
 /* Popover css */
 
 .vtex-popover__arrow-up {
+  transform: rotate(-135deg);
   width: 25px;
   height: 25px;
   right: 7px;
