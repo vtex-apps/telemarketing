@@ -56,7 +56,7 @@ export default class LogoutCustomerSession extends Component {
             <div className="vtex-telemarketing__popover-header-icon">
               <TelemarketingIcon size={50} />
             </div>
-            <div className="vtex-telemarketing__popover-header-email">
+            <div className="vtex-telemarketing__popover-header-email white-50">
               {attendantEmail}
             </div>
           </div>

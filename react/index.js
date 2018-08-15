@@ -68,9 +68,7 @@ class Telemarketing extends Component {
       fields: profileData,
     }
 
-    updateOrderFormProfile({ variables }).then(res => {
-      console.log('result', res)
-    })
+    updateOrderFormProfile({ variables })
   }
 
   processSession = session => {
@@ -155,7 +153,7 @@ class Telemarketing extends Component {
     if (canImpersonate) {
       return (
         <div
-          className={`vtex-telemarketing white flex items-end w-100 justify-end f6 ${
+          className={`vtex-telemarketing tc white flex items-end w-100 justify-end f6 ${
             logged ? 'bg-red' : 'bg-black-90'
           } z-999 pa2`}
         >

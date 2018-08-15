@@ -1,23 +1,11 @@
-.vtex-telemarketing {
-  text-align: center;
-}
-
 .vtex-telemarketing .vtex-popover__arrow-up {
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgb(25, 25, 25);
   right: 20px;
 }
 
 .vtex-telemarketing .vtex-popover__box {
   top: 3rem;
   min-width: 320px;
-}
-
-.vtex-telemarketing__login-form-message {
-  text-align: left;
-}
-
-.vtex-telemarketing__popover-header-email {
-  color: rgba(255, 255, 255, 0.5);
 }
 
 /* Logout */
@@ -29,11 +17,10 @@
 /* Popover css */
 
 .vtex-popover__arrow-up {
-  transform: rotate(45deg);
   width: 25px;
   height: 25px;
   right: 7px;
-  z-index: 2147483646;
+  box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.2);
 }
 
 .vtex-popover__box {

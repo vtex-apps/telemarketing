@@ -55,13 +55,13 @@ export default class LoginAsCustomer extends Component {
             <div className="vtex-telemarketing__popover-header-icon">
               <TelemarketingIcon size={50} />
             </div>
-            <div className="vtex-telemarketing__popover-header-email">
+            <div className="vtex-telemarketing__popover-header-email white-50">
               {attendantEmail}
             </div>
           </div>
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__login-form gray">
-              <div className="vtex-telemarketing__login-form-message mv3">
+              <div className="vtex-telemarketing__login-form-message tl mv3">
                 {translate('telemarketing-login.message', intl)}
               </div>
               <div className="vtex-telemarketing__email-input mv3">
