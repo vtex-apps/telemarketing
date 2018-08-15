@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { Input, Button } from 'vtex.styleguide'
 import { intlShape } from 'react-intl'
 
-import ClientIcon from '../icons/ClientIcon'
-import AttendantIcon from '../icons/AttendantIcon'
+import CustomerIcon from '../icons/CustomerIcon'
+import TelemarketingIcon from '../icons/TelemarketingIcon'
 import Popover from './Popover'
 import { translate } from '../utils/translate'
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
-export default class TelemarketingLogin extends Component {
+export default class LoginAsCustomer extends Component {
   static propTypes = {
     /** Current signedin attendant email */
     attendantEmail: PropTypes.string.isRequired,
@@ -30,7 +30,7 @@ export default class TelemarketingLogin extends Component {
 
     return (
       <div className="flex align-center">
-        <ClientIcon />
+        <CustomerIcon />
         <div className="pa3">
           {translate('telemarketing-login.message', intl)}
         </div>
@@ -53,7 +53,7 @@ export default class TelemarketingLogin extends Component {
         <Popover renderHeader={this.handleHeaderRendering}>
           <div className="bg-black-90 w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">
-              <AttendantIcon size={50} />
+              <TelemarketingIcon size={50} />
             </div>
             <div className="vtex-telemarketing__popover-header-email">
               {attendantEmail}

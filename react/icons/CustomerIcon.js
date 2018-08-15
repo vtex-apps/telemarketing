@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-export default class ClientIcon extends Component {
+export default class CustomerIcon extends Component {
   static propTypes = {
     size: PropTypes.number,
   }

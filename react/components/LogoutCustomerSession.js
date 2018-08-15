@@ -6,11 +6,11 @@ import { intlShape } from 'react-intl'
 import { translate } from '../utils/translate'
 import { truncateString } from '../utils/format-string'
 import Popover from './Popover'
-import AttendantIcon from '../icons/AttendantIcon'
-import ClientIcon from '../icons/ClientIcon'
+import TelemarketingIcon from '../icons/TelemarketingIcon'
+import CustomerIcon from '../icons/CustomerIcon'
 
 /** Component that shows the client info calls the setSession function  to logout. */
-export default class TelemarketingLogout extends Component {
+export default class LogoutCustomerSession extends Component {
   static propTypes = {
     /** Intl info */
     intl: intlShape,
@@ -31,7 +31,7 @@ export default class TelemarketingLogout extends Component {
 
     return (
       <div className="flex align-center">
-        <ClientIcon />
+        <CustomerIcon />
         <div className="pa3">
           {translate('telemarketing.client', intl)}
           {clientName ? `: ${truncateString(clientName)}` : null}
@@ -54,7 +54,7 @@ export default class TelemarketingLogout extends Component {
         <Popover renderHeader={this.handleHeaderRendering}>
           <div className="bg-red w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">
-              <AttendantIcon size={50} />
+              <TelemarketingIcon size={50} />
             </div>
             <div className="vtex-telemarketing__popover-header-email">
               {attendantEmail}
@@ -63,7 +63,7 @@ export default class TelemarketingLogout extends Component {
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__logout-form gray">
               <div className="flex justify-center pa3 bw1 bb b--silver">
-                <ClientIcon color={'#828282'} />
+                <CustomerIcon color={'#828282'} />
                 <div className="pa3">{clientEmail}</div>
               </div>
               <div className="flex justify-center">

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 import { injectIntl, intlShape } from 'react-intl'
 
-import TelemarketingLogin from './components/TelemarketingLogin'
-import TelemarketingLogout from './components/TelemarketingLogout'
-import AttendantIcon from './icons/AttendantIcon'
+import LoginAsCustomer from './components/LoginAsCustomer'
+import LogoutCustomerSession from './components/LogoutCustomerSession'
+import TelemarketingIcon from './icons/TelemarketingIcon'
 import { setCookie, deleteCookie } from './utils/cookies'
 import { request } from './utils/request'
 import { translate } from './utils/translate'
@@ -124,7 +124,7 @@ class Telemarketing extends Component {
           } z-999 pa2`}
         >
           <div className="flex align-center">
-            <AttendantIcon />
+            <TelemarketingIcon />
             <div className="pa3">
               {translate('telemarketing.attendant', intl)}
               <b>{`: ${truncateString(attendantEmail)}`}</b>
@@ -132,7 +132,7 @@ class Telemarketing extends Component {
           </div>
           <div className="mh10">
             {logged ? (
-              <TelemarketingLogout
+              <LogoutCustomerSession
                 intl={intl}
                 clientName={clientName}
                 clientEmail={clientEmail}
@@ -140,7 +140,7 @@ class Telemarketing extends Component {
                 onSetSesssion={this.handleSetSesssion}
               />
             ) : (
-              <TelemarketingLogin
+              <LoginAsCustomer
                 intl={intl}
                 clientEmail={clientEmail}
                 loading={loading}
