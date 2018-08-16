@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.0.0] - 2018-08-15
+### Changed
+- New design of the component
+
+
 ## [0.1.0] - 2018-08-13
 ### Added
 - Add _Telemarketing_ app.

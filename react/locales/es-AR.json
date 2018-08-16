@@ -1,5 +1,7 @@
 {
-  "impersonate-customer.message": "Conectado como",
-  "impersonate-customer.button": "Entrar como",
-  "impersonate-customer-logout.button": "Salir"
+  "telemarketing.attendant": "Asistente",
+  "telemarketing.client": "Cliente",
+  "telemarketing-login.message": "Ingresá como cliente",
+  "telemarketing-login.button": "Ingresá",
+  "telemarketing-logout.button": "Salir"
 }
