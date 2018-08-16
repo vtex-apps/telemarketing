@@ -7,7 +7,7 @@ export default class CustomerIcon extends Component {
   }
 
   static defaultProps = {
-    size: 30,
+    size: 20,
     color: 'white',
   }
 

@@ -32,7 +32,7 @@ export default class LogoutCustomerSession extends Component {
     return (
       <div className="flex align-center">
         <CustomerIcon />
-        <div className="pa3">
+        <div className="pa2">
           {translate('telemarketing.client', intl)}
           {clientName ? `: ${truncateString(clientName)}` : null}
         </div>

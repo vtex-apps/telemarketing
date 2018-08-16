@@ -31,7 +31,7 @@ export default class LoginAsCustomer extends Component {
     return (
       <div className="flex align-center">
         <CustomerIcon />
-        <div className="pa3">
+        <div className="pa2">
           {translate('telemarketing-login.message', intl)}
         </div>
       </div>
