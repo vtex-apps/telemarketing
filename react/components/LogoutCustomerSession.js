@@ -68,28 +68,32 @@ export default class LogoutCustomerSession extends Component {
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__logout-form gray">
               <table className="w-100 pa3 bw1 bb b--silver">
-                <tr>
-                  <td>
-                    <CustomerIcon color={'#828282'} />
-                  </td>
-                  <td>
-                    <div className="pa3">{clientEmail}</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    {translate('telemarketing-logout.document-label', intl)}
-                  </td>
-                  <td>
-                    <div className="db pa3">{clientDocument}</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>{translate('telemarketing-logout.phone-label', intl)}</td>
-                  <td>
-                    <div className="db pa3">{clientPhone}</div>
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <CustomerIcon color={'#828282'} />
+                    </td>
+                    <td>
+                      <div className="pa3">{clientEmail}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {translate('telemarketing-logout.document-label', intl)}
+                    </td>
+                    <td>
+                      <div className="db pa3">{clientDocument}</div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {translate('telemarketing-logout.phone-label', intl)}
+                    </td>
+                    <td>
+                      <div className="db pa3">{clientPhone}</div>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               <div className="flex justify-center">
                 <span className="mt3">
