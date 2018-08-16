@@ -3,5 +3,7 @@
   "telemarketing.client": "Client",
   "telemarketing-login.message": "Login as",
   "telemarketing-login.button": "Login",
-  "telemarketing-logout.button": "Logout"
+  "telemarketing-logout.button": "Logout",
+  "telemarketing-logout.document-label": "Document",
+  "telemarketing-logout.phone-label": "Phone"
 }

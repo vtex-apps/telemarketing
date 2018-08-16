@@ -26,7 +26,7 @@ export default class Popover extends Component {
       isBoxOpen && this.setState({ isBoxOpen: false })
       this.removeListeners()
 
-      target.dispatchEvent(e)
+      target.dispatchEvent(new Event('closeonclick'))
     }
   }
 

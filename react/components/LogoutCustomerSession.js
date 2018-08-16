@@ -16,6 +16,10 @@ export default class LogoutCustomerSession extends Component {
     intl: intlShape,
     /** Signed in client name */
     clientName: PropTypes.string.isRequired,
+    /** Signed in client document */
+    clientDocument: PropTypes.string.isRequired,
+    /** Signed in client phone */
+    clientPhone: PropTypes.string.isRequired,
     /** Signed in client email */
     clientEmail: PropTypes.string.isRequired,
     /** Current signedin attendant email */
@@ -27,14 +31,13 @@ export default class LogoutCustomerSession extends Component {
   }
 
   handleHeaderRendering = () => {
-    const { intl, clientName } = this.props
+    const { intl, clientEmail } = this.props
 
     return (
       <div className="flex align-center">
         <CustomerIcon />
         <div className="pa2">
-          {translate('telemarketing.client', intl)}
-          {clientName ? `: ${truncateString(clientName)}` : null}
+          {clientEmail ? `${truncateString(clientEmail, 25)}` : null}
         </div>
       </div>
     )
@@ -44,6 +47,8 @@ export default class LogoutCustomerSession extends Component {
     const {
       attendantEmail,
       clientEmail,
+      clientDocument,
+      clientPhone,
       onSetSesssion,
       loading,
       intl,
@@ -62,10 +67,30 @@ export default class LogoutCustomerSession extends Component {
           </div>
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__logout-form gray">
-              <div className="flex justify-center pa3 bw1 bb b--silver">
-                <CustomerIcon color={'#828282'} />
-                <div className="pa3">{clientEmail}</div>
-              </div>
+              <table className="w-100 pa3 bw1 bb b--silver">
+                <tr>
+                  <td>
+                    <CustomerIcon color={'#828282'} />
+                  </td>
+                  <td>
+                    <div className="pa3">{clientEmail}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    {translate('telemarketing-logout.document-label', intl)}
+                  </td>
+                  <td>
+                    <div className="db pa3">{clientDocument}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{translate('telemarketing-logout.phone-label', intl)}</td>
+                  <td>
+                    <div className="db pa3">{clientPhone}</div>
+                  </td>
+                </tr>
+              </table>
               <div className="flex justify-center">
                 <span className="mt3">
                   <Button

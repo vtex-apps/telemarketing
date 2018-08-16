@@ -1,6 +1,7 @@
-export const truncateString = str => {
+export const truncateString = (str, size) => {
   const MAX_LENGTH = 12
-  return str.length <= MAX_LENGTH
-    ? str
-    : str.substring(0, MAX_LENGTH).concat('...')
+
+  size = size || MAX_LENGTH
+
+  return str.length <= size ? str : str.substring(0, size - 3).concat('...')
 }

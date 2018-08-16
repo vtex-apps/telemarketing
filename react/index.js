@@ -12,7 +12,6 @@ import TelemarketingIcon from './icons/TelemarketingIcon'
 import { setCookie, deleteCookie } from './utils/cookies'
 import { request } from './utils/request'
 import { translate } from './utils/translate'
-import { truncateString } from './utils/format-string'
 import './global.css'
 
 const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
@@ -31,6 +30,8 @@ class Telemarketing extends Component {
     loading: false,
     clientName: '',
     clientEmail: '',
+    clientPhone: '',
+    clientDocument: '',
     attendantEmail: '',
     canImpersonate: false,
   }
@@ -73,12 +74,20 @@ class Telemarketing extends Component {
   }
 
   processSession = session => {
+    console.log('session', session)
     const {
       namespaces: {
         impersonate: {
           canImpersonate: { value },
         },
-        profile: { isAuthenticated, email, firstName, lastName },
+        profile: {
+          isAuthenticated,
+          email,
+          firstName,
+          lastName,
+          document,
+          phone,
+        },
         authentication: { adminUserEmail },
       },
     } = session
@@ -89,6 +98,8 @@ class Telemarketing extends Component {
       this.setState({
         clientName: '',
         clientEmail: '',
+        clientDocument: '',
+        clientPhone: '',
         logged: false,
         canImpersonate: canImp,
         attendantEmail: adminUserEmail ? adminUserEmail.value : '',
@@ -99,6 +110,8 @@ class Telemarketing extends Component {
         attendantEmail: adminUserEmail.value,
         clientName: `${firstName.value} ${lastName.value}`,
         clientEmail: email.value,
+        clientDocument: document.value,
+        clientPhone: phone.value,
         logged: true,
       })
 
@@ -146,6 +159,8 @@ class Telemarketing extends Component {
       canImpersonate,
       clientEmail,
       clientName,
+      clientDocument,
+      clientPhone,
       loading,
       attendantEmail,
       logged,
@@ -174,6 +189,8 @@ class Telemarketing extends Component {
               intl={intl}
               clientName={clientName}
               clientEmail={clientEmail}
+              clientPhone={clientPhone}
+              clientDocument={clientDocument}
               loading={loading}
               attendantEmail={attendantEmail}
               onSetSesssion={this.handleSetSesssion}
