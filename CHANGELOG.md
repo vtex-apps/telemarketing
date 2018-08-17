@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Layout ot be compatible with mobile screens
+- Layout to be compatible with mobile screens
 
 ## [1.0.1] - 2018-08-16
 ### Changed

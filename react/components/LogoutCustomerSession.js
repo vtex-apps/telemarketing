@@ -69,38 +69,31 @@ export default class LogoutCustomerSession extends Component {
           </div>
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__logout-form gray">
-              <table className="w-100 pa3 bw1 bb b--silver">
-                <tbody>
-                  <tr>
-                    <td>
-                      <CustomerIcon size={35} color={'#828282'} />
-                    </td>
-                    <td>{clientName}</td>
-                  </tr>
-                  <tr>
-                    <td className="tl">Email</td>
-                    <td>
-                      <div className="pa3">{clientEmail}</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="tl">
-                      {translate('telemarketing-logout.document-label', intl)}
-                    </td>
-                    <td>
-                      <div className="db pa3">{clientDocument}</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="tl">
-                      {translate('telemarketing-logout.phone-label', intl)}
-                    </td>
-                    <td>
-                      <div className="db pa3">{clientPhone}</div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <div className="w-100 pa3 bw1 bb b--silver flex flex-wrap">
+                <div className="w-50">
+                  <CustomerIcon size={35} color={'#828282'} />
+                </div>
+                <div className="w-50">{clientName}</div>
+
+                <div className="w-50 tl">Email</div>
+                <div className="w-50">
+                  <div className="pa3">{clientEmail}</div>
+                </div>
+
+                <div className="w-50 tl">
+                  {translate('telemarketing-logout.document-label', intl)}
+                </div>
+                <div className="w-50">
+                  <div className="db pa3">{clientDocument}</div>
+                </div>
+
+                <div className="w-50 tl">
+                  {translate('telemarketing-logout.phone-label', intl)}
+                </div>
+                <div className="w-50">
+                  <div className="db pa3">{clientPhone}</div>
+                </div>
+              </div>
               <div className="flex justify-around mt3">
                 <Link to="/orders">
                   <Button size="small">

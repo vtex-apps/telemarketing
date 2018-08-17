@@ -38,10 +38,10 @@ export default class LoginAsCustomer extends Component {
     )
   }
 
-  handleKeyPress = e => {
+  handleKeyPress = event => {
     const { onSetSesssion, clientEmail } = this.props
 
-    if (e.key === 'Enter') {
+    if (event.key === 'Enter') {
       onSetSesssion(clientEmail)
     }
   }
