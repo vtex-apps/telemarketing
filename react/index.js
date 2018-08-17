@@ -74,7 +74,6 @@ class Telemarketing extends Component {
   }
 
   processSession = session => {
-    console.log('session', session)
     const {
       namespaces: {
         impersonate: {

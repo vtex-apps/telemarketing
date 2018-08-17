@@ -38,6 +38,14 @@ export default class LoginAsCustomer extends Component {
     )
   }
 
+  handleKeyPress = e => {
+    const { onSetSesssion, clientEmail } = this.props
+
+    if (e.key === 'Enter') {
+      onSetSesssion(clientEmail)
+    }
+  }
+
   render() {
     const {
       attendantEmail,
@@ -69,6 +77,7 @@ export default class LoginAsCustomer extends Component {
                   value={clientEmail}
                   onChange={onInputChange}
                   placeholder={'Ex: example@mail.com'}
+                  onKeyPress={this.handleKeyPress}
                 />
               </div>
               <Button
