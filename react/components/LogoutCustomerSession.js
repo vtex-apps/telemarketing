@@ -70,10 +70,7 @@ export default class LogoutCustomerSession extends Component {
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__logout-form gray">
               <div className="w-100 pa3 bw1 bb b--silver flex flex-wrap">
-                <div className="w-50">
-                  <CustomerIcon size={35} color={'#828282'} />
-                </div>
-                <div className="w-50 pa4">{clientName}</div>
+                <div className="w-100 f5 center b pa4">{clientName}</div>
 
                 <div className="w-50 tl pa3">Email</div>
                 <div className="w-50 pa3">{clientEmail}</div>
@@ -89,7 +86,7 @@ export default class LogoutCustomerSession extends Component {
                 <div className="w-50 pa3">{clientPhone}</div>
               </div>
               <div className="flex justify-around mt3">
-                <Link to="/orders">
+                <Link page="store/account/orders">
                   <Button size="small">
                     {translate('telemarketing-logout.button-orders', intl)}
                   </Button>
