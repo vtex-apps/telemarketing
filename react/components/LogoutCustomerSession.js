@@ -73,26 +73,20 @@ export default class LogoutCustomerSession extends Component {
                 <div className="w-50">
                   <CustomerIcon size={35} color={'#828282'} />
                 </div>
-                <div className="w-50">{clientName}</div>
+                <div className="w-50 pa4">{clientName}</div>
 
-                <div className="w-50 tl">Email</div>
-                <div className="w-50">
-                  <div className="pa3">{clientEmail}</div>
-                </div>
+                <div className="w-50 tl pa3">Email</div>
+                <div className="w-50 pa3">{clientEmail}</div>
 
-                <div className="w-50 tl">
+                <div className="w-50 tl pa3">
                   {translate('telemarketing-logout.document-label', intl)}
                 </div>
-                <div className="w-50">
-                  <div className="db pa3">{clientDocument}</div>
-                </div>
+                <div className="w-50 pa3">{clientDocument}</div>
 
-                <div className="w-50 tl">
+                <div className="w-50 tl pa3">
                   {translate('telemarketing-logout.phone-label', intl)}
                 </div>
-                <div className="w-50">
-                  <div className="db pa3">{clientPhone}</div>
-                </div>
+                <div className="w-50 pa3">{clientPhone}</div>
               </div>
               <div className="flex justify-around mt3">
                 <Link to="/orders">
