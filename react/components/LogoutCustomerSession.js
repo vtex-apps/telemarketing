@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'render'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import { intlShape } from 'react-intl'
@@ -46,6 +47,7 @@ export default class LogoutCustomerSession extends Component {
   render() {
     const {
       attendantEmail,
+      clientName,
       clientEmail,
       clientDocument,
       clientPhone,
@@ -71,14 +73,18 @@ export default class LogoutCustomerSession extends Component {
                 <tbody>
                   <tr>
                     <td>
-                      <CustomerIcon color={'#828282'} />
+                      <CustomerIcon size={35} color={'#828282'} />
                     </td>
+                    <td>{clientName}</td>
+                  </tr>
+                  <tr>
+                    <td className="tl">Email</td>
                     <td>
                       <div className="pa3">{clientEmail}</div>
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="tl">
                       {translate('telemarketing-logout.document-label', intl)}
                     </td>
                     <td>
@@ -86,7 +92,7 @@ export default class LogoutCustomerSession extends Component {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td className="tl">
                       {translate('telemarketing-logout.phone-label', intl)}
                     </td>
                     <td>
@@ -95,16 +101,19 @@ export default class LogoutCustomerSession extends Component {
                   </tr>
                 </tbody>
               </table>
-              <div className="flex justify-center">
-                <span className="mt3">
-                  <Button
-                    size="small"
-                    onClick={() => onSetSesssion('')}
-                    isLoading={loading}
-                  >
-                    {translate('telemarketing-logout.button', intl)}
+              <div className="flex justify-around mt3">
+                <Link to="/orders">
+                  <Button size="small">
+                    {translate('telemarketing-logout.button-orders', intl)}
                   </Button>
-                </span>
+                </Link>
+                <Button
+                  size="small"
+                  onClick={() => onSetSesssion('')}
+                  isLoading={loading}
+                >
+                  {translate('telemarketing-logout.button', intl)}
+                </Button>
               </div>
             </div>
           </div>

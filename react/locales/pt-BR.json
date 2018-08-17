@@ -5,5 +5,6 @@
   "telemarketing-login.button": "Entrar",
   "telemarketing-logout.button": "Sair",
   "telemarketing-logout.document-label": "Documento",
-  "telemarketing-logout.phone-label": "Telefone"
+  "telemarketing-logout.phone-label": "Telefone",
+  "telemarketing-logout.button-orders": "Pedidos"
 }
