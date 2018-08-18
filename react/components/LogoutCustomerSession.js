@@ -32,7 +32,7 @@ export default class LogoutCustomerSession extends Component {
   }
 
   handleHeaderRendering = () => {
-    const { intl, clientEmail } = this.props
+    const { clientEmail } = this.props
 
     return (
       <div className="flex align-center">
