@@ -31,11 +31,19 @@ export default class LoginAsCustomer extends Component {
     return (
       <div className="flex align-center">
         <CustomerIcon />
-        <div className="pa3">
+        <div className="pa2">
           {translate('telemarketing-login.message', intl)}
         </div>
       </div>
     )
+  }
+
+  handleKeyPress = event => {
+    const { onSetSesssion, clientEmail } = this.props
+
+    if (event.key === 'Enter') {
+      onSetSesssion(clientEmail)
+    }
   }
 
   render() {
@@ -69,6 +77,7 @@ export default class LoginAsCustomer extends Component {
                   value={clientEmail}
                   onChange={onInputChange}
                   placeholder={'Ex: example@mail.com'}
+                  onKeyPress={this.handleKeyPress}
                 />
               </div>
               <Button

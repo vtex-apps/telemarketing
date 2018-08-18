@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { injectIntl, intlShape } from 'react-intl'
+import { path } from 'ramda'
 import {
   orderFormConsumer,
   contextPropTypes,
@@ -11,7 +12,6 @@ import TelemarketingIcon from './icons/TelemarketingIcon'
 import { setCookie, deleteCookie } from './utils/cookies'
 import { request } from './utils/request'
 import { translate } from './utils/translate'
-import { truncateString } from './utils/format-string'
 import './global.css'
 
 const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
@@ -30,6 +30,8 @@ class Telemarketing extends Component {
     loading: false,
     clientName: '',
     clientEmail: '',
+    clientPhone: '',
+    clientDocument: '',
     attendantEmail: '',
     canImpersonate: false,
   }
@@ -77,7 +79,14 @@ class Telemarketing extends Component {
         impersonate: {
           canImpersonate: { value },
         },
-        profile: { isAuthenticated, email, firstName, lastName },
+        profile: {
+          isAuthenticated,
+          email,
+          firstName,
+          lastName,
+          document,
+          phone,
+        },
         authentication: { adminUserEmail },
       },
     } = session
@@ -88,6 +97,8 @@ class Telemarketing extends Component {
       this.setState({
         clientName: '',
         clientEmail: '',
+        clientDocument: '',
+        clientPhone: '',
         logged: false,
         canImpersonate: canImp,
         attendantEmail: adminUserEmail ? adminUserEmail.value : '',
@@ -98,6 +109,8 @@ class Telemarketing extends Component {
         attendantEmail: adminUserEmail.value,
         clientName: `${firstName.value} ${lastName.value}`,
         clientEmail: email.value,
+        clientDocument: document.value,
+        clientPhone: phone.value,
         logged: true,
       })
 
@@ -145,46 +158,52 @@ class Telemarketing extends Component {
       canImpersonate,
       clientEmail,
       clientName,
+      clientDocument,
+      clientPhone,
       loading,
       attendantEmail,
       logged,
     } = this.state
 
+    const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+
     if (canImpersonate) {
       return (
         <div
-          className={`vtex-telemarketing tc white flex items-end w-100 justify-end f6 ${
+          className={`vtex-telemarketing tc white flex justify-between ph4 w-100 f7 ${
             logged ? 'bg-red' : 'bg-black-90'
           } z-999 pa2`}
         >
           <div className="flex align-center">
             <TelemarketingIcon />
-            <div className="pa3">
-              {translate('telemarketing.attendant', intl)}
-              <b>{`: ${truncateString(attendantEmail)}`}</b>
-            </div>
-          </div>
-          <div className="mh10">
-            {logged ? (
-              <LogoutCustomerSession
-                intl={intl}
-                clientName={clientName}
-                clientEmail={clientEmail}
-                loading={loading}
-                attendantEmail={attendantEmail}
-                onSetSesssion={this.handleSetSesssion}
-              />
-            ) : (
-              <LoginAsCustomer
-                intl={intl}
-                clientEmail={clientEmail}
-                loading={loading}
-                attendantEmail={attendantEmail}
-                onSetSesssion={this.handleSetSesssion}
-                onInputChange={this.handleInputChange}
-              />
+            {!isMobile && (
+              <div className="pa2">
+                {translate('telemarketing.attendant', intl)}
+                <b>{`: ${attendantEmail}`}</b>
+              </div>
             )}
           </div>
+          {logged ? (
+            <LogoutCustomerSession
+              intl={intl}
+              clientName={clientName}
+              clientEmail={clientEmail}
+              clientPhone={clientPhone}
+              clientDocument={clientDocument}
+              loading={loading}
+              attendantEmail={attendantEmail}
+              onSetSesssion={this.handleSetSesssion}
+            />
+          ) : (
+            <LoginAsCustomer
+              intl={intl}
+              clientEmail={clientEmail}
+              loading={loading}
+              attendantEmail={attendantEmail}
+              onSetSesssion={this.handleSetSesssion}
+              onInputChange={this.handleInputChange}
+            />
+          )}
         </div>
       )
     }

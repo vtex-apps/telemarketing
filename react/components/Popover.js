@@ -26,7 +26,7 @@ export default class Popover extends Component {
       isBoxOpen && this.setState({ isBoxOpen: false })
       this.removeListeners()
 
-      target.dispatchEvent(e)
+      target.dispatchEvent(new Event('closeonclick'))
     }
   }
 
@@ -47,21 +47,32 @@ export default class Popover extends Component {
   render() {
     const { renderHeader, children } = this.props
 
+    const boxPositionStyle = {
+      right: this.iconRef && this.iconRef.offsetWidth - 43,
+    }
+
     return (
       <div className="vtex-popover relative">
-        <div className="pointer" onClick={this.handleHeaderClick}>
+        <div
+          className="pointer"
+          onClick={this.handleHeaderClick}
+          ref={e => {
+            this.iconRef = e
+          }}
+        >
           {renderHeader()}
         </div>
         <div
-          className={`vtex-popover__box absolute right-0 z-max ${
+          className={`vtex-popover__box absolute z-max ${
             this.state.isBoxOpen ? 'flex' : 'dn'
           }`}
+          style={boxPositionStyle}
           ref={this.boxRef_}
         >
           <div className="vtex-popover__content-container shadow-3 mt3 bg-white">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute top-0 right-0 bg-white" />
+          <div className="vtex-popover__arrow-up absolute top-0 right-0-ns bg-white dib-ns dn-s" />
         </div>
       </div>
     )

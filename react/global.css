@@ -4,7 +4,7 @@
 }
 
 .vtex-telemarketing .vtex-popover__box {
-  top: 3rem;
+  top: 2rem;
   min-width: 320px;
 }
 
@@ -32,4 +32,16 @@
 
 .vtex-popover__content-container {
   min-width: 100%;
+}
+
+@media only screen and (max-width: 27em) {
+  .vtex-popover__box {
+    width: 100vw;
+    top: -3vw;
+    right: -3vw;
+  }
+
+  .vtex-telemarketing .vtex-popover__box {
+    top: 2vh;
+  }
 }

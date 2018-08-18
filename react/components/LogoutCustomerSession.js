@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'render'
 import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import { intlShape } from 'react-intl'
@@ -16,6 +17,10 @@ export default class LogoutCustomerSession extends Component {
     intl: intlShape,
     /** Signed in client name */
     clientName: PropTypes.string.isRequired,
+    /** Signed in client document */
+    clientDocument: PropTypes.string.isRequired,
+    /** Signed in client phone */
+    clientPhone: PropTypes.string.isRequired,
     /** Signed in client email */
     clientEmail: PropTypes.string.isRequired,
     /** Current signedin attendant email */
@@ -27,14 +32,13 @@ export default class LogoutCustomerSession extends Component {
   }
 
   handleHeaderRendering = () => {
-    const { intl, clientName } = this.props
+    const { clientEmail } = this.props
 
     return (
       <div className="flex align-center">
         <CustomerIcon />
-        <div className="pa3">
-          {translate('telemarketing.client', intl)}
-          {clientName ? `: ${truncateString(clientName)}` : null}
+        <div className="pa2">
+          {clientEmail ? `${truncateString(clientEmail, 25)}` : null}
         </div>
       </div>
     )
@@ -43,7 +47,10 @@ export default class LogoutCustomerSession extends Component {
   render() {
     const {
       attendantEmail,
+      clientName,
       clientEmail,
+      clientDocument,
+      clientPhone,
       onSetSesssion,
       loading,
       intl,
@@ -62,20 +69,35 @@ export default class LogoutCustomerSession extends Component {
           </div>
           <div className="bg-white w-100 pa4">
             <div className="vtex-telemarketing__logout-form gray">
-              <div className="flex justify-center pa3 bw1 bb b--silver">
-                <CustomerIcon color={'#828282'} />
-                <div className="pa3">{clientEmail}</div>
+              <div className="w-100 pa3 bw1 bb b--silver flex flex-wrap">
+                <div className="w-100 f5 center b pa4">{clientName}</div>
+
+                <div className="w-50 tl pa3">Email</div>
+                <div className="w-50 pa3">{clientEmail}</div>
+
+                <div className="w-50 tl pa3">
+                  {translate('telemarketing-logout.document-label', intl)}
+                </div>
+                <div className="w-50 pa3">{clientDocument}</div>
+
+                <div className="w-50 tl pa3">
+                  {translate('telemarketing-logout.phone-label', intl)}
+                </div>
+                <div className="w-50 pa3">{clientPhone}</div>
               </div>
-              <div className="flex justify-center">
-                <span className="mt3">
-                  <Button
-                    size="small"
-                    onClick={() => onSetSesssion('')}
-                    isLoading={loading}
-                  >
-                    {translate('telemarketing-logout.button', intl)}
+              <div className="flex justify-around mt3">
+                <Link page="store/account/orders">
+                  <Button size="small">
+                    {translate('telemarketing-logout.button-orders', intl)}
                   </Button>
-                </span>
+                </Link>
+                <Button
+                  size="small"
+                  onClick={() => onSetSesssion('')}
+                  isLoading={loading}
+                >
+                  {translate('telemarketing-logout.button', intl)}
+                </Button>
               </div>
             </div>
           </div>

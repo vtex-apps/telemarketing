@@ -7,7 +7,7 @@ export default class TelemarketingIcon extends Component {
   }
 
   static defaultProps = {
-    size: 30,
+    size: 20,
   }
 
   render() {

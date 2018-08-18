@@ -3,5 +3,8 @@
   "telemarketing.client": "Cliente",
   "telemarketing-login.message": "Ingresá como cliente",
   "telemarketing-login.button": "Ingresá",
-  "telemarketing-logout.button": "Salir"
+  "telemarketing-logout.button": "Salir",
+  "telemarketing-logout.document-label": "Documento",
+  "telemarketing-logout.phone-label": "Teléphono",
+  "telemarketing-logout.button-orders": "Pedidos"
 }
