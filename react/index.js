@@ -1,28 +1,31 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
+import { graphql, compose } from 'react-apollo'
 import { path } from 'ramda'
-import {
-  orderFormConsumer,
-  contextPropTypes,
-} from 'vtex.store/OrderFormContext'
 
 import LoginAsCustomer from './components/LoginAsCustomer'
 import LogoutCustomerSession from './components/LogoutCustomerSession'
 import TelemarketingIcon from './icons/TelemarketingIcon'
-import { setCookie, deleteCookie } from './utils/cookies'
-import { request } from './utils/request'
-import { translate } from './utils/translate'
-import './global.css'
 
-const IMPERSONATED_CUSTOMER_EMAIL = 'vtex-impersonated-customer-email'
+import { translate } from './utils/translate'
+import depersonifyMutation from './mutations/depersonify.gql'
+import impersonateMutation from './mutations/impersonate.gql'
+import initializeSessionMutation from './mutations/initializeSession.gql'
+
+import './global.css'
 
 /** The Canonical Telemarketing component impersonates an attendant, with the right permissions, as a client. */
 class Telemarketing extends Component {
   static propTypes = {
-    /** Intl object*/
+    /** Intl object */
     intl: intlShape,
-    /** Function to set the ProfileData */
-    orderFormContext: contextPropTypes,
+    /** Mutation to depersonify */
+    depersonify: PropTypes.func.isRequired,
+    /** Mutation to impersonate a customer */
+    impersonate: PropTypes.func.isRequired,
+    /** Mutation to initialize the session */
+    initializeSession: PropTypes.func.isRequired,
   }
 
   state = {
@@ -37,120 +40,45 @@ class Telemarketing extends Component {
   }
 
   componentDidMount = () => {
-    request('/api/sessions', { method: 'POST' }).then(() => {
-      request('/api/sessions?items=*')
-        .then(res => {
-          this.processSession(res)
-        })
-        .catch(err => console.log('Error initializing session', err))
+    console.log(this.props)
+
+    this.props
+      .initializeSession()
+      .then(res => this.processSession(res.data && res.data.initializeSession))
+      .catch(err => console.log('err', err))
+  }
+
+  processSession(session) {
+    console.log('initialize session', session)
+    const {
+      adminUserEmail,
+      impersonate,
+      profile: {
+        document,
+        email,
+        firstName,
+        lastName,
+        phone,
+        isAuthenticatedAsCustomer,
+      },
+    } = session
+
+    this.setState({
+      logged: isAuthenticatedAsCustomer,
+      canImpersonate: impersonate,
+      clientDocument: document,
+      clientEmail: email,
+      clientName: firstName && `${firstName} ${lastName}`,
+      clientPhone: phone,
+      attendantEmail: adminUserEmail,
     })
-  }
-
-  setClientProfileData(session) {
-    const {
-      namespaces: {
-        profile: { firstName, lastName, document, phone, email },
-      },
-    } = session
-
-    const {
-      orderFormContext: { orderForm, updateOrderFormProfile },
-    } = this.props
-
-    const profileData = {
-      email: email && email.value,
-      firstName: firstName && firstName.value,
-      lastName: lastName && lastName.value,
-      document: document && document.value,
-      phone: phone && phone.value,
-    }
-
-    const variables = {
-      orderFormId: orderForm.orderFormId,
-      fields: profileData,
-    }
-
-    updateOrderFormProfile({ variables })
-  }
-
-  processSession = session => {
-    const {
-      namespaces: {
-        impersonate: {
-          canImpersonate: { value },
-        },
-        profile: {
-          isAuthenticated,
-          email,
-          firstName,
-          lastName,
-          document,
-          phone,
-        },
-        authentication: { adminUserEmail },
-      },
-    } = session
-
-    const canImp = value === 'true'
-
-    if (isAuthenticated.value === 'False') {
-      this.setState({
-        clientName: '',
-        clientEmail: '',
-        clientDocument: '',
-        clientPhone: '',
-        logged: false,
-        canImpersonate: canImp,
-        attendantEmail: adminUserEmail ? adminUserEmail.value : '',
-      })
-    } else {
-      this.setState({
-        canImpersonate: canImp,
-        attendantEmail: adminUserEmail.value,
-        clientName: `${firstName.value} ${lastName.value}`,
-        clientEmail: email.value,
-        clientDocument: document.value,
-        clientPhone: phone.value,
-        logged: true,
-      })
-
-      this.setClientProfileData(session)
-    }
   }
 
   handleInputChange = event => {
     this.setState({ clientEmail: event.target.value })
   }
 
-  handleSetSesssion = email => {
-    const params = {
-      'vtex-impersonated-customer-email': {
-        value: email,
-      },
-    }
-
-    this.setState({ loading: true })
-
-    if (email === '') deleteCookie(IMPERSONATED_CUSTOMER_EMAIL)
-    else setCookie(IMPERSONATED_CUSTOMER_EMAIL, email, 1)
-
-    request('/api/sessions', {
-      method: 'POST',
-      body: JSON.stringify({
-        public: params,
-      }),
-    })
-      .then(() => {
-        request('/api/sessions?items=*').then(session =>
-          this.processSession(session)
-        )
-      })
-      .finally(() => {
-        this.setState({
-          loading: false,
-        })
-      })
-  }
+  handleSetSesssion = email => {}
 
   render() {
     const { intl } = this.props
@@ -212,4 +140,10 @@ class Telemarketing extends Component {
   }
 }
 
-export default injectIntl(orderFormConsumer(Telemarketing))
+const componentMutations = compose(
+  graphql(depersonifyMutation, { name: 'depersonify' }),
+  graphql(impersonateMutation, { name: 'impersonate' }),
+  graphql(initializeSessionMutation, { name: 'initializeSession' })
+)(Telemarketing)
+
+export default injectIntl(componentMutations)

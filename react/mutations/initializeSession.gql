@@ -1,0 +1,18 @@
+mutation initializeSession {
+  initializeSession {
+    id
+    cartId
+    impersonate
+    adminUserId
+    adminUserEmail
+    profile {
+      isAuthenticatedAsCustomer
+      id
+      firstName
+      lastName
+      email
+      document
+      phone
+    }
+  }
+}

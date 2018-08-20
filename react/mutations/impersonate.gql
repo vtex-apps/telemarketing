@@ -1,0 +1,18 @@
+mutation impersonate($email: String) {
+  impersonate(email: $email) {
+    id
+    cartId
+    impersonate
+    adminUserId
+    adminUserEmail
+    profile {
+      isAuthenticatedAsCustomer
+      id
+      firstName
+      lastName
+      email
+      document
+      phone
+    }
+  }
+}
