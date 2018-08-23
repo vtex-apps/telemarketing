@@ -1,5 +1,3 @@
-mutation depersonify {
-  depersonify {
-    result
-  }
+mutation depersonify($orderFormId: String!) {
+  depersonify(orderFormId: $orderFormId)
 }

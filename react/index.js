@@ -3,15 +3,20 @@ import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql, compose } from 'react-apollo'
 import { path } from 'ramda'
+import {
+  orderFormConsumer,
+  contextPropTypes,
+} from 'vtex.store/OrderFormContext'
 
 import LoginAsCustomer from './components/LoginAsCustomer'
 import LogoutCustomerSession from './components/LogoutCustomerSession'
 import TelemarketingIcon from './icons/TelemarketingIcon'
 
 import { translate } from './utils/translate'
+import requestWithRetry from './utils/request'
 import depersonifyMutation from './mutations/depersonify.gql'
 import impersonateMutation from './mutations/impersonate.gql'
-import initializeSessionMutation from './mutations/initializeSession.gql'
+import initSessionMutation from './mutations/initializeSession.gql'
 
 import './global.css'
 
@@ -20,6 +25,8 @@ class Telemarketing extends Component {
   static propTypes = {
     /** Intl object */
     intl: intlShape,
+    /** Function to set the ProfileData */
+    orderFormContext: contextPropTypes,
     /** Mutation to depersonify */
     depersonify: PropTypes.func.isRequired,
     /** Mutation to impersonate a customer */
@@ -40,16 +47,12 @@ class Telemarketing extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props)
-
-    this.props
-      .initializeSession()
+    requestWithRetry(this.props.initializeSession)
       .then(res => this.processSession(res.data && res.data.initializeSession))
       .catch(err => console.log('err', err))
   }
 
-  processSession(session) {
-    console.log('initialize session', session)
+  processSession = session => {
     const {
       adminUserEmail,
       impersonate,
@@ -67,7 +70,7 @@ class Telemarketing extends Component {
       logged: isAuthenticatedAsCustomer,
       canImpersonate: impersonate,
       clientDocument: document,
-      clientEmail: email,
+      clientEmail: email || '',
       clientName: firstName && `${firstName} ${lastName}`,
       clientPhone: phone,
       attendantEmail: adminUserEmail,
@@ -78,7 +81,44 @@ class Telemarketing extends Component {
     this.setState({ clientEmail: event.target.value })
   }
 
-  handleSetSesssion = email => {}
+  handleSetSesssion = email => {
+    const { orderFormContext, impersonate, depersonify } = this.props
+    const variables = {
+      orderFormId: orderFormContext.orderForm.orderFormId,
+    }
+
+    this.setState({ loading: true })
+    if (email) {
+      variables.email = email
+      requestWithRetry(impersonate, { variables })
+        .then(res => {
+          this.processSession(res.data.impersonate)
+          this.setState({ loading: false })
+        })
+        .catch(e => {
+          console.error(e)
+          this.setState({ loading: false })
+        })
+    } else {
+      requestWithRetry(depersonify, { variables })
+        .then(res => {
+          if (res.data.depersonify) {
+            this.setState({
+              logged: false,
+              clientDocument: '',
+              clientEmail: '',
+              clientName: '',
+              clientPhone: '',
+            })
+          }
+          this.setState({ loading: false })
+        })
+        .catch(err => {
+          console.error(err)
+          this.setState({ loading: false })
+        })
+    }
+  }
 
   render() {
     const { intl } = this.props
@@ -143,7 +183,7 @@ class Telemarketing extends Component {
 const componentMutations = compose(
   graphql(depersonifyMutation, { name: 'depersonify' }),
   graphql(impersonateMutation, { name: 'impersonate' }),
-  graphql(initializeSessionMutation, { name: 'initializeSession' })
+  graphql(initSessionMutation, { name: 'initializeSession' })
 )(Telemarketing)
 
-export default injectIntl(componentMutations)
+export default injectIntl(orderFormConsumer(componentMutations))

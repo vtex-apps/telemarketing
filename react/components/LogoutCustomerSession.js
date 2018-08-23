@@ -93,7 +93,7 @@ export default class LogoutCustomerSession extends Component {
                 </Link>
                 <Button
                   size="small"
-                  onClick={() => onSetSesssion('')}
+                  onClick={() => onSetSesssion()}
                   isLoading={loading}
                 >
                   {translate('telemarketing-logout.button', intl)}

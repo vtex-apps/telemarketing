@@ -1,7 +1,6 @@
-mutation initializeSession {
+mutation initSession {
   initializeSession {
     id
-    cartId
     impersonate
     adminUserId
     adminUserEmail
