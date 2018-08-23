@@ -81,43 +81,51 @@ class Telemarketing extends Component {
     this.setState({ clientEmail: event.target.value })
   }
 
-  handleSetSesssion = email => {
-    const { orderFormContext, impersonate, depersonify } = this.props
+  handleDepersonify = () => {
+    const { orderFormContext, depersonify } = this.props
     const variables = {
       orderFormId: orderFormContext.orderForm.orderFormId,
     }
 
     this.setState({ loading: true })
-    if (email) {
-      variables.email = email
-      requestWithRetry(impersonate, { variables })
-        .then(res => {
-          this.processSession(res.data.impersonate)
-          this.setState({ loading: false })
-        })
-        .catch(e => {
-          console.error(e)
-          this.setState({ loading: false })
-        })
-    } else {
-      requestWithRetry(depersonify, { variables })
-        .then(res => {
-          if (res.data.depersonify) {
-            this.setState({
-              logged: false,
-              clientDocument: '',
-              clientEmail: '',
-              clientName: '',
-              clientPhone: '',
-            })
-          }
-          this.setState({ loading: false })
-        })
-        .catch(err => {
-          console.error(err)
-          this.setState({ loading: false })
-        })
+
+    requestWithRetry(depersonify, { variables })
+      .then(res => {
+        if (res.data.depersonify) {
+          this.setState({
+            logged: false,
+            clientDocument: '',
+            clientEmail: '',
+            clientName: '',
+            clientPhone: '',
+          })
+        }
+        this.setState({ loading: false })
+      })
+      .catch(err => {
+        console.error(err)
+        this.setState({ loading: false })
+      })
+  }
+
+  handleSetSesssion = email => {
+    const { orderFormContext, impersonate } = this.props
+    const variables = {
+      orderFormId: orderFormContext.orderForm.orderFormId,
+      email,
     }
+
+    this.setState({ loading: true })
+
+    requestWithRetry(impersonate, { variables })
+      .then(res => {
+        this.processSession(res.data.impersonate)
+        this.setState({ loading: false })
+      })
+      .catch(e => {
+        console.error(e)
+        this.setState({ loading: false })
+      })
   }
 
   render() {
@@ -160,7 +168,7 @@ class Telemarketing extends Component {
               clientDocument={clientDocument}
               loading={loading}
               attendantEmail={attendantEmail}
-              onSetSesssion={this.handleSetSesssion}
+              onDepersonify={this.handleDepersonify}
             />
           ) : (
             <LoginAsCustomer

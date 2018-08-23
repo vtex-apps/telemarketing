@@ -25,8 +25,8 @@ export default class LogoutCustomerSession extends Component {
     clientEmail: PropTypes.string.isRequired,
     /** Current signedin attendant email */
     attendantEmail: PropTypes.string.isRequired,
-    /** Calls the setSession on the parent component */
-    onSetSesssion: PropTypes.func.isRequired,
+    /** Calls the depersonify on the parent component */
+    onDepersonify: PropTypes.func.isRequired,
     /** Loading Status */
     loading: PropTypes.bool.isRequired,
   }
@@ -51,7 +51,7 @@ export default class LogoutCustomerSession extends Component {
       clientEmail,
       clientDocument,
       clientPhone,
-      onSetSesssion,
+      onDepersonify,
       loading,
       intl,
     } = this.props
@@ -93,7 +93,7 @@ export default class LogoutCustomerSession extends Component {
                 </Link>
                 <Button
                   size="small"
-                  onClick={() => onSetSesssion()}
+                  onClick={() => onDepersonify()}
                   isLoading={loading}
                 >
                   {translate('telemarketing-logout.button', intl)}
