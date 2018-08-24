@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "telemarketing",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
   "description": "The VTEX telemarketing app",
@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "vtex.store": "1.x",
-    "vtex.styleguide": "5.x",
+    "vtex.store-graphql": "2.x",
+    "vtex.styleguide": "6.x",
     "vtex.checkout-session": "0.x",
     "vtex.rnb-session": "0.x",
     "vtex.store-session": "0.x"

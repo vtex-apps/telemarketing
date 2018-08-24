@@ -1,0 +1,20 @@
+mutation initSession {
+  initializeSession {
+    id
+    adminUserId
+    adminUserEmail
+    impersonable
+    impersonate {
+      storeUserId
+      storeUserEmail
+    }
+    profile {
+      id
+      firstName
+      lastName
+      email
+      document
+      phone
+    }
+  }
+}

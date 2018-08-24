@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.2.0] - 2018-08-24
+
 ## [1.1.0] - 2018-08-17
 ### Changed
 - Layout to be compatible with mobile screens

@@ -1,0 +1,20 @@
+mutation impersonate($email: String!, $orderFormId: String!) {
+  impersonate(email: $email, orderFormId: $orderFormId) {
+    id
+    adminUserId
+    adminUserEmail
+    impersonable
+    impersonate {
+      storeUserId
+      storeUserEmail
+    }
+    profile {
+      id
+      firstName
+      lastName
+      email
+      document
+      phone
+    }
+  }
+}
