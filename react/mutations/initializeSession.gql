@@ -1,11 +1,14 @@
 mutation initSession {
   initializeSession {
     id
-    impersonate
     adminUserId
     adminUserEmail
+    impersonable
+    impersonate {
+      storeUserId
+      storeUserEmail
+    }
     profile {
-      isAuthenticatedAsCustomer
       id
       firstName
       lastName

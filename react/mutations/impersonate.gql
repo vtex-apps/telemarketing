@@ -1,11 +1,14 @@
 mutation impersonate($email: String!, $orderFormId: String!) {
   impersonate(email: $email, orderFormId: $orderFormId) {
     id
-    impersonate
     adminUserId
     adminUserEmail
+    impersonable
+    impersonate {
+      storeUserId
+      storeUserEmail
+    }
     profile {
-      isAuthenticatedAsCustomer
       id
       firstName
       lastName

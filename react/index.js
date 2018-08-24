@@ -55,20 +55,14 @@ class Telemarketing extends Component {
   processSession = session => {
     const {
       adminUserEmail,
-      impersonate,
-      profile: {
-        document,
-        email,
-        firstName,
-        lastName,
-        phone,
-        isAuthenticatedAsCustomer,
-      },
+      impersonate: { storeUserId },
+      impersonable,
+      profile: { document, email, firstName, lastName, phone },
     } = session
 
     this.setState({
-      logged: isAuthenticatedAsCustomer,
-      canImpersonate: impersonate,
+      logged: storeUserId ? true : false,
+      canImpersonate: impersonable,
       clientDocument: document,
       clientEmail: email || '',
       clientName: firstName && `${firstName} ${lastName}`,
