@@ -140,14 +140,15 @@ class Telemarketing extends Component {
     if (canImpersonate) {
       return (
         <div
-          className={`vtex-telemarketing tc white flex justify-between ph4 w-100 f7 ${
+          className={`vtex-telemarketing tc white h2 flex justify-between w-100 f7 ${
             logged ? 'bg-red' : 'bg-black-90'
           } z-999 pa2`}
         >
-          <div className="flex align-center">
+          <div className="flex items-center">
             <TelemarketingIcon />
+
             {!isMobile && (
-              <div className="pa2">
+              <div className="ml2">
                 {translate('telemarketing.attendant', intl)}
                 <b>{`: ${attendantEmail}`}</b>
               </div>

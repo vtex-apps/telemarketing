@@ -29,9 +29,9 @@ export default class LoginAsCustomer extends Component {
     const { intl } = this.props
 
     return (
-      <div className="flex align-center">
+      <div className="flex items-center">
         <CustomerIcon />
-        <div className="pa2">
+        <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>
       </div>
