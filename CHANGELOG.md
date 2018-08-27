@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Bar height
 ### Fixed
-- Icon and text alignment, 
+- Icon and text alignment 
 
 ## [1.2.0] - 2018-08-24
 
