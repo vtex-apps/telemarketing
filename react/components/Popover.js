@@ -52,7 +52,7 @@ export default class Popover extends Component {
     }
 
     return (
-      <div className="vtex-popover relative">
+      <div className="vtex-popover relative flex h-100 items-center">
         <div
           className="pointer"
           onClick={this.handleHeaderClick}
