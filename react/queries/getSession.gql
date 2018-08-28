@@ -1,5 +1,5 @@
-mutation initSession {
-  initializeSession {
+query session {
+  getSession {
     id
     adminUserId
     adminUserEmail
@@ -9,10 +9,8 @@ mutation initSession {
       storeUserEmail
     }
     profile {
-      id
       firstName
       lastName
-      email
       document
       phone
     }

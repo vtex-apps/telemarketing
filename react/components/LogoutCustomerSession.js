@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
 import { intlShape } from 'react-intl'
 
-import { translate } from '../utils/translate'
+import translate from '../utils/translate'
 import { truncateString } from '../utils/format-string'
 import Popover from './Popover'
 import TelemarketingIcon from '../icons/TelemarketingIcon'

@@ -1,3 +1,3 @@
-export const translate = (id, intl) => {
+export default (id, intl) => {
   return intl.formatMessage({ id: `${id}` })
 }

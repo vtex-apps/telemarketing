@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Adjust bar height using tachyons
+- Use render HOC to initialize the session
 ### Fixed
 - Regulate icon and text alignment 
 

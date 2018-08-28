@@ -6,7 +6,7 @@ import { intlShape } from 'react-intl'
 import CustomerIcon from '../icons/CustomerIcon'
 import TelemarketingIcon from '../icons/TelemarketingIcon'
 import Popover from './Popover'
-import { translate } from '../utils/translate'
+import translate from '../utils/translate'
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
 export default class LoginAsCustomer extends Component {
@@ -14,7 +14,7 @@ export default class LoginAsCustomer extends Component {
     /** Current signedin attendant email */
     attendantEmail: PropTypes.string.isRequired,
     /** Input value */
-    clientEmail: PropTypes.string.isRequired,
+    emailInput: PropTypes.string.isRequired,
     /** Sets the state of the parent component with new email value */
     onInputChange: PropTypes.func.isRequired,
     /** Calls the setSession on the parent component */
@@ -39,10 +39,10 @@ export default class LoginAsCustomer extends Component {
   }
 
   handleKeyPress = event => {
-    const { onSetSesssion, clientEmail } = this.props
+    const { onSetSesssion, emailInput } = this.props
 
     if (event.key === 'Enter') {
-      onSetSesssion(clientEmail)
+      onSetSesssion(emailInput)
     }
   }
 
@@ -52,7 +52,7 @@ export default class LoginAsCustomer extends Component {
       onInputChange,
       onSetSesssion,
       loading,
-      clientEmail,
+      emailInput,
       intl,
     } = this.props
 
@@ -74,7 +74,7 @@ export default class LoginAsCustomer extends Component {
               </div>
               <div className="vtex-telemarketing__email-input mv3">
                 <Input
-                  value={clientEmail}
+                  value={emailInput}
                   onChange={onInputChange}
                   placeholder={'Ex: example@mail.com'}
                   onKeyPress={this.handleKeyPress}
@@ -82,7 +82,7 @@ export default class LoginAsCustomer extends Component {
               </div>
               <Button
                 size="small"
-                onClick={() => onSetSesssion(clientEmail)}
+                onClick={() => onSetSesssion(emailInput)}
                 isLoading={loading}
               >
                 {translate('telemarketing-login.button', intl)}
