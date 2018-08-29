@@ -69,8 +69,7 @@ class Telemarketing extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    const shouldProcessSession =
-      state.isLoadingSession === true && props.session.loading === false
+    const shouldProcessSession = state.isLoadingSession && props.session.loading
     let resultantState = state
 
     if (shouldProcessSession) {
