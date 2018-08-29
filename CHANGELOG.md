@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Adjust bar height using tachyons
 - Use render HOC to initialize the session
+- Refact component to use the container/component strategie
 ### Fixed
 - Regulate icon and text alignment 
 

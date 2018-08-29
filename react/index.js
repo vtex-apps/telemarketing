@@ -2,24 +2,21 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql, compose } from 'react-apollo'
-import { path } from 'ramda'
+
 import {
   orderFormConsumer,
   contextPropTypes,
 } from 'vtex.store/OrderFormContext'
 import { withSession } from 'render'
 
-import LoginAsCustomer from './components/LoginAsCustomer'
-import LogoutCustomerSession from './components/LogoutCustomerSession'
-import TelemarketingIcon from './icons/TelemarketingIcon'
-
-import translate from './utils/translate'
 import requestWithRetry from './utils/request'
 import processSession from './utils/processSession'
 import depersonifyMutation from './mutations/depersonify.gql'
 import impersonateMutation from './mutations/impersonate.gql'
 
 import getSessionQuery from './queries/getSession.gql'
+
+import { clientPropTypes } from './utils/propTypes'
 
 import './global.css'
 
@@ -30,39 +27,18 @@ class Telemarketing extends Component {
     intl: intlShape,
     /** Function to set the ProfileData */
     orderFormContext: contextPropTypes,
+    /** Query with the session */
+    session: clientPropTypes.isRequired,
     /** Mutation to depersonify */
     depersonify: PropTypes.func.isRequired,
     /** Mutation to impersonate a customer */
     impersonate: PropTypes.func.isRequired,
-    /** Query with the session */
-    session: PropTypes.shape({
-      loading: PropTypes.bool.isRequired,
-      getSession: PropTypes.shape({
-        adminUserEmail: PropTypes.string.isRequired,
-        adminUserId: PropTypes.string.isRequired,
-        impersonable: PropTypes.bool.isRequired,
-        profile: PropTypes.shape({
-          document: PropTypes.string,
-          phone: PropTypes.string,
-          firstName: PropTypes.string,
-          lastName: PropTypes.string,
-        }),
-        impersonate: PropTypes.shape({
-          storeUserId: PropTypes.string,
-          storeUserEmail: PropTypes.string,
-        }),
-      }),
-    }).isRequired,
   }
 
   state = {
-    logged: false,
+    client: null,
     loading: false,
-    clientName: '',
-    clientEmail: '',
     emailInput: '',
-    clientPhone: '',
-    clientDocument: '',
     attendantEmail: '',
     canImpersonate: false,
     isLoadingSession: true,
@@ -77,6 +53,7 @@ class Telemarketing extends Component {
     }
 
     resultantState.isLoadingSession = props.session.loading
+
     return resultantState
   }
 
@@ -96,11 +73,7 @@ class Telemarketing extends Component {
       .then(res => {
         if (res.data.depersonify) {
           this.setState({
-            logged: false,
-            clientDocument: '',
-            clientEmail: '',
-            clientName: '',
-            clientPhone: '',
+            client: null,
           })
         }
         this.setState({ loading: false })
@@ -134,62 +107,22 @@ class Telemarketing extends Component {
   render() {
     const { intl } = this.props
     const {
-      canImpersonate,
-      clientEmail,
-      emailInput,
-      clientName,
-      clientDocument,
-      clientPhone,
+      client,
       loading,
+      emailInput,
+      canImpersonate,
       attendantEmail,
-      logged,
     } = this.state
 
-    const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
-
-    if (canImpersonate) {
-      return (
-        <div
-          className={`vtex-telemarketing tc white h2 flex justify-between w-100 f7 ${
-            logged ? 'bg-red' : 'bg-black-90'
-          } z-999 pa2`}
-        >
-          <div className="flex items-center">
-            <TelemarketingIcon />
-
-            {!isMobile && (
-              <div className="ml2">
-                {translate('telemarketing.attendant', intl)}
-                <b>{`: ${attendantEmail}`}</b>
-              </div>
-            )}
-          </div>
-          {logged ? (
-            <LogoutCustomerSession
-              intl={intl}
-              clientName={clientName}
-              clientEmail={clientEmail}
-              clientPhone={clientPhone}
-              clientDocument={clientDocument}
-              loading={loading}
-              attendantEmail={attendantEmail}
-              onDepersonify={this.handleDepersonify}
-            />
-          ) : (
-            <LoginAsCustomer
-              intl={intl}
-              emailInput={emailInput}
-              loading={loading}
-              attendantEmail={attendantEmail}
-              onSetSesssion={this.handleSetSesssion}
-              onInputChange={this.handleInputChange}
-            />
-          )}
-        </div>
-      )
-    }
-
-    return null
+    return canImpersonate ? (
+      <Telemarketing
+        intl={intl}
+        client={client}
+        loading={loading}
+        emailInput={emailInput}
+        attendantEmail={attendantEmail}
+      />
+    ) : null
   }
 }
 
@@ -201,10 +134,10 @@ const options = {
 }
 
 export default compose(
+  injectIntl,
   withSession,
-  graphql(depersonifyMutation, { name: 'depersonify' }),
-  graphql(impersonateMutation, { name: 'impersonate' }),
-  graphql(getSessionQuery, options),
   orderFormConsumer,
-  injectIntl
+  graphql(getSessionQuery, options),
+  graphql(depersonifyMutation, { name: 'depersonify' }),
+  graphql(impersonateMutation, { name: 'impersonate' })
 )(Telemarketing)

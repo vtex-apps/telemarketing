@@ -1,18 +1,24 @@
 export default session => {
   const {
-    adminUserEmail,
-    impersonate: { storeUserId, storeUserEmail },
     impersonable,
-    profile: { document, firstName, lastName, phone },
+    adminUserEmail,
+    impersonate: { profile },
   } = session
 
-  return {
-    logged: storeUserId ? true : false,
+  const result = {
     canImpersonate: impersonable,
-    clientDocument: document || '',
-    clientEmail: storeUserEmail || '',
-    clientName: (firstName && `${firstName} ${lastName}`) || '',
-    clientPhone: phone || '',
     attendantEmail: adminUserEmail,
   }
+
+  if (profile) {
+    const { document, firstName, lastName, phone, email } = profile
+    result.client = {
+      phone,
+      email,
+      document,
+      name: `${firstName} ${lastName}`,
+    }
+  }
+
+  return result
 }

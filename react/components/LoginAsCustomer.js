@@ -10,21 +10,6 @@ import translate from '../utils/translate'
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
 export default class LoginAsCustomer extends Component {
-  static propTypes = {
-    /** Current signedin attendant email */
-    attendantEmail: PropTypes.string.isRequired,
-    /** Input value */
-    emailInput: PropTypes.string.isRequired,
-    /** Sets the state of the parent component with new email value */
-    onInputChange: PropTypes.func.isRequired,
-    /** Calls the setSession on the parent component */
-    onSetSesssion: PropTypes.func.isRequired,
-    /** Loading status */
-    loading: PropTypes.bool.isRequired,
-    /** Intl info */
-    intl: intlShape,
-  }
-
   handleHeaderRendering = () => {
     const { intl } = this.props
 
@@ -93,4 +78,19 @@ export default class LoginAsCustomer extends Component {
       </div>
     )
   }
+}
+
+LoginAsCustomer.propTypes = {
+  /** Current signedin attendant email */
+  attendantEmail: PropTypes.string.isRequired,
+  /** Input value */
+  emailInput: PropTypes.string.isRequired,
+  /** Sets the state of the parent component with new email value */
+  onInputChange: PropTypes.func.isRequired,
+  /** Calls the setSession on the parent component */
+  onSetSesssion: PropTypes.func.isRequired,
+  /** Loading status */
+  loading: PropTypes.bool.isRequired,
+  /** Intl info */
+  intl: intlShape,
 }
