@@ -24,14 +24,5 @@
     "vtex.checkout-session": "0.x",
     "vtex.rnb-session": "0.x",
     "vtex.store-session": "0.x"
-  },
-  "policies": [
-    {
-      "name": "outbound-access",
-      "attrs": {
-        "host": "{{account}}.vtexcommercestable.com.br",
-        "path": "/api/sessions/*"
-      }
-    }
-  ]
+  }
 }

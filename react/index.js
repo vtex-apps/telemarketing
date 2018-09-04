@@ -84,6 +84,7 @@ class TelemarketingContainer extends Component {
       })
       .catch(e => {
         console.error(e)
+        session.refetch()
         this.setState({ loadingImpersonate: false })
       })
   }
