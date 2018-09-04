@@ -11,24 +11,26 @@ import { withSession } from 'render'
 
 import requestWithRetry from './utils/request'
 import processSession from './utils/processSession'
-import depersonifyMutation from './mutations/depersonify.gql'
-import impersonateMutation from './mutations/impersonate.gql'
+import { sessionPropTypes } from './utils/propTypes'
 
+import impersonateMutation from './mutations/impersonate.gql'
+import depersonifyMutation from './mutations/depersonify.gql'
 import getSessionQuery from './queries/getSession.gql'
 
-import { clientPropTypes } from './utils/propTypes'
+import Telemarketing from './components/Telemarketing'
+
 
 import './global.css'
 
 /** The Canonical Telemarketing component impersonates an attendant, with the right permissions, as a client. */
-class Telemarketing extends Component {
+class TelemarketingContainer extends Component {
   static propTypes = {
     /** Intl object */
     intl: intlShape,
     /** Function to set the ProfileData */
     orderFormContext: contextPropTypes,
     /** Query with the session */
-    session: clientPropTypes.isRequired,
+    session: sessionPropTypes.isRequired,
     /** Mutation to depersonify */
     depersonify: PropTypes.func.isRequired,
     /** Mutation to impersonate a customer */
@@ -36,25 +38,8 @@ class Telemarketing extends Component {
   }
 
   state = {
-    client: null,
-    loading: false,
+    loadingImpersonate: false,
     emailInput: '',
-    attendantEmail: '',
-    canImpersonate: false,
-    isLoadingSession: true,
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    const shouldProcessSession = state.isLoadingSession && props.session.loading
-    let resultantState = state
-
-    if (shouldProcessSession) {
-      resultantState = processSession(props.session.getSession)
-    }
-
-    resultantState.isLoadingSession = props.session.loading
-
-    return resultantState
   }
 
   handleInputChange = event => {
@@ -62,67 +47,75 @@ class Telemarketing extends Component {
   }
 
   handleDepersonify = () => {
-    const { orderFormContext, depersonify } = this.props
+    const { orderFormContext, depersonify, session } = this.props
+
     const variables = {
       orderFormId: orderFormContext.orderForm.orderFormId,
     }
 
-    this.setState({ loading: true })
+    this.setState({ loadingImpersonate: true })
 
     requestWithRetry(depersonify, { variables })
       .then(res => {
         if (res.data.depersonify) {
-          this.setState({
-            client: null,
-          })
+          session.refetch()
         }
-        this.setState({ loading: false })
+        this.setState({ loadingImpersonate: false })
       })
       .catch(err => {
         console.error(err)
-        this.setState({ loading: false })
+        this.setState({ loadingImpersonate: false })
       })
   }
 
-  handleSetSesssion = email => {
-    const { orderFormContext, impersonate } = this.props
+  handleSetSession = email => {
+    const { orderFormContext, impersonate, session } = this.props
+
     const variables = {
       orderFormId: orderFormContext.orderForm.orderFormId,
       email,
     }
 
-    this.setState({ loading: true })
+    this.setState({ loadingImpersonate: true })
 
     requestWithRetry(impersonate, { variables })
-      .then(res => {
-        const processedState = processSession(res.data.impersonate)
-        this.setState({ loading: false, ...processedState })
+      .then(() => {
+        session.refetch()
+        this.setState({ loadingImpersonate: false })
       })
       .catch(e => {
         console.error(e)
-        this.setState({ loading: false })
+        this.setState({ loadingImpersonate: false })
       })
   }
 
   render() {
-    const { intl } = this.props
-    const {
-      client,
-      loading,
-      emailInput,
-      canImpersonate,
-      attendantEmail,
-    } = this.state
+    const { intl, session: { getSession } } = this.props
+    const { emailInput, loadingImpersonate } = this.state
+    const processedSession = processSession(getSession)
 
-    return canImpersonate ? (
-      <Telemarketing
-        intl={intl}
-        client={client}
-        loading={loading}
-        emailInput={emailInput}
-        attendantEmail={attendantEmail}
-      />
-    ) : null
+    if (processedSession) {
+      const {
+        client,
+        canImpersonate,
+        attendantEmail,
+      } = processedSession
+
+      return canImpersonate ? (
+        <Telemarketing
+          intl={intl}
+          client={client}
+          loading={loadingImpersonate}
+          emailInput={emailInput}
+          attendantEmail={attendantEmail}
+          onSetSession={this.handleSetSession}
+          onDepersonify={this.handleDepersonify}
+          onInputChange={this.handleInputChange}
+        />
+      ) : null
+    }
+
+    return null
   }
 }
 
@@ -133,11 +126,10 @@ const options = {
   }),
 }
 
-export default compose(
+export default withSession()(compose(
   injectIntl,
-  withSession,
   orderFormConsumer,
   graphql(getSessionQuery, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
-  graphql(impersonateMutation, { name: 'impersonate' })
-)(Telemarketing)
+  graphql(impersonateMutation, { name: 'impersonate' }),
+)(TelemarketingContainer))

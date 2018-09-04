@@ -85,7 +85,7 @@ LogoutCustomerSession.propTypes = {
   /** Intl info */
   intl: intlShape,
   /** Signed in client */
-  client: PropTypes.string.isRequired,
+  client: clientPropTypes.isRequired,
   /** Loading Status */
   loading: PropTypes.bool.isRequired,
   /** Calls the depersonify on the parent component */

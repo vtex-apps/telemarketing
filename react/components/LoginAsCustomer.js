@@ -24,10 +24,10 @@ export default class LoginAsCustomer extends Component {
   }
 
   handleKeyPress = event => {
-    const { onSetSesssion, emailInput } = this.props
+    const { onSetSession, emailInput } = this.props
 
     if (event.key === 'Enter') {
-      onSetSesssion(emailInput)
+      onSetSession(emailInput)
     }
   }
 
@@ -35,7 +35,7 @@ export default class LoginAsCustomer extends Component {
     const {
       attendantEmail,
       onInputChange,
-      onSetSesssion,
+      onSetSession,
       loading,
       emailInput,
       intl,
@@ -67,7 +67,7 @@ export default class LoginAsCustomer extends Component {
               </div>
               <Button
                 size="small"
-                onClick={() => onSetSesssion(emailInput)}
+                onClick={() => onSetSession(emailInput)}
                 isLoading={loading}
               >
                 {translate('telemarketing-login.button', intl)}
@@ -88,7 +88,7 @@ LoginAsCustomer.propTypes = {
   /** Sets the state of the parent component with new email value */
   onInputChange: PropTypes.func.isRequired,
   /** Calls the setSession on the parent component */
-  onSetSesssion: PropTypes.func.isRequired,
+  onSetSession: PropTypes.func.isRequired,
   /** Loading status */
   loading: PropTypes.bool.isRequired,
   /** Intl info */

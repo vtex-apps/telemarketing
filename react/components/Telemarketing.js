@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-type'
+import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
+import { path } from 'ramda'
 
-import LoginAsCustomer from './components/LoginAsCustomer'
-import LogoutCustomerSession from './components/LogoutCustomerSession'
-import TelemarketingIcon from './icons/TelemarketingIcon'
+import LoginAsCustomer from './LoginAsCustomer'
+import LogoutCustomerSession from './LogoutCustomerSession'
+import TelemarketingIcon from '../icons/TelemarketingIcon'
 
-import translate from './utils/translate'
+import translate from '../utils/translate'
 import { clientPropTypes } from '../utils/propTypes'
 
 /** Telemarketing render component */
@@ -18,18 +19,19 @@ export default class Telemarketing extends Component {
       loading,
       emailInput,
       onInputChange,
-      onSetSesssion,
+      onSetSession,
       onDepersonify,
       attendantEmail,
     } = this.props
 
     const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+    const isLogged = client
 
     return (
       <div
         className={`vtex-telemarketing tc white h2 flex justify-between w-100 f7 ${
-          logged ? 'bg-red' : 'bg-black-90'
-        } z-999 pa2`}
+          isLogged ? 'bg-red' : 'bg-black-90'
+          } z-999 pa2`}
       >
         <div className="flex items-center">
           <TelemarketingIcon />
@@ -41,7 +43,7 @@ export default class Telemarketing extends Component {
             </div>
           )}
         </div>
-        {client ? (
+        {isLogged ? (
           <LogoutCustomerSession
             intl={intl}
             client={client}
@@ -50,15 +52,15 @@ export default class Telemarketing extends Component {
             attendantEmail={attendantEmail}
           />
         ) : (
-          <LoginAsCustomer
-            intl={intl}
-            loading={loading}
-            emailInput={emailInput}
-            onInputChange={onInputChange}
-            onSetSesssion={onSetSesssion}
-            attendantEmail={attendantEmail}
-          />
-        )}
+            <LoginAsCustomer
+              intl={intl}
+              loading={loading}
+              emailInput={emailInput}
+              onInputChange={onInputChange}
+              onSetSession={onSetSession}
+              attendantEmail={attendantEmail}
+            />
+          )}
       </div>
     )
   }
