@@ -9,7 +9,6 @@ import {
 } from 'vtex.store/OrderFormContext'
 import { withSession } from 'render'
 
-import requestWithRetry from './utils/request'
 import processSession from './utils/processSession'
 import { sessionPropTypes } from './utils/propTypes'
 
@@ -55,7 +54,7 @@ class TelemarketingContainer extends Component {
 
     this.setState({ loadingImpersonate: true })
 
-    requestWithRetry(depersonify, { variables })
+    depersonify({ variables })
       .then(res => {
         if (res.data.depersonify) {
           session.refetch()
@@ -78,7 +77,7 @@ class TelemarketingContainer extends Component {
 
     this.setState({ loadingImpersonate: true })
 
-    requestWithRetry(impersonate, { variables })
+    impersonate({ variables })
       .then(() => {
         session.refetch()
         this.setState({ loadingImpersonate: false })
