@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
-import { graphql, compose } from 'react-apollo'
-
-import {
-  orderFormConsumer,
-  contextPropTypes,
-} from 'vtex.store/OrderFormContext'
+import { graphql } from 'react-apollo'
+import { compose } from 'ramda'
 import { withSession } from 'render'
 
 import processSession from './utils/processSession'
@@ -26,8 +22,6 @@ class TelemarketingContainer extends Component {
   static propTypes = {
     /** Intl object */
     intl: intlShape,
-    /** Function to set the ProfileData */
-    orderFormContext: contextPropTypes,
     /** Query with the session */
     session: sessionPropTypes.isRequired,
     /** Mutation to depersonify */
@@ -46,15 +40,11 @@ class TelemarketingContainer extends Component {
   }
 
   handleDepersonify = () => {
-    const { orderFormContext, depersonify, session } = this.props
-
-    const variables = {
-      orderFormId: orderFormContext.orderForm.orderFormId,
-    }
+    const { depersonify, session } = this.props
 
     this.setState({ loadingImpersonate: true })
 
-    depersonify({ variables })
+    depersonify()
       .then(res => {
         if (res.data.depersonify) {
           session.refetch()
@@ -68,15 +58,9 @@ class TelemarketingContainer extends Component {
   }
 
   handleSetSession = email => {
-    const { orderFormContext, impersonate, session } = this.props
-
-    const variables = {
-      orderFormId: orderFormContext.orderForm.orderFormId,
-      email,
-    }
-
+    const { impersonate, session } = this.props
     this.setState({ loadingImpersonate: true })
-
+    const variables = { email }
     impersonate({ variables })
       .then(() => {
         session.refetch()
@@ -128,7 +112,6 @@ const options = {
 
 export default withSession()(compose(
   injectIntl,
-  orderFormConsumer,
   graphql(getSessionQuery, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
   graphql(impersonateMutation, { name: 'impersonate' }),

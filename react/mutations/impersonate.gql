@@ -1,5 +1,5 @@
-mutation impersonate($email: String!, $orderFormId: String!) {
-  impersonate(email: $email, orderFormId: $orderFormId) {
+mutation impersonate($email: String!) {
+  impersonate(email: $email) {
     id
     adminUserId
     impersonable
