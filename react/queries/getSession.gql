@@ -1,5 +1,5 @@
-mutation impersonate($email: String!) {
-  impersonate(email: $email) {
+query session {
+  getSession {
     id
     adminUserId
     impersonable

@@ -6,25 +6,10 @@ import { intlShape } from 'react-intl'
 import CustomerIcon from '../icons/CustomerIcon'
 import TelemarketingIcon from '../icons/TelemarketingIcon'
 import Popover from './Popover'
-import { translate } from '../utils/translate'
+import translate from '../utils/translate'
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
 export default class LoginAsCustomer extends Component {
-  static propTypes = {
-    /** Current signedin attendant email */
-    attendantEmail: PropTypes.string.isRequired,
-    /** Input value */
-    clientEmail: PropTypes.string.isRequired,
-    /** Sets the state of the parent component with new email value */
-    onInputChange: PropTypes.func.isRequired,
-    /** Calls the setSession on the parent component */
-    onSetSesssion: PropTypes.func.isRequired,
-    /** Loading status */
-    loading: PropTypes.bool.isRequired,
-    /** Intl info */
-    intl: intlShape,
-  }
-
   handleHeaderRendering = () => {
     const { intl } = this.props
 
@@ -39,10 +24,10 @@ export default class LoginAsCustomer extends Component {
   }
 
   handleKeyPress = event => {
-    const { onSetSesssion, clientEmail } = this.props
+    const { onSetSession, emailInput } = this.props
 
     if (event.key === 'Enter') {
-      onSetSesssion(clientEmail)
+      onSetSession(emailInput)
     }
   }
 
@@ -50,9 +35,9 @@ export default class LoginAsCustomer extends Component {
     const {
       attendantEmail,
       onInputChange,
-      onSetSesssion,
+      onSetSession,
       loading,
-      clientEmail,
+      emailInput,
       intl,
     } = this.props
 
@@ -74,7 +59,7 @@ export default class LoginAsCustomer extends Component {
               </div>
               <div className="vtex-telemarketing__email-input mv3">
                 <Input
-                  value={clientEmail}
+                  value={emailInput}
                   onChange={onInputChange}
                   placeholder={'Ex: example@mail.com'}
                   onKeyPress={this.handleKeyPress}
@@ -82,7 +67,7 @@ export default class LoginAsCustomer extends Component {
               </div>
               <Button
                 size="small"
-                onClick={() => onSetSesssion(clientEmail)}
+                onClick={() => onSetSession(emailInput)}
                 isLoading={loading}
               >
                 {translate('telemarketing-login.button', intl)}
@@ -93,4 +78,19 @@ export default class LoginAsCustomer extends Component {
       </div>
     )
   }
+}
+
+LoginAsCustomer.propTypes = {
+  /** Current signedin attendant email */
+  attendantEmail: PropTypes.string.isRequired,
+  /** Input value */
+  emailInput: PropTypes.string.isRequired,
+  /** Sets the state of the parent component with new email value */
+  onInputChange: PropTypes.func.isRequired,
+  /** Calls the setSession on the parent component */
+  onSetSession: PropTypes.func.isRequired,
+  /** Loading status */
+  loading: PropTypes.bool.isRequired,
+  /** Intl info */
+  intl: intlShape,
 }

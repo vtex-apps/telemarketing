@@ -6,8 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.3.0] - 2018-09-05
 ### Changed
 - Adjust bar height using tachyons
+- Use render HOC to initialize the session
+- Refact component to use the container/component strategie
 ### Fixed
 - Regulate icon and text alignment 
 
