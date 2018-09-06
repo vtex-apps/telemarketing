@@ -48,8 +48,9 @@ class TelemarketingContainer extends Component {
       .then(response => {
         const depersonify = path(['data', 'depersonify'], response)
 
-        if (depersonify)
+        if (depersonify) {
           session.refetch()
+        }
 
         this.setState({ loadingImpersonate: false })
       })
@@ -67,8 +68,9 @@ class TelemarketingContainer extends Component {
       .then((response) => {
         const profile = path(['data', 'impersonate', 'impersonate', 'profile'], response)
 
-        if (profile)
+        if (profile) {
           session.refetch()
+        }
 
         this.setState({ loadingImpersonate: false })
       })
