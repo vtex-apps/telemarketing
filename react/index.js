@@ -45,8 +45,8 @@ class TelemarketingContainer extends Component {
     this.setState({ loadingImpersonate: true })
 
     depersonify()
-      .then(res => {
-        const depersonify = path(['data', 'depersonify'], res)
+      .then(response => {
+        const depersonify = path(['data', 'depersonify'], response)
 
         if (depersonify) {
           session.refetch()
@@ -54,8 +54,8 @@ class TelemarketingContainer extends Component {
 
         this.setState({ loadingImpersonate: false })
       })
-      .catch(err => {
-        console.error(err)
+      .catch(error => {
+        console.error(error)
         this.setState({ loadingImpersonate: false })
       })
   }
@@ -65,16 +65,16 @@ class TelemarketingContainer extends Component {
     this.setState({ loadingImpersonate: true })
     const variables = { email }
     impersonate({ variables })
-      .then((res) => {
-        const profile = path(['data', 'impersonate', 'impersonate', 'profile'], res)
+      .then((response) => {
+        const profile = path(['data', 'impersonate', 'impersonate', 'profile'], response)
 
         if (profile)
           session.refetch()
 
         this.setState({ loadingImpersonate: false })
       })
-      .catch(e => {
-        console.error(e)
+      .catch(error => {
+        console.error(error)
         this.setState({ loadingImpersonate: false })
       })
   }
