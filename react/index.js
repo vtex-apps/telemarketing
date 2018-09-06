@@ -66,7 +66,7 @@ class TelemarketingContainer extends Component {
     const variables = { email }
     impersonate({ variables })
       .then((res) => {
-        const profile = path(['data', 'impersonate', 'impersonae', 'profile'], res)
+        const profile = path(['data', 'impersonate', 'impersonate', 'profile'], res)
 
         if (profile)
           session.refetch()
