@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
-import { compose } from 'ramda'
+import { compose, path } from 'ramda'
 import { withSession } from 'render'
 
 import processSession from './utils/processSession'
@@ -45,14 +45,17 @@ class TelemarketingContainer extends Component {
     this.setState({ loadingImpersonate: true })
 
     depersonify()
-      .then(res => {
-        if (res.data.depersonify) {
+      .then(response => {
+        const depersonify = path(['data', 'depersonify'], response)
+
+        if (depersonify) {
           session.refetch()
         }
+
         this.setState({ loadingImpersonate: false })
       })
-      .catch(err => {
-        console.error(err)
+      .catch(error => {
+        console.error(error)
         this.setState({ loadingImpersonate: false })
       })
   }
@@ -62,13 +65,17 @@ class TelemarketingContainer extends Component {
     this.setState({ loadingImpersonate: true })
     const variables = { email }
     impersonate({ variables })
-      .then(() => {
-        session.refetch()
+      .then((response) => {
+        const profile = path(['data', 'impersonate', 'impersonate', 'profile'], response)
+
+        if (profile) {
+          session.refetch()
+        }
+
         this.setState({ loadingImpersonate: false })
       })
-      .catch(e => {
-        console.error(e)
-        session.refetch()
+      .catch(error => {
+        console.error(error)
         this.setState({ loadingImpersonate: false })
       })
   }
