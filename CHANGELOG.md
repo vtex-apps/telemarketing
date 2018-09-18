@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Fixed
 - Refetch loop when impersonate is called
+### Updated
+- Remove unnecessary dependencies.
 
 ## [1.3.0] - 2018-09-05
 ### Changed
