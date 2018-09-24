@@ -117,7 +117,7 @@ const options = {
   }),
 }
 
-export default withSession({loading: null})(compose(
+export default withSession({loading: React.Fragment})(compose(
   injectIntl,
   graphql(getSessionQuery, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
