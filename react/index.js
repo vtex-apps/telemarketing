@@ -117,7 +117,7 @@ const options = {
   }),
 }
 
-export default withSession()(compose(
+export default withSession({loading: null})(compose(
   injectIntl,
   graphql(getSessionQuery, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
