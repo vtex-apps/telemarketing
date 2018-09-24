@@ -81,9 +81,9 @@ class TelemarketingContainer extends Component {
   }
 
   render() {
-    const { intl, session: { getSession } } = this.props
+    const { intl, session } = this.props
     const { emailInput, loadingImpersonate } = this.state
-    const processedSession = processSession(getSession)
+    const processedSession = processSession(session)
 
     if (processedSession) {
       const {

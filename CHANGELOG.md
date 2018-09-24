@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.3.2] - 2018-09-24
+### Fixed
+- Error on processSession when the profile wasn´t  present
+
 ## [1.3.1] - 2018-09-18
 ### Fixed
 - Refetch loop when impersonate is called

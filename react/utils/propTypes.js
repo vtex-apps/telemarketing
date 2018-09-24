@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 export const sessionPropTypes = PropTypes.shape({
   loading: PropTypes.bool.isRequired,
   getSession: PropTypes.shape({
-    adminUserEmail: PropTypes.string.isRequired,
-    adminUserId: PropTypes.string.isRequired,
+    adminUserEmail: PropTypes.string,
+    adminUserId: PropTypes.string,
     impersonable: PropTypes.bool.isRequired,
     profile: PropTypes.shape({
       document: PropTypes.string,
