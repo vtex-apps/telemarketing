@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { injectIntl, intlShape } from 'react-intl'
 import { graphql } from 'react-apollo'
@@ -117,7 +117,7 @@ const options = {
   }),
 }
 
-export default withSession()(compose(
+export default withSession({loading: Fragment})(compose(
   injectIntl,
   graphql(getSessionQuery, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
