@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.4.0] - 2018-10-02
+### Changed
+- Uses session query provided by vtex.store
+
 ## [1.3.3] - 2018-09-25
 ### Fixed
 - Loading removed for the topbar.
