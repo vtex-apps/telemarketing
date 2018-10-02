@@ -10,7 +10,7 @@ import { sessionPropTypes } from './utils/propTypes'
 
 import impersonateMutation from './mutations/impersonate.gql'
 import depersonifyMutation from './mutations/depersonify.gql'
-import getSessionQuery from './queries/getSession.gql'
+import { Queries } from 'vtex.store'
 
 import Telemarketing from './components/Telemarketing'
 
@@ -119,7 +119,7 @@ const options = {
 
 export default withSession({loading: Fragment})(compose(
   injectIntl,
-  graphql(getSessionQuery, options),
+  graphql(Queries.session, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
   graphql(impersonateMutation, { name: 'impersonate' }),
 )(TelemarketingContainer))
