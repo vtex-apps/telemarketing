@@ -1,18 +1,33 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { intlShape } from 'react-intl'
 import { path } from 'ramda'
+import React, { Component } from 'react'
 
+import TelemarketingIcon from '../icons/TelemarketingIcon'
+import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
-import TelemarketingIcon from '../icons/TelemarketingIcon'
 
-import translate from '../utils/translate'
-import { clientPropTypes } from '../utils/propTypes'
+interface Props {
+  /** Attendant email */
+  attendantEmail: string,
+  /** Impersonated customer info */
+  client?: Client,
+  /** Email input value */
+  emailInput: string,
+  /** Intl object */
+  intl: any,
+  /** Loading status */
+  loading: boolean,
+  /** Function to depersonify the impersonated customer */
+  onDepersonify: () => any,
+  /** Function to set the emailInput value */
+  onInputChange: (s: string) => void,
+  /** Function to set the session */
+  onSetSession: (s: string) => void,
+}
 
 /** Telemarketing render component */
-export default class Telemarketing extends Component {
-  render() {
+export default class Telemarketing extends Component<Props> {
+  public render() {
     const {
       intl,
       client,
@@ -25,12 +40,11 @@ export default class Telemarketing extends Component {
     } = this.props
 
     const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
-    const isLogged = client
 
     return (
       <div
         className={`vtex-telemarketing tc white h2 flex justify-between w-100 f7 ${
-          isLogged ? 'bg-red' : 'bg-black-90'
+          client ? 'bg-red' : 'bg-black-90'
           } z-999 pa2`}
       >
         <div className="flex items-center">
@@ -43,7 +57,7 @@ export default class Telemarketing extends Component {
             </div>
           )}
         </div>
-        {isLogged ? (
+        {client ? (
           <LogoutCustomerSession
             intl={intl}
             client={client}
@@ -64,23 +78,4 @@ export default class Telemarketing extends Component {
       </div>
     )
   }
-}
-
-Telemarketing.propTypes = {
-  /** Intl object */
-  intl: intlShape.isRequired,
-  /** Impersonated customer info */
-  client: clientPropTypes,
-  /** Loading status */
-  loading: PropTypes.bool.isRequired,
-  /** Email input value */
-  emailInput: PropTypes.string.isRequired,
-  /** Attendant email */
-  attendantEmail: PropTypes.string.isRequired,
-  /** Function to set the session */
-  onSetSession: PropTypes.func.isRequired,
-  /** Function to set the emailInput value */
-  onInputChange: PropTypes.func.isRequired,
-  /** Function to depersonify the impersonated customer */
-  onDepersonify: PropTypes.func.isRequired,
 }

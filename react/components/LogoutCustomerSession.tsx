@@ -1,33 +1,30 @@
-import { Link } from 'render'
-import PropTypes from 'prop-types'
-import { Button } from 'vtex.styleguide'
-import { intlShape } from 'react-intl'
 import React, { Component } from 'react'
+import { Link } from 'render'
+import { Button } from 'vtex.styleguide'
 
-import translate from '../utils/translate'
-import { clientPropTypes } from '../utils/propTypes'
 import { truncateString } from '../utils/format-string'
+import translate from '../utils/translate'
 
-import Popover from './Popover'
 import CustomerIcon from '../icons/CustomerIcon'
 import TelemarketingIcon from '../icons/TelemarketingIcon'
+import Popover from './Popover'
+
+interface Props {
+  /** Intl info */
+  intl: any,
+  /** Signed in client */
+  client: Client,
+  /** Loading Status */
+  loading: boolean,
+  /** Calls the depersonify on the parent component */
+  onDepersonify: () => any,
+  /** Current signedin attendant email */
+  attendantEmail: string,
+}
 
 /** Component that shows the client info calls the setSession function  to logout. */
-export default class LogoutCustomerSession extends Component {
-  handleHeaderRendering = () => {
-    const { client } = this.props
-
-    return (
-      <div className="flex align-center">
-        <CustomerIcon />
-        <div className="pa2">
-          {client.email ? `${truncateString(client.email, 25)}` : null}
-        </div>
-      </div>
-    )
-  }
-
-  render() {
+export default class LogoutCustomerSession extends Component<Props> {
+  public render() {
     const { intl, client, loading, onDepersonify, attendantEmail } = this.props
 
     return (
@@ -79,17 +76,17 @@ export default class LogoutCustomerSession extends Component {
       </div>
     )
   }
-}
 
-LogoutCustomerSession.propTypes = {
-  /** Intl info */
-  intl: intlShape,
-  /** Signed in client */
-  client: clientPropTypes.isRequired,
-  /** Loading Status */
-  loading: PropTypes.bool.isRequired,
-  /** Calls the depersonify on the parent component */
-  onDepersonify: PropTypes.func.isRequired,
-  /** Current signedin attendant email */
-  attendantEmail: PropTypes.string.isRequired,
+  private handleHeaderRendering = () => {
+    const { client } = this.props
+
+    return (
+      <div className="flex align-center">
+        <CustomerIcon />
+        <div className="pa2">
+          {client.email ? `${truncateString(client.email, 25)}` : null}
+        </div>
+      </div>
+    )
+  }
 }
