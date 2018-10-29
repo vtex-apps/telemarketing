@@ -40,7 +40,7 @@ class TelemarketingContainer extends Component {
   }
 
   handleDepersonify = () => {
-    const { depersonify, session } = this.props
+    const { depersonify } = this.props
 
     this.setState({ loadingImpersonate: true })
 
@@ -49,7 +49,7 @@ class TelemarketingContainer extends Component {
         const depersonify = path(['data', 'depersonify'], response)
 
         if (depersonify) {
-          session.refetch()
+          window.location.reload()
         }
 
         this.setState({ loadingImpersonate: false })
