@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class TelemarketingIcon extends Component {
-  static propTypes = {
-    size: PropTypes.number,
-  }
-
-  static defaultProps = {
-    size: 20,
-  }
-
-  render() {
-    const { size } = this.props
-    return (
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 21 21"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <use href="#telemarketing" />
-      </svg>
-    )
-  }
+const TelemarketingIcon = ({ size }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      viewBox="0 0 21 21"
+      fill="none"
+      width={size}
+      height={size}
+    >
+      <use href="#telemarketing" xlinkHref="#telemarketing" />
+    </svg>
+  )
 }
+
+TelemarketingIcon.propTypes = {
+  size: PropTypes.number,
+}
+
+TelemarketingIcon.defaultProps = {
+  size: 20,
+}
+
+export default TelemarketingIcon
