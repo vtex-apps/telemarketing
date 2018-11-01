@@ -23,7 +23,7 @@ export default class CustomerIcon extends Component {
         fill="none"
         color={color}
       >
-        <use href="#ds-customer" />
+        <use href="#customer" />
       </svg>
     )
   }
