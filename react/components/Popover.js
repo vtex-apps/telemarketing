@@ -7,7 +7,7 @@ export default class Popover extends Component {
   static propTypes = {
     /** Function that will display the header */
     renderHeader: PropTypes.func.isRequired,
-    /**  */
+    /**  Children that will be rendered inside this Popover*/
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
       PropTypes.node,
