@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { path } from 'ramda'
 
 /** Component that shows a content when it´s header is clicked*/
 export default class Popover extends Component {
   static propTypes = {
     /** Function that will display the header */
     renderHeader: PropTypes.func.isRequired,
+    /**  */
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
   }
 
   boxRef_ = React.createRef()
@@ -47,6 +53,8 @@ export default class Popover extends Component {
   render() {
     const { renderHeader, children } = this.props
 
+    const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+
     const boxPositionStyle = {
       right: this.iconRef && this.iconRef.offsetWidth - 43,
     }
@@ -66,7 +74,7 @@ export default class Popover extends Component {
           className={`vtex-popover__box absolute z-max ${
             this.state.isBoxOpen ? 'flex' : 'dn'
           }`}
-          style={boxPositionStyle}
+          style={isMobile ? undefined : boxPositionStyle}
           ref={this.boxRef_}
         >
           <div className="vtex-popover__content-container shadow-3 mt3 bg-white">

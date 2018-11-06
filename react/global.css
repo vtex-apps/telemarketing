@@ -1,6 +1,5 @@
 .vtex-telemarketing .vtex-popover__arrow-up {
   background-color: rgb(25, 25, 25);
-  right: 20px;
 }
 
 .vtex-telemarketing .vtex-popover__box {
@@ -20,8 +19,7 @@
   transform: rotate(-135deg);
   width: 25px;
   height: 25px;
-  right: 7px;
-  box-shadow: 2px 2px 4px -2px rgba(0, 0, 0, 0.2);
+  left: 86%;
 }
 
 .vtex-popover__box {
@@ -37,11 +35,10 @@
 @media only screen and (max-width: 27em) {
   .vtex-popover__box {
     width: 100vw;
-    top: -3vw;
-    right: -3vw;
+    right: -1vw;
   }
 
   .vtex-telemarketing .vtex-popover__box {
-    top: 2vh;
+    top: 5vw;
   }
 }

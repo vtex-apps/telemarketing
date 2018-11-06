@@ -14,7 +14,6 @@ import { Queries } from 'vtex.store'
 
 import Telemarketing from './components/Telemarketing'
 
-
 import './global.css'
 
 /** The Canonical Telemarketing component impersonates an attendant, with the right permissions, as a client. */
@@ -117,7 +116,7 @@ const options = {
   }),
 }
 
-export default withSession({loading: Fragment})(compose(
+export default withSession({ loading: Fragment })(compose(
   injectIntl,
   graphql(Queries.session, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
