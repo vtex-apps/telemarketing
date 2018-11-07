@@ -1,15 +1,9 @@
 .vtex-telemarketing .vtex-popover__arrow-up {
-  background-color: rgb(25, 25, 25);
+  right: 20px;
 }
 
 .vtex-telemarketing .vtex-popover__box {
   min-width: 320px;
-}
-
-/* Logout */
-
-.vtex-telemarketing .vtex-telemarketing__logout .vtex-popover__arrow-up {
-  background-color: #ff4c4c;
 }
 
 /* Popover css */

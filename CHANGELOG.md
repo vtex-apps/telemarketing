@@ -8,9 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Use icons from dreamstore icon pack.
+### Fixed
+- Refact to use design tokens.
 
 ## [1.4.2] - 2018-11-08
-### Fixed
 - Fix bug in mobile that misplaced Popover and add top margin to email.
 
 ## [1.4.1] - 2018-10-29

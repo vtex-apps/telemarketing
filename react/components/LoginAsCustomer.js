@@ -43,17 +43,17 @@ export default class LoginAsCustomer extends Component {
 
     return (
       <div className="vtex-telemarketing__login">
-        <Popover renderHeader={this.handleHeaderRendering}>
-          <div className="bg-black-90 w-100 pa4">
+        <Popover arrowClasses="bg-base--inverted" renderHeader={this.handleHeaderRendering}>
+          <div className="bg-base--inverted w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">
               <TelemarketingIcon size={50} />
             </div>
-            <div className="vtex-telemarketing__popover-header-email white-50 mt3">
+            <div className="vtex-telemarketing__popover-header-email white-50 mt3 c-on-base--inverted">
               {attendantEmail}
             </div>
           </div>
-          <div className="bg-white w-100 pa4">
-            <div className="vtex-telemarketing__login-form gray">
+          <div className="bg-base w-100 pa4">
+            <div className="vtex-telemarketing__login-form c-disabled">
               <div className="vtex-telemarketing__login-form-message tl mv3">
                 {translate('telemarketing-login.message', intl)}
               </div>

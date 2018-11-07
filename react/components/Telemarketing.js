@@ -29,8 +29,8 @@ class Telemarketing extends Component {
 
     return (
       <div
-        className={`vtex-telemarketing tc white h2 flex justify-between w-100 f7 ${
-          isLogged ? 'bg-red' : 'bg-black-90'
+        className={`vtex-telemarketing tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
+          isLogged ? 'bg-emphasis' : 'bg-base--inverted'
           } z-999 pa2`}
       >
         <div className="flex items-center">
