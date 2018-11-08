@@ -71,16 +71,16 @@ export default class Popover extends Component {
           {renderHeader()}
         </div>
         <div
-          className={`vtex-popover__box absolute z-max ${
+          className={`vtex-popover__box absolute top-2 z-max ${
             this.state.isBoxOpen ? 'flex' : 'dn'
           }`}
           style={isMobile ? undefined : boxPositionStyle}
           ref={this.boxRef_}
         >
-          <div className="vtex-popover__content-container shadow-3 mt3 bg-white">
+          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-white">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute top-0 right-0-ns bg-white dib-ns dn-s" />
+          <div className="vtex-popover__arrow-up absolute top-0 rotate-135 bg-white dib-ns dn-s" />
         </div>
       </div>
     )

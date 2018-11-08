@@ -3,7 +3,6 @@
 }
 
 .vtex-telemarketing .vtex-popover__box {
-  top: 2rem;
   min-width: 320px;
 }
 
@@ -16,14 +15,12 @@
 /* Popover css */
 
 .vtex-popover__arrow-up {
-  transform: rotate(-135deg);
   width: 25px;
   height: 25px;
   left: 86%;
 }
 
 .vtex-popover__box {
-  top: 100%;
   visibility: visible;
   min-width: 310px;
 }
@@ -40,5 +37,13 @@
 
   .vtex-telemarketing .vtex-popover__box {
     top: 5vw;
+  }
+}
+
+@media screen and (aspect-ratio: 40/71) {
+  .vtex-popover__box {
+    right: -1.1vw;
+    width: 100vw;
+    top: 3.2vh !important;
   }
 }
