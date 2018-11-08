@@ -48,7 +48,7 @@ export default class LoginAsCustomer extends Component {
             <div className="vtex-telemarketing__popover-header-icon">
               <TelemarketingIcon size={50} />
             </div>
-            <div className="vtex-telemarketing__popover-header-email white-50">
+            <div className="vtex-telemarketing__popover-header-email white-50 mt3">
               {attendantEmail}
             </div>
           </div>
