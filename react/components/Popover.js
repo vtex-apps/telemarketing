@@ -55,7 +55,7 @@ export default class Popover extends Component {
 
     const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
-    const boxPositionStyle = {
+    const boxPositionStyle = isMobile ? {} : {
       right: this.iconRef && this.iconRef.offsetWidth - 43,
     }
 
@@ -73,8 +73,8 @@ export default class Popover extends Component {
         <div
           className={`vtex-popover__box absolute top-2 z-max ${
             this.state.isBoxOpen ? 'flex' : 'dn'
-          }`}
-          style={isMobile ? undefined : boxPositionStyle}
+            }`}
+          style={boxPositionStyle}
           ref={this.boxRef_}
         >
           <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-white">
