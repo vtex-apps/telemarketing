@@ -7,6 +7,7 @@ class Popover extends Component {
   static propTypes = {
     /** Function that will display the header */
     renderHeader: PropTypes.func.isRequired,
+    arrowClasses: PropTypes.string,
     /**  Children that will be rendered inside this Popover*/
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
@@ -51,7 +52,7 @@ class Popover extends Component {
   }
 
   render() {
-    const { renderHeader, children, runtime: { hints: { mobile } } } = this.props
+    const { arrowClasses, renderHeader, children, runtime: { hints: { mobile } } } = this.props
 
     const boxPositionStyle = mobile ? {} : {
       right: this.iconRef && this.iconRef.offsetWidth - 43,
@@ -75,10 +76,10 @@ class Popover extends Component {
           style={boxPositionStyle}
           ref={this.boxRef_}
         >
-          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-white">
+          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-base">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute top-0 rotate-135 bg-white dib-ns dn-s" />
+          <div className={`vtex-popover__arrow-up absolute top-0 rotate-135 dib-ns dn-s ${this.props.arrowClasses}`} />
         </div>
       </div>
     )
