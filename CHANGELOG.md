@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Fixed
-- Fix bug in mobile.
+- Fix bug in mobile that misplaced Popover.
 
 ## [1.4.1] - 2018-10-29
 ### Fixed
