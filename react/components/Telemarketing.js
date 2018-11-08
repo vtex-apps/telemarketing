@@ -84,4 +84,5 @@ Telemarketing.propTypes = {
   /** Function to depersonify the impersonated customer */
   onDepersonify: PropTypes.func.isRequired,
 }
+
 export default withRuntimeContext(Telemarketing)
