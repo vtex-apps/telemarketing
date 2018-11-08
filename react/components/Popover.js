@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { path } from 'ramda'
+import { withRuntimeContext } from 'render'
 
 /** Component that shows a content when it´s header is clicked*/
-export default class Popover extends Component {
+class Popover extends Component {
   static propTypes = {
     /** Function that will display the header */
     renderHeader: PropTypes.func.isRequired,
@@ -51,11 +51,9 @@ export default class Popover extends Component {
   }
 
   render() {
-    const { renderHeader, children } = this.props
+    const { renderHeader, children, runtime: { hints: { mobile } } } = this.props
 
-    const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
-
-    const boxPositionStyle = isMobile ? {} : {
+    const boxPositionStyle = mobile ? {} : {
       right: this.iconRef && this.iconRef.offsetWidth - 43,
     }
 
@@ -86,3 +84,4 @@ export default class Popover extends Component {
     )
   }
 }
+export default withRuntimeContext(Popover)
