@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRuntimeContext } from 'render'
 
 /** Component that shows a content when it´s header is clicked*/
-export default class Popover extends Component {
+class Popover extends Component {
   static propTypes = {
     /** Function that will display the header */
     renderHeader: PropTypes.func.isRequired,
+    /**  Children that will be rendered inside this Popover*/
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node,
+    ]),
   }
 
   boxRef_ = React.createRef()
@@ -45,9 +51,9 @@ export default class Popover extends Component {
   }
 
   render() {
-    const { renderHeader, children } = this.props
+    const { renderHeader, children, runtime: { hints: { mobile } } } = this.props
 
-    const boxPositionStyle = {
+    const boxPositionStyle = mobile ? {} : {
       right: this.iconRef && this.iconRef.offsetWidth - 43,
     }
 
@@ -63,18 +69,20 @@ export default class Popover extends Component {
           {renderHeader()}
         </div>
         <div
-          className={`vtex-popover__box absolute z-max ${
+          className={`vtex-popover__box absolute top-2 z-max ${
             this.state.isBoxOpen ? 'flex' : 'dn'
-          }`}
+            }`}
           style={boxPositionStyle}
           ref={this.boxRef_}
         >
-          <div className="vtex-popover__content-container shadow-3 mt3 bg-white">
+          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-white">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute top-0 right-0-ns bg-white dib-ns dn-s" />
+          <div className="vtex-popover__arrow-up absolute top-0 rotate-135 bg-white dib-ns dn-s" />
         </div>
       </div>
     )
   }
 }
+
+export default withRuntimeContext(Popover)

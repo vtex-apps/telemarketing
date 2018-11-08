@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
-import { path } from 'ramda'
+import { withRuntimeContext } from 'render'
 
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
@@ -11,7 +11,7 @@ import translate from '../utils/translate'
 import { clientPropTypes } from '../utils/propTypes'
 
 /** Telemarketing render component */
-export default class Telemarketing extends Component {
+class Telemarketing extends Component {
   render() {
     const {
       intl,
@@ -22,9 +22,9 @@ export default class Telemarketing extends Component {
       onSetSession,
       onDepersonify,
       attendantEmail,
+      runtime: { hints: { mobile } }
     } = this.props
 
-    const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
     const isLogged = client
 
     return (
@@ -36,7 +36,7 @@ export default class Telemarketing extends Component {
         <div className="flex items-center">
           <TelemarketingIcon />
 
-          {!isMobile && (
+          {!mobile && (
             <div className="ml2">
               {translate('telemarketing.attendant', intl)}
               <b>{`: ${attendantEmail}`}</b>
@@ -84,3 +84,5 @@ Telemarketing.propTypes = {
   /** Function to depersonify the impersonated customer */
   onDepersonify: PropTypes.func.isRequired,
 }
+
+export default withRuntimeContext(Telemarketing)
