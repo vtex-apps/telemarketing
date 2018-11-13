@@ -29,19 +29,19 @@ export default class LogoutCustomerSession extends Component<Props> {
 
     return (
       <div className="vtex-telemarketing__logout">
-        <Popover renderHeader={this.handleHeaderRendering}>
-          <div className="bg-red w-100 pa4">
+        <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
+          <div className="bg-emphasis w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">
               <TelemarketingIcon size={50} />
             </div>
-            <div className="vtex-telemarketing__popover-header-email white-50">
+            <div className="vtex-telemarketing__popover-header-email c-on-emphasis">
               {attendantEmail}
             </div>
           </div>
-          <div className="bg-white w-100 pa4">
-            <div className="vtex-telemarketing__logout-form gray">
-              <div className="w-100 pa3 bw1 bb b--silver flex flex-wrap">
-                <div className="w-100 f5 center b pa4">{client.name}</div>
+          <div className="bg-base w-100 pa4">
+            <div className="vtex-telemarketing__logout-form c-disabled">
+              <div className="w-100 pa3 bw1 bb b--muted-3 flex flex-wrap">
+                <div className="w-100 t-heading-6 center b pa4">{client.name}</div>
 
                 <div className="w-50 tl pa3">Email</div>
                 <div className="w-50 pa3">{client.email}</div>

@@ -54,10 +54,10 @@ export class Popover extends Component<Props> {
           style={boxPositionStyle}
           ref={this.boxRef}
         >
-          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-white">
+          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-base">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute top-0 rotate-135 bg-white dib-ns dn-s" />
+          <div className={`vtex-popover__arrow-up absolute top-0 rotate-135 dib-ns dn-s ${this.props.arrowClasses}`} />
         </div>
       </div>
     )
