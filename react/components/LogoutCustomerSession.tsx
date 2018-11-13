@@ -82,7 +82,7 @@ export default class LogoutCustomerSession extends Component<Props> {
 
     return (
       <div className="flex align-center">
-        <CustomerIcon />
+        <CustomerIcon size={30} color={"#000000"}/>
         <div className="pa2">
           {client.email ? `${truncateString(client.email, 25)}` : null}
         </div>

@@ -40,7 +40,7 @@ export default class LoginAsCustomer extends Component<Props> {
             <div className="vtex-telemarketing__popover-header-icon">
               <TelemarketingIcon size={50} />
             </div>
-            <div className="vtex-telemarketing__popover-header-email white-50">
+            <div className="vtex-telemarketing__popover-header-email white-50 mt3">
               {attendantEmail}
             </div>
           </div>
@@ -76,7 +76,7 @@ export default class LoginAsCustomer extends Component<Props> {
 
     return (
       <div className="flex items-center">
-        <CustomerIcon />
+        <CustomerIcon size={25} color={'#FFFFFF'}/>
         <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>

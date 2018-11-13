@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, ReactNode } from 'react'
+import { path } from 'ramda'
+import { withRuntimeContext } from 'render'
 
 interface Props {
   /** Function that will display the header */
   renderHeader: () => any,
+  readonly children: ReactNode
 }
 
 /** Component that shows a content when it´s header is clicked */
-export default class Popover extends Component<Props> {
+export class Popover extends Component<Props> {
   public boxRef: any = React.createRef()
 
   public state = {
@@ -19,10 +22,17 @@ export default class Popover extends Component<Props> {
     this.removeListeners()
   }
 
+  private handleHeaderClick = () => {
+    document.addEventListener('mouseup', this.handleDocumentMouseUp)
+
+    this.setState({ isBoxOpen: !this.state.isBoxOpen })
+  }
+
   public render() {
     const { renderHeader, children } = this.props
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
-    const boxPositionStyle = {
+    const boxPositionStyle = mobile ? {} : {
       right: this.iconRef && this.iconRef.offsetWidth - 43,
     }
 
@@ -38,16 +48,16 @@ export default class Popover extends Component<Props> {
           {renderHeader()}
         </div>
         <div
-          className={`vtex-popover__box absolute z-max ${
+          className={`vtex-popover__box absolute top-2 z-max ${
             this.state.isBoxOpen ? 'flex' : 'dn'
             }`}
           style={boxPositionStyle}
           ref={this.boxRef}
         >
-          <div className="vtex-popover__content-container shadow-3 mt3 bg-white">
+          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-white">
             {children}
           </div>
-          <div className="vtex-popover__arrow-up absolute top-0 right-0-ns bg-white dib-ns dn-s" />
+          <div className="vtex-popover__arrow-up absolute top-0 rotate-135 bg-white dib-ns dn-s" />
         </div>
       </div>
     )
@@ -73,10 +83,7 @@ export default class Popover extends Component<Props> {
   private removeListeners = () => {
     document.removeEventListener('mouseup', this.handleDocumentMouseUp)
   }
-
-  private handleHeaderClick = () => {
-    document.addEventListener('mouseup', this.handleDocumentMouseUp)
-
-    this.setState({ isBoxOpen: !this.state.isBoxOpen })
-  }
+  
 }
+
+export default withRuntimeContext(Popover)

@@ -1,5 +1,7 @@
 import { path } from 'ramda'
 import React, { Component } from 'react'
+import { intlShape } from 'react-intl'
+import { withRuntimeContext } from 'render'
 
 import TelemarketingIcon from '../icons/TelemarketingIcon'
 import translate from '../utils/translate'
@@ -26,7 +28,7 @@ interface Props {
 }
 
 /** Telemarketing render component */
-export default class Telemarketing extends Component<Props> {
+export class Telemarketing extends Component<Props> {
   public render() {
     const {
       intl,
@@ -36,10 +38,11 @@ export default class Telemarketing extends Component<Props> {
       onInputChange,
       onSetSession,
       onDepersonify,
-      attendantEmail,
+      attendantEmail
     } = this.props
 
-    const isMobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+    const isLogged = client
 
     return (
       <div
@@ -50,7 +53,7 @@ export default class Telemarketing extends Component<Props> {
         <div className="flex items-center">
           <TelemarketingIcon />
 
-          {!isMobile && (
+          {!mobile && (
             <div className="ml2">
               {translate('telemarketing.attendant', intl)}
               <b>{`: ${attendantEmail}`}</b>
@@ -79,3 +82,5 @@ export default class Telemarketing extends Component<Props> {
     )
   }
 }
+
+export default withRuntimeContext(Telemarketing)

@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Migrate app to typescript.
+- Use icons from dreamstore icon pack.
+
+## [1.4.2] - 2018-11-08
+### Fixed
+- Fix bug in mobile that misplaced Popover and add top margin to email.
+
+## [1.4.1] - 2018-10-29
+### Fixed
+- Not depersonifying when clicking the logout button.
 
 ## [1.4.0] - 2018-10-02
 ### Changed
