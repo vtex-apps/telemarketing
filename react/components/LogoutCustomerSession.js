@@ -16,42 +16,53 @@ import TelemarketingIcon from '../icons/TelemarketingIcon'
 export default class LogoutCustomerSession extends Component {
   
   handleHeaderRendering = () => {
-    const { client } = this.props
+    const { client, mobile } = this.props
 
     return (
-      <div className="flex align-center">
-        <CustomerIcon />
-        <div className="pa2">
-          {client.email ? `${truncateString(client.email, 25)}` : null}
+      mobile ? (
+        <div className="flex align-center">
+          <CustomerIcon />
+          <div className="pa2">
+            {truncateString(this.clientName, 20)}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex align-center">
+          <CustomerIcon />
+          <div className="pa2">
+            {client.email ? `${truncateString(client.email, 25)}` : null}
+          </div>
+        </div>
+      )
     )
   }
 
-  getClientName = () => {
+  get clientName() {
     const { client } = this.props
 
-    return client.name.includes('null') ? client.email.slice(0, client.email.indexOf('@')) : client.name;
+    if (client) {
+      return client.name.includes('null') ? client.email.slice(0, client.email.indexOf('@')) : client.name
+    }
   }
 
   render() {
-    const { intl, client, loading, onDepersonify, attendantEmail } = this.props
-    
+    const { intl, client, loading, onDepersonify, attendantEmail, mobile } = this.props
+
     return (
-      <div className="vtex-telemarketing__logout">
+      <div className={`vtex-telemarketing__logout ${mobile && 'w-50'}`}>
         <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
           <div className="bg-emphasis w-100 pa4">
-            <div className="vtex-telemarketing__popover-header-icon">
+            <div className="vtex-telemarketing__popover-header-icon pa4">
               <TelemarketingIcon size={50} />
             </div>
             <div className="vtex-telemarketing__popover-header-email c-on-emphasis">
               {attendantEmail}
             </div>
           </div>
-          <div className="bg-base w-100 pa4">
+          <div className="bg-base w-100 pb4 ph4">
             <div className="vtex-telemarketing__logout-form c-disabled">
-              <div className="w-100 pa3 bw1 bb b--muted-5 flex-wrap">
-                <div className="w-100 t-heading-6 center b pa4">{this.getClientName()}</div>
+              <div className="w-100 pb3 ph3 bw1 bb b--muted-5 flex-wrap">
+                <div className="w-100 t-heading-6 center b pa5">{this.clientName}</div>
 
                 <div className="w-100 flex flex-wrap">
                   <div className="tl pa2">Email</div>
