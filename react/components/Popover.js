@@ -61,7 +61,7 @@ class Popover extends Component {
     return (
       <div className="vtex-popover relative flex h-100 items-center">
         <div
-          className="pointer"
+          className="pointer w-100"
           onClick={this.handleHeaderClick}
           ref={e => {
             this.iconRef = e

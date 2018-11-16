@@ -23,6 +23,14 @@
   min-width: 100%;
 }
 
+.vtex-telemarketing__client-name-bar {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  text-align: left;
+}
+
 @media only screen and (max-width: 27em) {
   .vtex-popover__box {
     width: 100vw;

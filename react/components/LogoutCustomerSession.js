@@ -17,23 +17,15 @@ export default class LogoutCustomerSession extends Component {
   
   handleHeaderRendering = () => {
     const { client, mobile } = this.props
+    const classBar = mobile ? "flex align-center w-100" : "flex align-center"
 
     return (
-      mobile ? (
-        <div className="flex align-center">
-          <CustomerIcon />
-          <div className="pa2">
-            {truncateString(this.clientName, 20)}
-          </div>
+      <div className={classBar}>
+        <CustomerIcon />
+        <div className="pa2 vtex-telemarketing__client-name-bar w-100">
+          {mobile ? this.clientName : client.email}
         </div>
-      ) : (
-        <div className="flex align-center">
-          <CustomerIcon />
-          <div className="pa2">
-            {client.email ? `${truncateString(client.email, 25)}` : null}
-          </div>
-        </div>
-      )
+      </div>
     )
   }
 
