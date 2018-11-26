@@ -46,12 +46,11 @@ export class Telemarketing extends Component<Props> {
     const isLogged = client
 
     return (
-      <div
-        className={`vtex-telemarketing tc white h2 flex justify-between w-100 f7 ${
+      <div className={`vtex-telemarketing force-full-width ph3 ph5-m ph8-l ph9-xl  tc white h2 flex justify-between w-100 f7 ${
           client ? 'bg-red' : 'bg-black-90'
           } z-999 pa2`}
       >
-        <div className="flex items-center w-50">
+        <div className="pl4 flex items-center w-50">
           <TelemarketingIcon />
           <div className="ml2">
             {mobile ? (
