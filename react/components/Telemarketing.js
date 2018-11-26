@@ -29,11 +29,11 @@ class Telemarketing extends Component {
 
     return (
       <div
-        className={`vtex-telemarketing tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
+        className={`vtex-telemarketing force-full-width vtex-page-pd tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
           isLogged ? 'bg-emphasis' : 'bg-base--inverted'
           } z-999 pa2`}
       >
-        <div className="flex items-center">
+        <div className="pl4 flex items-center">
           <TelemarketingIcon />
 
           {!mobile && (

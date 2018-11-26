@@ -42,7 +42,7 @@ export default class LoginAsCustomer extends Component {
     } = this.props
 
     return (
-      <div className="vtex-telemarketing__login">
+      <div className="vtex-telemarketing__login pr4">
         <Popover arrowClasses="bg-base--inverted" renderHeader={this.handleHeaderRendering}>
           <div className="bg-base--inverted w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">

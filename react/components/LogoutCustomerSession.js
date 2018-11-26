@@ -18,7 +18,7 @@ export default class LogoutCustomerSession extends Component {
     const { client } = this.props
 
     return (
-      <div className="flex align-center">
+      <div className="flex align-center pr4">
         <CustomerIcon />
         <div className="pa2">
           {client.email ? `${truncateString(client.email, 25)}` : null}
