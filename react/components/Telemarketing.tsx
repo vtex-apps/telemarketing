@@ -1,6 +1,5 @@
 import { path } from 'ramda'
-import React, { Component } from 'react'
-import { intlShape } from 'react-intl'
+import React, { Component, Fragment  } from 'react'
 import { withRuntimeContext } from 'render'
 
 import TelemarketingIcon from '../icons/TelemarketingIcon'
@@ -50,15 +49,18 @@ export class Telemarketing extends Component<Props> {
           client ? 'bg-red' : 'bg-black-90'
           } z-999 pa2`}
       >
-        <div className="flex items-center">
+        <div className="flex items-center w-50">
           <TelemarketingIcon />
-
-          {!mobile && (
-            <div className="ml2">
-              {translate('telemarketing.attendant', intl)}
-              <b>{`: ${attendantEmail}`}</b>
-            </div>
-          )}
+          <div className="ml2">
+            {mobile ? (
+                <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
+              ) : (
+                <Fragment>
+                  {translate('telemarketing.attendant', intl)}
+                  <b>{`: ${attendantEmail}`}</b>
+                </Fragment>
+            )}
+          </div>
         </div>
         {client ? (
           <LogoutCustomerSession
@@ -67,6 +69,7 @@ export class Telemarketing extends Component<Props> {
             loading={loading}
             onDepersonify={onDepersonify}
             attendantEmail={attendantEmail}
+            mobile={mobile}
           />
         ) : (
             <LoginAsCustomer
