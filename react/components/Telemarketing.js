@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { intlShape } from 'react-intl'
 import { withRuntimeContext } from 'render'
@@ -33,15 +33,18 @@ class Telemarketing extends Component {
           isLogged ? 'bg-emphasis' : 'bg-base--inverted'
           } z-999 pa2`}
       >
-        <div className="flex items-center">
+        <div className="flex items-center w-50">
           <TelemarketingIcon />
-
-          {!mobile && (
-            <div className="ml2">
-              {translate('telemarketing.attendant', intl)}
-              <b>{`: ${attendantEmail}`}</b>
-            </div>
-          )}
+          <div className="ml2">
+            {mobile ? (
+                <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
+              ) : (
+                <Fragment>
+                  {translate('telemarketing.attendant', intl)}
+                  <b>{`: ${attendantEmail}`}</b>
+                </Fragment>
+            )}
+          </div>
         </div>
         {isLogged ? (
           <LogoutCustomerSession
@@ -50,6 +53,7 @@ class Telemarketing extends Component {
             loading={loading}
             onDepersonify={onDepersonify}
             attendantEmail={attendantEmail}
+            mobile={mobile}
           />
         ) : (
             <LoginAsCustomer

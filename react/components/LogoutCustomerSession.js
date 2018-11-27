@@ -14,50 +14,67 @@ import TelemarketingIcon from '../icons/TelemarketingIcon'
 
 /** Component that shows the client info calls the setSession function  to logout. */
 export default class LogoutCustomerSession extends Component {
+  
   handleHeaderRendering = () => {
-    const { client } = this.props
+    const { client, mobile } = this.props
+    const classBar = mobile ? "flex align-center w-100" : "flex align-center"
 
     return (
-      <div className="flex align-center">
+      <div className={classBar}>
         <CustomerIcon />
-        <div className="pa2">
-          {client.email ? `${truncateString(client.email, 25)}` : null}
+        <div className="pa2 vtex-telemarketing__client-name-bar w-100">
+          {mobile ? this.clientName : client.email}
         </div>
       </div>
     )
   }
 
+  get clientName() {
+    const { client } = this.props
+
+    if (client) {
+      return client.name.includes('null') ? client.email.slice(0, client.email.indexOf('@')) : client.name
+    }
+  }
+
   render() {
-    const { intl, client, loading, onDepersonify, attendantEmail } = this.props
+    const { intl, client, loading, onDepersonify, attendantEmail, mobile } = this.props
 
     return (
-      <div className="vtex-telemarketing__logout">
+      <div className={`vtex-telemarketing__logout ${mobile && 'w-50'}`}>
         <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
           <div className="bg-emphasis w-100 pa4">
-            <div className="vtex-telemarketing__popover-header-icon">
+            <div className="vtex-telemarketing__popover-header-icon pa4">
               <TelemarketingIcon size={50} />
             </div>
             <div className="vtex-telemarketing__popover-header-email c-on-emphasis">
               {attendantEmail}
             </div>
           </div>
-          <div className="bg-base w-100 pa4">
+          <div className="bg-base w-100 pb4 ph4">
             <div className="vtex-telemarketing__logout-form c-disabled">
-              <div className="w-100 pa3 bw1 bb b--muted-3 flex flex-wrap">
-                <div className="w-100 t-heading-6 center b pa4">{client.name}</div>
+              <div className="w-100 pb3 ph3 bw1 bb b--muted-5 flex-wrap">
+                <div className="w-100 t-heading-6 center b pa5">{this.clientName}</div>
 
-                <div className="w-50 tl pa3">Email</div>
-                <div className="w-50 pa3">{client.email}</div>
-
-                <div className="w-50 tl pa3">
-                  {translate('telemarketing-logout.document-label', intl)}
+                <div className="w-100 flex flex-wrap">
+                  <div className="tl pa2">Email</div>
+                  <div className="pa2 c-muted-3">{client.email}</div>
                 </div>
-                <div className="w-50 pa3">{client.document}</div>
 
-                <div className="w-50 tl pa3">
-                  {translate('telemarketing-logout.phone-label', intl)}
+                <div className="w-100 flex flex-wrap">
+                  <div className="tl pa2">
+                    {translate('telemarketing-logout.document-label', intl)}
+                  </div>
+                  <div className="pa2 c-muted-3">{client.document}</div>
                 </div>
-                <div className="w-50 pa3">{client.phone}</div>
+
+                <div className="w-100 flex flex-wrap">
+                  <div className="tl pa2">
+                    {translate('telemarketing-logout.phone-label', intl)}
+                  </div>
+                  <div className="pa2 c-muted-3">{client.phone}</div>
+                </div>
+                
               </div>
               <div className="flex justify-around mt3">
                 <Link page="store/account/orders">

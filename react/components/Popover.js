@@ -61,7 +61,7 @@ class Popover extends Component {
     return (
       <div className="vtex-popover relative flex h-100 items-center">
         <div
-          className="pointer"
+          className="pointer w-100"
           onClick={this.handleHeaderClick}
           ref={e => {
             this.iconRef = e
@@ -70,13 +70,13 @@ class Popover extends Component {
           {renderHeader()}
         </div>
         <div
-          className={`vtex-popover__box absolute top-2 z-max ${
+          className={`vtex-popover__box absolute top-2 z-max bb b--muted-3 ${
             this.state.isBoxOpen ? 'flex' : 'dn'
             }`}
           style={boxPositionStyle}
           ref={this.boxRef_}
         >
-          <div className="vtex-popover__content-container shadow-3 mt3-ns mt2-s bg-base">
+          <div className="vtex-popover__content-container mt3-ns mt2-s bg-base shadow-3-ns">
             {children}
           </div>
           <div className={`vtex-popover__arrow-up absolute top-0 rotate-135 dib-ns dn-s ${this.props.arrowClasses}`} />
