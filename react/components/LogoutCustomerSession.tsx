@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, ReactNode } from 'react'
 import { Link } from 'render'
 import { Button } from 'vtex.styleguide'
+import { path } from 'ramda'
 
 import { truncateString } from '../utils/format-string'
 import translate from '../utils/translate'
@@ -20,12 +21,15 @@ interface Props {
   onDepersonify: () => any,
   /** Current signedin attendant email */
   attendantEmail: string,
+  /** Children */
+  readonly children?: ReactNode,
 }
 
 /** Component that shows the client info calls the setSession function  to logout. */
 export default class LogoutCustomerSession extends Component<Props> {
   public render() {
-    const { intl, client, loading, onDepersonify, attendantEmail, mobile } = this.props
+    const { intl, client, loading, onDepersonify, attendantEmail } = this.props
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
     return (
       <div className={`vtex-telemarketing__logout ${mobile && 'w-50'}`}>
@@ -85,7 +89,8 @@ export default class LogoutCustomerSession extends Component<Props> {
   }
 
   private handleHeaderRendering = () => {
-    const { client, mobile } = this.props
+    const { client } = this.props
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
     const classBar = mobile ? "flex align-center w-100" : "flex align-center"
 
     return (

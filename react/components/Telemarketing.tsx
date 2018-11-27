@@ -1,5 +1,5 @@
 import { path } from 'ramda'
-import React, { Component, Fragment  } from 'react'
+import React, { Component, Fragment, ReactNode } from 'react'
 import { withRuntimeContext } from 'render'
 
 import TelemarketingIcon from '../icons/TelemarketingIcon'
@@ -24,6 +24,8 @@ interface Props {
   onInputChange: (s: string) => void,
   /** Function to set the session */
   onSetSession: (s: string) => void,
+  /** Children */
+  readonly children?: ReactNode,
 }
 
 /** Telemarketing render component */
@@ -69,7 +71,6 @@ export class Telemarketing extends Component<Props> {
             loading={loading}
             onDepersonify={onDepersonify}
             attendantEmail={attendantEmail}
-            mobile={mobile}
           />
         ) : (
             <LoginAsCustomer

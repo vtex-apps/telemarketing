@@ -5,6 +5,7 @@ import { withRuntimeContext } from 'render'
 interface Props {
   /** Function that will display the header */
   renderHeader: () => any,
+  arrowClasses: string,
   readonly children: ReactNode
 }
 
