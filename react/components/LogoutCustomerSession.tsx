@@ -1,44 +1,35 @@
+import React, { Component, ReactNode } from 'react'
 import { Link } from 'render'
-import PropTypes from 'prop-types'
 import { Button } from 'vtex.styleguide'
-import { intlShape } from 'react-intl'
-import React, { Component } from 'react'
+import { path } from 'ramda'
 
-import translate from '../utils/translate'
-import { clientPropTypes } from '../utils/propTypes'
 import { truncateString } from '../utils/format-string'
+import translate from '../utils/translate'
 
-import Popover from './Popover'
 import CustomerIcon from '../icons/CustomerIcon'
 import TelemarketingIcon from '../icons/TelemarketingIcon'
+import Popover from './Popover'
+
+interface Props {
+  /** Intl info */
+  intl: any,
+  /** Signed in client */
+  client: Client,
+  /** Loading Status */
+  loading: boolean,
+  /** Calls the depersonify on the parent component */
+  onDepersonify: () => any,
+  /** Current signedin attendant email */
+  attendantEmail: string,
+  /** Children */
+  readonly children?: ReactNode,
+}
 
 /** Component that shows the client info calls the setSession function  to logout. */
-export default class LogoutCustomerSession extends Component {
-  
-  handleHeaderRendering = () => {
-    const { client, mobile } = this.props
-    const classBar = mobile ? "flex align-center w-100" : "flex align-center"
-
-    return (
-      <div className={classBar}>
-        <CustomerIcon />
-        <div className="pa2 vtex-telemarketing__client-name-bar w-100">
-          {mobile ? this.clientName : client.email}
-        </div>
-      </div>
-    )
-  }
-
-  get clientName() {
-    const { client } = this.props
-
-    if (client) {
-      return client.name.includes('null') ? client.email.slice(0, client.email.indexOf('@')) : client.name
-    }
-  }
-
-  render() {
-    const { intl, client, loading, onDepersonify, attendantEmail, mobile } = this.props
+export default class LogoutCustomerSession extends Component<Props> {
+  public render() {
+    const { intl, client, loading, onDepersonify, attendantEmail } = this.props
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
     return (
       <div className={`vtex-telemarketing__logout ${mobile && 'w-50'}`}>
@@ -96,17 +87,27 @@ export default class LogoutCustomerSession extends Component {
       </div>
     )
   }
-}
 
-LogoutCustomerSession.propTypes = {
-  /** Intl info */
-  intl: intlShape,
-  /** Signed in client */
-  client: clientPropTypes.isRequired,
-  /** Loading Status */
-  loading: PropTypes.bool.isRequired,
-  /** Calls the depersonify on the parent component */
-  onDepersonify: PropTypes.func.isRequired,
-  /** Current signedin attendant email */
-  attendantEmail: PropTypes.string.isRequired,
+  private handleHeaderRendering = () => {
+    const { client } = this.props
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+    const classBar = mobile ? "flex align-center w-100" : "flex align-center"
+
+    return (
+      <div className={classBar}>
+        <CustomerIcon />
+        <div className="pa2 vtex-telemarketing__client-name-bar w-100">
+          {mobile ? this.clientName : client.email}
+        </div>
+      </div>
+    )
+  }
+
+  private get clientName() {
+    const { client } = this.props
+
+    if (client) {
+      return client.name.includes('null') ? client.email.slice(0, client.email.indexOf('@')) : client.name
+    }
+  }
 }

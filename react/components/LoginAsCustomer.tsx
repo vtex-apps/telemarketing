@@ -1,37 +1,29 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Input, Button } from 'vtex.styleguide'
-import { intlShape } from 'react-intl'
+import { Button, Input } from 'vtex.styleguide'
 
 import CustomerIcon from '../icons/CustomerIcon'
 import TelemarketingIcon from '../icons/TelemarketingIcon'
-import Popover from './Popover'
 import translate from '../utils/translate'
+import Popover from './Popover'
+
+interface Props {
+  /** Current signedin attendant email */
+  attendantEmail: string,
+  /** Input value */
+  emailInput: string,
+  /** Sets the state of the parent component with new email value */
+  onInputChange: (s: string) => void,
+  /** Calls the setSession on the parent component */
+  onSetSession: (s: string) => void,
+  /** Loading status */
+  loading: boolean,
+  /** Intl info */
+  intl: any,
+}
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
-export default class LoginAsCustomer extends Component {
-  handleHeaderRendering = () => {
-    const { intl } = this.props
-
-    return (
-      <div className="flex items-center">
-        <CustomerIcon />
-        <div className="ml2">
-          {translate('telemarketing-login.message', intl)}
-        </div>
-      </div>
-    )
-  }
-
-  handleKeyPress = event => {
-    const { onSetSession, emailInput } = this.props
-
-    if (event.key === 'Enter') {
-      onSetSession(emailInput)
-    }
-  }
-
-  render() {
+export default class LoginAsCustomer extends Component<Props> {
+  public render() {
     const {
       attendantEmail,
       onInputChange,
@@ -78,19 +70,25 @@ export default class LoginAsCustomer extends Component {
       </div>
     )
   }
-}
 
-LoginAsCustomer.propTypes = {
-  /** Current signedin attendant email */
-  attendantEmail: PropTypes.string.isRequired,
-  /** Input value */
-  emailInput: PropTypes.string.isRequired,
-  /** Sets the state of the parent component with new email value */
-  onInputChange: PropTypes.func.isRequired,
-  /** Calls the setSession on the parent component */
-  onSetSession: PropTypes.func.isRequired,
-  /** Loading status */
-  loading: PropTypes.bool.isRequired,
-  /** Intl info */
-  intl: intlShape,
+  private handleHeaderRendering = () => {
+    const { intl } = this.props
+
+    return (
+      <div className="flex items-center">
+        <CustomerIcon size={25} color={'#FFFFFF'}/>
+        <div className="ml2">
+          {translate('telemarketing-login.message', intl)}
+        </div>
+      </div>
+    )
+  }
+
+  private handleKeyPress = (event: any) => {
+    const { onSetSession, emailInput } = this.props
+
+    if (event.key === 'Enter') {
+      onSetSession(emailInput)
+    }
+  }
 }

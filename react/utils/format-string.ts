@@ -1,4 +1,4 @@
-export const truncateString = (str, size) => {
+export const truncateString = (str: string, size: number): string => {
   const MAX_LENGTH = 12
 
   size = size || MAX_LENGTH

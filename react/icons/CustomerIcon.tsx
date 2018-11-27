@@ -1,25 +1,26 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import * as React from 'react'
 
-const CustomerIcon = ({ size, color }) => {
+interface Props {
+  /** Color */
+  color?: string,
+  /** Size */
+  size?: number,
+}
+
+const CustomerIcon: React.SFC<Props> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      width={size}
-      height={size}
+      width={props.size}
+      height={props.size}
       viewBox="0 0 21 21"
       fill="none"
-      color={color}
+      color={props.color}
     >
       <use href="#customer" xlinkHref="#customer" />
     </svg>
   )
-}
-
-CustomerIcon.propTypes = {
-  size: PropTypes.number,
-  color: PropTypes.string,
 }
 
 CustomerIcon.defaultProps = {
