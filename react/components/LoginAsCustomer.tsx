@@ -76,7 +76,7 @@ export default class LoginAsCustomer extends Component<Props> {
 
     return (
       <div className="flex items-center">
-        <CustomerIcon size={25} color={'#FFFFFF'}/>
+        <CustomerIcon/>
         <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>
