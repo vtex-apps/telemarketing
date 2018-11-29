@@ -6,8 +6,7 @@ import { path } from 'ramda'
 import { truncateString } from '../utils/format-string'
 import translate from '../utils/translate'
 
-import CustomerIcon from '../icons/CustomerIcon'
-import TelemarketingIcon from '../icons/TelemarketingIcon'
+import Icon from 'vtex.use-svg/Icon'
 import Popover from './Popover'
 
 interface Props {
@@ -36,7 +35,7 @@ export default class LogoutCustomerSession extends Component<Props> {
         <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
           <div className="bg-emphasis w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon pa4">
-              <TelemarketingIcon size={50} />
+              <Icon id="telemarketing" size={50} viewBox="0 0 21 21" />
             </div>
             <div className="vtex-telemarketing__popover-header-email c-on-emphasis">
               {attendantEmail}
@@ -95,7 +94,7 @@ export default class LogoutCustomerSession extends Component<Props> {
 
     return (
       <div className={classBar}>
-        <CustomerIcon />
+        <Icon id="hpa-profile" size={25} className="white"/>
         <div className="pa2 vtex-telemarketing__client-name-bar w-100">
           {mobile ? this.clientName : client.email}
         </div>
