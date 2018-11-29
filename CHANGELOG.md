@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Use de `vtex.use-svg` lib to display icons.
 
+## [2.1.1] - 2018-11-29
+### Fixed
+- Redo design tokens and fix icon size on bar
+
 ## [2.1.0] - 2018-11-28
 ### Changed
 - Paddings and margins to match other components. 
