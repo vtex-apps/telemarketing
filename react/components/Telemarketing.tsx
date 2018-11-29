@@ -47,20 +47,20 @@ export class Telemarketing extends Component<Props> {
 
     return (
       <div className={`vtex-telemarketing force-full-width ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
-          client ? 'bg-emphasis' : 'bg-base--inverted'
-          } z-999 pa2`}
+        client ? 'bg-emphasis' : 'bg-base--inverted'
+        } pa2`}
       >
         <div className="pl4 flex items-center w-50">
           <Icon id="telemarketing" size={20} viewBox="0 0 21 21" />
           <div className="ml2">
             {mobile ? (
-                <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
-              ) : (
+              <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
+            ) : (
                 <Fragment>
                   {translate('telemarketing.attendant', intl)}
                   <b>{`: ${attendantEmail}`}</b>
                 </Fragment>
-            )}
+              )}
           </div>
         </div>
         {client ? (
