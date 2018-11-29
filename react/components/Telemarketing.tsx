@@ -2,7 +2,7 @@ import { path } from 'ramda'
 import React, { Component, Fragment, ReactNode } from 'react'
 import { withRuntimeContext } from 'render'
 
-import TelemarketingIcon from '../icons/TelemarketingIcon'
+import Icon from 'vtex.use-svg/Icon'
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
@@ -51,7 +51,7 @@ export class Telemarketing extends Component<Props> {
           } z-999 pa2`}
       >
         <div className="pl4 flex items-center w-50">
-          <TelemarketingIcon />
+          <Icon id="telemarketing" size={20} viewBox="0 0 21 21" />
           <div className="ml2">
             {mobile ? (
                 <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
