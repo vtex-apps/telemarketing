@@ -51,7 +51,7 @@ export class Telemarketing extends Component<Props> {
         } pa2`}
       >
         <div className="pl4 flex items-center w-50">
-          <Icon id="telemarketing" size={20} viewBox="0 0 21 21" />
+          <Icon id="hpa-telemarketing" size={25} className="white" />
           <div className="ml2">
             {mobile ? (
               <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
