@@ -2,11 +2,9 @@ import React, { Component, ReactNode } from 'react'
 import { Link } from 'render'
 import { Button } from 'vtex.styleguide'
 import { path } from 'ramda'
-
-import { truncateString } from '../utils/format-string'
-import translate from '../utils/translate'
-
 import Icon from 'vtex.use-svg/Icon'
+
+import translate from '../utils/translate'
 import Popover from './Popover'
 
 interface Props {
@@ -35,7 +33,7 @@ export default class LogoutCustomerSession extends Component<Props> {
         <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
           <div className="bg-emphasis w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon pa4">
-              <Icon id="telemarketing" size={50} viewBox="0 0 21 21" />
+              <Icon id="hpa-telemarketing" size={50} className="white" />
             </div>
             <div className="vtex-telemarketing__popover-header-email c-on-emphasis">
               {attendantEmail}
@@ -64,7 +62,6 @@ export default class LogoutCustomerSession extends Component<Props> {
                   </div>
                   <div className="pa2 c-muted-3">{client.phone}</div>
                 </div>
-                
               </div>
               <div className="flex justify-around mt3">
                 <Link page="store/account/orders">
@@ -94,7 +91,7 @@ export default class LogoutCustomerSession extends Component<Props> {
 
     return (
       <div className={classBar}>
-        <Icon id="hpa-profile" size={25} className="white"/>
+        <Icon id="hpa-profile" size={25} className="white" />
         <div className="pa2 vtex-telemarketing__client-name-bar w-100">
           {mobile ? this.clientName : client.email}
         </div>

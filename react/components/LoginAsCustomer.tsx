@@ -37,7 +37,7 @@ export default class LoginAsCustomer extends Component<Props> {
         <Popover arrowClasses="bg-base--inverted" renderHeader={this.handleHeaderRendering}>
           <div className="bg-base--inverted w-100 pa4">
             <div className="vtex-telemarketing__popover-header-icon">
-              <Icon id="telemarketing" size={50} viewBox="0 0 21 21" />
+              <Icon id="hpa-telemarketing" size={50} viewBox="0 0 21 21" className="white" />
             </div>
             <div className="vtex-telemarketing__popover-header-email white-50 mt3 c-on-base--inverted">
               {attendantEmail}
@@ -75,7 +75,7 @@ export default class LoginAsCustomer extends Component<Props> {
 
     return (
       <div className="flex items-center">
-        <Icon id="hpa-profile" size={25} className="white"/>
+        <Icon id="hpa-profile" size={25} className="white" />
         <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>
