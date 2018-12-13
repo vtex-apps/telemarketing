@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { injectIntl } from 'react-intl'
 import { withSession } from 'render'
-import { Queries } from 'vtex.store'
+// import { Queries } from 'vtex.store'
 
 import processSession from './utils/processSession'
 
@@ -120,7 +120,7 @@ const options = {
 
 export default withSession({ loading: React.Fragment })(compose(
   injectIntl,
-  graphql(Queries.session, options),
+  // graphql(Queries.session, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
   graphql(impersonateMutation, { name: 'impersonate' }),
 )(TelemarketingContainer))
