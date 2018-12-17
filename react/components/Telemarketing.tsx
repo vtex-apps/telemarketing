@@ -6,6 +6,7 @@ import Icon from 'vtex.use-svg/Icon'
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
+import telemarketing from '../telemarketing.css'
 
 interface Props {
   /** Attendant email */
@@ -46,7 +47,7 @@ export class Telemarketing extends Component<Props> {
     const isLogged = client
 
     return (
-      <div className={`vtex-telemarketing force-full-width ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
+      <div className={`${telemarketing.container} ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
         client ? 'bg-emphasis' : 'bg-base--inverted'
         } pa2`}
       >

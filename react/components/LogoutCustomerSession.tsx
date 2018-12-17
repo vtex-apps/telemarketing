@@ -6,6 +6,7 @@ import Icon from 'vtex.use-svg/Icon'
 
 import translate from '../utils/translate'
 import Popover from './Popover'
+import telemarketing from '../telemarketing.css'
 
 interface Props {
   /** Intl info */
@@ -29,20 +30,22 @@ export default class LogoutCustomerSession extends Component<Props> {
     const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
     return (
-      <div className={`vtex-telemarketing__logout ${mobile && 'w-50'}`}>
+      <div className={`${telemarketing.logout} ${mobile && 'w-50'}`}>
         <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
           <div className="bg-emphasis w-100 pa4">
-            <div className="vtex-telemarketing__popover-header-icon pa4">
+            <div className={`${telemarketing.popoverHeaderIcon} pa4`}>
               <Icon id="hpa-telemarketing" size={50} className="white" />
             </div>
-            <div className="vtex-telemarketing__popover-header-email c-on-emphasis">
+            <div className={`${telemarketing.popoverHeaderEmail} c-on-emphasis`}>
               {attendantEmail}
             </div>
           </div>
           <div className="bg-base w-100 pb4 ph4">
-            <div className="vtex-telemarketing__logout-form c-disabled">
+            <div className={`${telemarketing.logoutForm} c-disabled`}>
               <div className="w-100 pb3 ph3 bw1 bb b--muted-5 flex-wrap">
-                <div className="w-100 t-heading-6 center b pa5">{this.clientName}</div>
+                <div className={`${telemarketing.clientName} w-100 t-heading-6 center b pa5`}>
+                    {this.clientName}
+                </div>
 
                 <div className="w-100 flex flex-wrap">
                   <div className="tl pa2">Email</div>
@@ -92,7 +95,7 @@ export default class LogoutCustomerSession extends Component<Props> {
     return (
       <div className={classBar}>
         <Icon id="hpa-profile" size={25} className="white" />
-        <div className="pa2 vtex-telemarketing__client-name-bar w-100">
+        <div className={`pa2 ${telemarketing.clientNameBar} w-100`}>
           {mobile ? this.clientName : client.email}
         </div>
       </div>
