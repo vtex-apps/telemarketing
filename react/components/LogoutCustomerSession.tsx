@@ -27,6 +27,7 @@ interface Props {
 export default class LogoutCustomerSession extends Component<Props> {
   public render() {
     const { intl, client, loading, onDepersonify, attendantEmail } = this.props
+    //TODO Use runtimeContext
     const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
     return (

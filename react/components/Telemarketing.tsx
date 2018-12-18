@@ -47,7 +47,7 @@ export class Telemarketing extends Component<Props> {
     const isLogged = client
 
     return (
-      <div className={`${telemarketing.container} ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
+      <div className={`${telemarketing.container} force-full-width ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
         client ? 'bg-emphasis' : 'bg-base--inverted'
         } pa2`}
       >
