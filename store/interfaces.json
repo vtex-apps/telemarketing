@@ -2,6 +2,6 @@
   "telemarketing": {
     "allowed": [],
     "required": [],
-    "component": "index"
+    "inheritComponent": true
   }
 }
