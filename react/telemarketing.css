@@ -1,29 +1,33 @@
-.vtex-telemarketing .vtex-popover__arrow-up {
+.container .popoverArrowUp {
   right: 20px;
 }
 
-.vtex-telemarketing .vtex-popover__box {
+.container .popoverBox {
   min-width: 320px;
 }
 
 /* Popover css */
 
-.vtex-popover__arrow-up {
+.popoverArrowUp {
   width: 25px;
   height: 25px;
   left: 86%;
 }
 
-.vtex-popover__box {
+.popoverBox {
   visibility: visible;
   min-width: 310px;
 }
 
-.vtex-popover__content-container {
+.popoverContentContainer {
   min-width: 100%;
 }
 
-.vtex-telemarketing__client-name-bar {
+.clientName {
+  word-break: break-word;
+}
+
+.clientNameBar {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -32,19 +36,19 @@
 }
 
 @media only screen and (max-width: 27em) {
-  .vtex-popover__box {
+  .popoverBox {
     width: 100vw;
     right: -1vw;
   }
 
-  .vtex-telemarketing .vtex-popover__box {
+  .container .popoverBox {
     top: 5vw;
   }
 }
 
 @media screen and (aspect-ratio: 40/71) {
-  .vtex-popover__box {
-    right: -1.1vw;
+  .popoverBox {
+    right: -2.4vw;
     width: 100vw;
     top: 4.1vh !important;
   }

@@ -2,6 +2,8 @@ import React, { Component, ReactNode } from 'react'
 import { path } from 'ramda'
 import { withRuntimeContext } from 'render'
 
+import telemarketing from '../telemarketing.css'
+
 interface Props {
   /** Function that will display the header */
   renderHeader: () => any,
@@ -38,7 +40,7 @@ export class Popover extends Component<Props> {
     }
 
     return (
-      <div className="vtex-popover relative flex h-100 items-center">
+      <div className={`${telemarketing.popoverContainer} relative flex h-100 items-center pr4`}>
         <div
           className="pointer w-100"
           onClick={this.handleHeaderClick}
@@ -49,16 +51,16 @@ export class Popover extends Component<Props> {
           {renderHeader()}
         </div>
         <div
-          className={`vtex-popover__box absolute top-2 z-max bb b--muted-3 ${
+          className={`${telemarketing.popoverBox} absolute top-2 z-max bb b--muted-3 ${
             this.state.isBoxOpen ? 'flex' : 'dn'
             }`}
           style={boxPositionStyle}
           ref={this.boxRef}
         >
-          <div className="vtex-popover__content-container mt3-ns mt2-s bg-base shadow-3-ns">
+          <div className={`${telemarketing.popoverContentContainer} mt3-ns mt2-s bg-base shadow-3-ns`}>
             {children}
           </div>
-          <div className={`vtex-popover__arrow-up absolute top-0 rotate-135 dib-ns dn-s ${this.props.arrowClasses}`} />
+          <div className={`${telemarketing.popoverArrowUp} absolute top-0 rotate-135 dib-ns dn-s ${this.props.arrowClasses}`} />
         </div>
       </div>
     )

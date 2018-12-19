@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.2.0] - 2018-12-19
+### Changed
+- Suport to CSS modules.
+
 ## [2.1.4] - 2018-12-04
 ### Changed
 - Update telemarketing icon.

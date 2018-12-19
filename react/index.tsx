@@ -12,8 +12,6 @@ import impersonateMutation from './mutations/impersonate.gql'
 
 import Telemarketing from './components/Telemarketing'
 
-import './global.css'
-
 interface Props {
   /** Intl object */
   intl: any,

@@ -4,6 +4,7 @@ import { Button, Input } from 'vtex.styleguide'
 import Icon from 'vtex.use-svg/Icon'
 import translate from '../utils/translate'
 import Popover from './Popover'
+import telemarketing from '../telemarketing.css'
 
 interface Props {
   /** Current signedin attendant email */
@@ -33,22 +34,22 @@ export default class LoginAsCustomer extends Component<Props> {
     } = this.props
 
     return (
-      <div className="vtex-telemarketing__login pr4">
+      <div className={`${telemarketing.login}`}>
         <Popover arrowClasses="bg-base--inverted" renderHeader={this.handleHeaderRendering}>
           <div className="bg-base--inverted w-100 pa4">
-            <div className="vtex-telemarketing__popover-header-icon">
+            <div className={`${telemarketing.popoverHeaderIcon}`}>
               <Icon id="hpa-telemarketing" size={50} viewBox="0 0 21 21" className="white" />
             </div>
-            <div className="vtex-telemarketing__popover-header-email white-50 mt3 c-on-base--inverted">
+            <div className={`${telemarketing.popoverHeaderEmail} white-50 mt3 c-on-base--inverted`}>
               {attendantEmail}
             </div>
           </div>
           <div className="bg-base w-100 pa4">
-            <div className="vtex-telemarketing__login-form c-disabled">
-              <div className="vtex-telemarketing__login-form-message tl mv3">
+            <div className={`${telemarketing.loginForm} c-disabled`}>
+              <div className={`${telemarketing.loginFormMessage} tl mv3`}>
                 {translate('telemarketing-login.message', intl)}
               </div>
-              <div className="vtex-telemarketing__email-input mv3">
+              <div className={`${telemarketing.emailInput} mv3`}>
                 <Input
                   value={emailInput}
                   onChange={onInputChange}
