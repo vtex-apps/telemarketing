@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.3.0] - 2018-12-20
+### Added
+- Suport to messages builder.
+
+### Changed
+- Update `vtex.styleguide` major version.
+
 ## [2.2.0] - 2018-12-19
 ### Changed
 - Suport to CSS modules.
