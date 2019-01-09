@@ -1,12 +1,13 @@
 {
   "vendor": "vtex",
   "name": "telemarketing",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
   "description": "The VTEX telemarketing app",
   "builders": {
     "react": "2.x",
+    "store": "0.x",
     "messages": "0.x"
   },
   "mustUpdateAt": "2019-04-02",
@@ -21,7 +22,7 @@
     "vtex.store-graphql": "2.x",
     "vtex.styleguide": "8.x",
     "vtex.store-session": "0.x",
-    "vtex.store": "1.x",
-    "vtex.use-svg": "0.x"
+    "vtex.use-svg": "0.x",
+    "vtex.store-resources": "0.x"
   }
 }

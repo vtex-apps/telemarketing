@@ -45,7 +45,7 @@ export default class LogoutCustomerSession extends Component<Props> {
             <div className={`${telemarketing.logoutForm} c-disabled`}>
               <div className="w-100 pb3 ph3 bw1 bb b--muted-5 flex-wrap">
                 <div className={`${telemarketing.clientName} w-100 t-heading-6 center b pa5`}>
-                    {this.clientName}
+                  {this.clientName}
                 </div>
 
                 <div className="w-100 flex flex-wrap">
@@ -68,7 +68,7 @@ export default class LogoutCustomerSession extends Component<Props> {
                 </div>
               </div>
               <div className="flex justify-around mt3">
-                <Link page="store/account/orders">
+                <Link page="store.account">
                   <Button size="small">
                     {translate('telemarketing-logout.button-orders', intl)}
                   </Button>

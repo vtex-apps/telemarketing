@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { injectIntl } from 'react-intl'
 import { withSession } from 'render'
-import { Queries } from 'vtex.store'
+import { Queries } from 'vtex.store-resources'
 
 import processSession from './utils/processSession'
 
