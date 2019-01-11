@@ -3,9 +3,11 @@ import React, { Component, Fragment, ReactNode } from 'react'
 import { withRuntimeContext } from 'render'
 
 import Icon from 'vtex.use-svg/Icon'
+import { Container } from 'vtex.store-components'
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
+
 import telemarketing from '../telemarketing.css'
 
 interface Props {
@@ -47,7 +49,7 @@ export class Telemarketing extends Component<Props> {
     const isLogged = client
 
     return (
-      <div className={`${telemarketing.container} force-full-width ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
+      <Container className={`${telemarketing.container} tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
         client ? 'bg-emphasis' : 'bg-base--inverted'
         } pa2`}
       >
@@ -82,7 +84,7 @@ export class Telemarketing extends Component<Props> {
               attendantEmail={attendantEmail}
             />
           )}
-      </div>
+      </Container>
     )
   }
 }
