@@ -3,9 +3,11 @@ import React, { Component, Fragment, ReactNode } from 'react'
 import { withRuntimeContext } from 'render'
 
 import Icon from 'vtex.use-svg/Icon'
+import { Container } from 'vtex.store-components'
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
+
 import telemarketing from '../telemarketing.css'
 
 interface Props {
@@ -47,42 +49,44 @@ export class Telemarketing extends Component<Props> {
     const isLogged = client
 
     return (
-      <div className={`${telemarketing.container} force-full-width ph3 ph5-m ph8-l ph9-xl  tc c-on-emphasis h2 flex justify-between w-100 t-mini ${
+      <Container className={`${telemarketing.container} flex justify-center tc c-on-emphasis h2 t-mini ${
         client ? 'bg-emphasis' : 'bg-base--inverted'
         } pa2`}
       >
-        <div className="pl4 flex items-center w-50">
-          <Icon id="hpa-telemarketing" size={25} className="white" />
-          <div className="ml2">
-            {mobile ? (
-              <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
-            ) : (
-                <Fragment>
-                  {translate('telemarketing.attendant', intl)}
-                  <b>{`: ${attendantEmail}`}</b>
-                </Fragment>
-              )}
+        <div className="flex justify-between w-100 mw9">
+          <div className="flex items-center">
+            <Icon id="hpa-telemarketing" size={25} className="white" />
+            <div className="ml2">
+              {mobile ? (
+                <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
+              ) : (
+                  <Fragment>
+                    {translate('telemarketing.attendant', intl)}
+                    <b>{`: ${attendantEmail}`}</b>
+                  </Fragment>
+                )}
+            </div>
           </div>
-        </div>
-        {client ? (
-          <LogoutCustomerSession
-            intl={intl}
-            client={client}
-            loading={loading}
-            onDepersonify={onDepersonify}
-            attendantEmail={attendantEmail}
-          />
-        ) : (
-            <LoginAsCustomer
+          {client ? (
+            <LogoutCustomerSession
               intl={intl}
+              client={client}
               loading={loading}
-              emailInput={emailInput}
-              onInputChange={onInputChange}
-              onSetSession={onSetSession}
+              onDepersonify={onDepersonify}
               attendantEmail={attendantEmail}
             />
-          )}
-      </div>
+          ) : (
+              <LoginAsCustomer
+                intl={intl}
+                loading={loading}
+                emailInput={emailInput}
+                onInputChange={onInputChange}
+                onSetSession={onSetSession}
+                attendantEmail={attendantEmail}
+              />
+            )}
+        </div>
+      </Container >
     )
   }
 }
