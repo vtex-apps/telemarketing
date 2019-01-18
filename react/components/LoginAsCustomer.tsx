@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Input } from 'vtex.styleguide'
+import { Icon } from 'vtex.use-svg'
 
-import Icon from 'vtex.use-svg/Icon'
+import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
 import Popover from './Popover'
-import telemarketing from '../telemarketing.css'
 
 interface Props {
   /** Current signedin attendant email */

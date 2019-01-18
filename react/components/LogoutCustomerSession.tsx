@@ -1,12 +1,12 @@
-import React, { Component, ReactNode } from 'react'
-import { Link } from 'render'
-import { Button } from 'vtex.styleguide'
 import { path } from 'ramda'
-import Icon from 'vtex.use-svg/Icon'
+import React, { Component, ReactNode } from 'react'
+import { Link } from 'vtex.render-runtime'
+import { Button } from 'vtex.styleguide'
+import { Icon } from 'vtex.use-svg'
 
+import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
 import Popover from './Popover'
-import telemarketing from '../telemarketing.css'
 
 interface Props {
   /** Intl info */
@@ -27,7 +27,7 @@ interface Props {
 export default class LogoutCustomerSession extends Component<Props> {
   public render() {
     const { intl, client, loading, onDepersonify, attendantEmail } = this.props
-    //TODO Use runtimeContext
+    // TODO Use runtimeContext
     const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
     return (
@@ -91,7 +91,7 @@ export default class LogoutCustomerSession extends Component<Props> {
   private handleHeaderRendering = () => {
     const { client } = this.props
     const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
-    const classBar = mobile ? "flex align-center w-100" : "flex align-center"
+    const classBar = mobile ? 'flex align-center w-100' : 'flex align-center'
 
     return (
       <div className={classBar}>
@@ -109,5 +109,6 @@ export default class LogoutCustomerSession extends Component<Props> {
     if (client) {
       return client.name.includes('null') ? client.email.slice(0, client.email.indexOf('@')) : client.name
     }
+    return null
   }
 }

@@ -2,15 +2,13 @@ import { compose, path } from 'ramda'
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import { injectIntl } from 'react-intl'
-import { withSession } from 'render'
+import { withSession } from 'vtex.render-runtime'
 import { Queries } from 'vtex.store-resources'
 
-import processSession from './utils/processSession'
-
+import Telemarketing from './components/Telemarketing'
 import depersonifyMutation from './mutations/depersonify.gql'
 import impersonateMutation from './mutations/impersonate.gql'
-
-import Telemarketing from './components/Telemarketing'
+import processSession from './utils/processSession'
 
 interface Props {
   /** Intl object */
@@ -119,8 +117,8 @@ const options = {
 }
 
 export default withSession({ loading: React.Fragment })(compose(
-  injectIntl,
+  injectIntl as any,
   graphql(Queries.session, options),
   graphql(depersonifyMutation, { name: 'depersonify' }),
-  graphql(impersonateMutation, { name: 'impersonate' }),
-)(TelemarketingContainer))
+  graphql(impersonateMutation, { name: 'impersonate' })
+)(TelemarketingContainer as any))

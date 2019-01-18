@@ -1,14 +1,13 @@
 import { path } from 'ramda'
 import React, { Component, Fragment, ReactNode } from 'react'
-import { withRuntimeContext } from 'render'
-
-import Icon from 'vtex.use-svg/Icon'
+import { withRuntimeContext } from 'vtex.render-runtime'
 import { Container } from 'vtex.store-components'
+import { Icon } from 'vtex.use-svg'
+
+import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
-
-import telemarketing from '../telemarketing.css'
 
 interface Props {
   /** Attendant email */
@@ -42,11 +41,10 @@ export class Telemarketing extends Component<Props> {
       onInputChange,
       onSetSession,
       onDepersonify,
-      attendantEmail
+      attendantEmail,
     } = this.props
 
     const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
-    const isLogged = client
 
     return (
       <Container className={`${telemarketing.container} flex justify-center tc c-on-emphasis h2 t-mini ${

@@ -1,6 +1,6 @@
-import React, { Component, ReactNode } from 'react'
 import { path } from 'ramda'
-import { withRuntimeContext } from 'render'
+import React, { Component, ReactNode } from 'react'
+import { withRuntimeContext } from 'vtex.render-runtime'
 
 import telemarketing from '../telemarketing.css'
 
@@ -23,12 +23,6 @@ export class Popover extends Component<Props> {
 
   public componentWillUnmount() {
     this.removeListeners()
-  }
-
-  private handleHeaderClick = () => {
-    document.addEventListener('mouseup', this.handleDocumentMouseUp)
-
-    this.setState({ isBoxOpen: !this.state.isBoxOpen })
   }
 
   public render() {
@@ -64,6 +58,12 @@ export class Popover extends Component<Props> {
         </div>
       </div>
     )
+  }
+
+  private handleHeaderClick = () => {
+    document.addEventListener('mouseup', this.handleDocumentMouseUp)
+
+    this.setState({ isBoxOpen: !this.state.isBoxOpen })
   }
 
   private handleDocumentMouseUp = (e: any) => {

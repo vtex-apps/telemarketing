@@ -18,7 +18,7 @@ export default (session: Session): ProcessedSession | null => {
             email,
             name: `${firstName} ${lastName}`,
             phone,
-          }
+          },
         }
       } else {
         return {
