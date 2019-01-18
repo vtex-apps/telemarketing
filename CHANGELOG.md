@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Update React builder to 3.x.
+- Bump vtex.styleguide to 9.x.
 
 ## [2.4.2] - 2019-01-14
 ### Changed
