@@ -1,7 +1,5 @@
 {
   "telemarketing": {
-    "allowed": [],
-    "required": [],
-    "inheritComponent": true
+    "component": "index"
   }
 }
