@@ -1,0 +1,10 @@
+{
+  "telemarketing.attendant": "telemarketing.attendant",
+  "telemarketing.client": "telemarketing.client",
+  "telemarketing-login.message": "telemarketing-login.message",
+  "telemarketing-login.button": "telemarketing-login.button",
+  "telemarketing-logout.button": "telemarketing-logout.button",
+  "telemarketing-logout.document-label": "telemarketing-logout.document-label",
+  "telemarketing-logout.phone-label": "telemarketing-logout.phone-label",
+  "telemarketing-logout.button-orders": "telemarketing-logout.button-orders"
+}
