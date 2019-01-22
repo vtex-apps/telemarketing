@@ -1,14 +1,14 @@
 {
   "vendor": "vtex",
   "name": "telemarketing",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
   "description": "The VTEX telemarketing app",
   "builders": {
     "react": "3.x",
     "store": "0.x",
-    "messages": "0.x"
+    "messages": "1.x"
   },
   "mustUpdateAt": "2019-04-02",
   "scripts": {
