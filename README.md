@@ -1,6 +1,13 @@
 # Telemarketing
 Telemarketing is a canonical component that any VTEX app can import.
 
+## Release schedule
+| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Dreamstore Compatibility
+| :--:     | :---:               |  :---:          | :---:                 | :---:       | :---: 
+| [1.x]    | **Maintenance LTS** |  2018-08-15     | 2018-11-08            | March 2019  | 1.x
+| [2.x]    | **Current Release** |  2018-11-08     |                       |             | 2.x
+
+
 To import it into your code: 
 ```js
 import Telemarketing from 'vtex.telemarketing/index'
