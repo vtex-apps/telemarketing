@@ -8,8 +8,6 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "jsx": "react",
-    "allowJs": true,
-    "checkJs": true,
     "allowSyntheticDefaultImports": true,
     "noEmitOnError": true,
     "noImplicitReturns": true,
