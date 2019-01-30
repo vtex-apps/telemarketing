@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Button, Input } from 'vtex.styleguide'
-import { Icon } from 'vtex.use-svg'
 
 import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
 import Popover from './Popover'
+import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
 
 interface Props {
   /** Current signedin attendant email */
@@ -38,7 +38,7 @@ export default class LoginAsCustomer extends Component<Props> {
         <Popover arrowClasses="bg-base--inverted" renderHeader={this.handleHeaderRendering}>
           <div className="bg-base--inverted w-100 pa4">
             <div className={`${telemarketing.popoverHeaderIcon}`}>
-              <Icon id="hpa-telemarketing" size={50} viewBox="0 0 21 21" className="white" />
+              <IconAssistantSales size={50} viewBox="0 0 21 21" activeClassName="white" />
             </div>
             <div className={`${telemarketing.popoverHeaderEmail} white-50 mt3 c-on-base--inverted`}>
               {attendantEmail}
@@ -76,7 +76,7 @@ export default class LoginAsCustomer extends Component<Props> {
 
     return (
       <div className="flex items-center">
-        <Icon id="hpa-profile" size={25} className="white" />
+        <IconProfile size={25} className="white" />
         <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>

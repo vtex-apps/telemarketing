@@ -2,7 +2,7 @@ import { path } from 'ramda'
 import React, { Component, Fragment, ReactNode } from 'react'
 import { withRuntimeContext } from 'vtex.render-runtime'
 import { Container } from 'vtex.store-components'
-import { Icon } from 'vtex.use-svg'
+import { IconAssistantSales } from 'vtex.dreamstore-icons'
 
 import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
@@ -53,7 +53,7 @@ export class Telemarketing extends Component<Props> {
       >
         <div className="flex justify-between w-100 mw9">
           <div className="flex items-center">
-            <Icon id="hpa-telemarketing" size={25} className="white" />
+            <IconAssistantSales size={25} className="white" />
             <div className="ml2">
               {mobile ? (
                 <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
