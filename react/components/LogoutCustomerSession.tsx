@@ -2,7 +2,7 @@ import { path } from 'ramda'
 import React, { Component, ReactNode } from 'react'
 import { Link } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
-import { Icon } from 'vtex.use-svg'
+import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
 
 import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
@@ -35,7 +35,7 @@ export default class LogoutCustomerSession extends Component<Props> {
         <Popover arrowClasses="bg-emphasis" renderHeader={this.handleHeaderRendering}>
           <div className="bg-emphasis w-100 pa4">
             <div className={`${telemarketing.popoverHeaderIcon} pa4`}>
-              <Icon id="hpa-telemarketing" size={50} className="white" />
+              <IconAssistantSales size={50} activeClassName="white" />
             </div>
             <div className={`${telemarketing.popoverHeaderEmail} c-on-emphasis`}>
               {attendantEmail}
@@ -95,7 +95,7 @@ export default class LogoutCustomerSession extends Component<Props> {
 
     return (
       <div className={classBar}>
-        <Icon id="hpa-profile" size={25} className="white" />
+        <IconProfile size={25} activeClassName="white" />
         <div className={`pa2 ${telemarketing.clientNameBar} w-100`}>
           {mobile ? this.clientName : client.email}
         </div>
