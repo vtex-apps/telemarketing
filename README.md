@@ -24,7 +24,7 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 
 This app uses our store builder with the blocks architecture. To know more about the Store Builder [click here](https://help.vtex.com/en/tutorial/understanding-storebuilder-and-stylesbuilder#structuring-and-configuring-our-store-with-object-object).
 
-To use this app you need to import it in your `dependencies` on `manifest.json` file.
+To use this app you need to add it in your `dependencies` in the `manifest.json` file.
 
 ```json
   dependencies: {
