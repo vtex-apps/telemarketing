@@ -34,7 +34,7 @@ To use this app you need to import it in your `dependencies` on `manifest.json` 
 
 Then, add the `telemarketing` block into our app theme, like we do in our [Dreamstore app](https://github.com/vtex-apps/dreamstore/blob/master/store/blocks.json).
 
-:loudspeaker: **Disclaimer:** This component will only be displayed if the user has the role of `2 - Televendas (Call center operator)` in its profile access.
+:loudspeaker: **Disclaimer:** This component will only be displayed for the users that have the role of `2 - Televendas (Call center operator)` in their access profile.
 
 To give an user the permission of call center operator you need to follow these steps on VTEX admin management page:
 
