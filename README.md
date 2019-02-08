@@ -44,7 +44,7 @@ To give an user the permission of call center operator you need to follow these 
 ### Blocks API
 :construction: :construction: :construction:
 
-This app has an interface that describes what are the rules that the blocks must implement when you want to use the telemarketing block. 
+This app has an interface that describes what rules must be implemented by a block when you want to use the telemarketing app.
 
 ```json
 {
