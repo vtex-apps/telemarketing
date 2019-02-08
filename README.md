@@ -15,7 +15,6 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 
 ## Table of Contents
 - [Usage](#usage)
-- [API](#api)
   - [Blocks API](#blocks-api)
     - [Configuration](#configuration)
   - [Styles API](#styles-api)
@@ -41,8 +40,6 @@ To give an user the permission of call center operator you need to follow these 
 
 - Access the page: Account Management -> Access Profiles -> Click in New Profile -> Select `2 - Televendas (Call center operator)`
 - Add the email of the users that are responsable for impersonating customers(call center operators).
-
-## API
 
 ### Blocks API
 :construction: :construction: :construction:
