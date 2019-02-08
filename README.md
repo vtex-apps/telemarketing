@@ -58,7 +58,7 @@ This app has an interface that describes what are the rules that the blocks must
 ```
 
 #### Configuration 
-This app has no configuration.
+Configuration NDA.
 
 ### Styles API
 :construction: :construction: :construction:
