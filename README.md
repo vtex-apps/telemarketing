@@ -1,5 +1,4 @@
-VTEX Telemarketing
-====
+# VTEX Telemarketing
 
 ## Description
 The VTEX Telemarketing app enables a call center operator impersonate a custumer in the store. This is a VTEX app that is used by the Dreamstore.
@@ -18,6 +17,7 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
 - [Usage](#usage)
 - [API](#api)
   - [Blocks API](#blocks-api)
+    - [Configuration](#configuration)
   - [Styles API](#styles-api)
 - [Troubleshooting](#troubleshooting)
 
@@ -32,6 +32,8 @@ To use this app you need to import it in your dependencies on `manifest.json` fi
     "vtex.telemarketing": "2.x"
   }
 ```
+
+Then, add the `telemarketing` block into our app theme, like we do in our [Dreamstore app](https://github.com/vtex-apps/dreamstore/blob/master/store/blocks.json).
 
 :loudspeaker: **Disclaimer:** This component will only be displayed if the user has the role of `2 - Televendas (Call center operator)` in its profile access.
 
@@ -52,6 +54,9 @@ This app has an interface that describes what are the rules that the blocks must
   }
 }
 ```
+
+#### Configuration 
+This app has no configuration.
 
 ### Styles API
 :construction: :construction: :construction:
