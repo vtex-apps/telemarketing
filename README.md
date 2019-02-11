@@ -19,6 +19,7 @@ See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for mor
     - [Configuration](#configuration)
   - [Styles API](#styles-api)
 - [Troubleshooting](#troubleshooting)
+- [Tests](#tests)
 
 ## Usage
 
@@ -62,3 +63,6 @@ Configuration NDA.
 
 ## Troubleshooting
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/telemarketing/issues). Also feel free to [open issues](https://github.com/vtex-apps/telemarketing/issues/new) or contribute with pull requests.
+
+## Tests
+:construction: :construction: :construction:
