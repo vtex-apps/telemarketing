@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "telemarketing",
-  "version": "2.6.2",
+  "version": "2.7.1",
   "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
   "description": "The VTEX telemarketing app",
@@ -20,6 +20,6 @@
     "vtex.store-session": "0.x",
     "vtex.store-components": "3.x",
     "vtex.styleguide": "9.x",
-    "vtex.use-svg": "1.x"
+    "vtex.dreamstore-icons": "0.x"
   }
 }
