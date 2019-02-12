@@ -61,6 +61,16 @@ This app has CSS customization through `CSS Modules`. CSS Modules is a CSS file 
 
 We use it `css-loader` to generate a CSS token on a HTML element. For example, the builder generate a CSS token based on app vendor, name and major version. Like `container` token declared in telemarketing, generate the classname `vtex.telemarketing-2-x-container`.
 
+To override the default CSS, you need to add it in the `manifest.json` as described in the [Usage](#usage) section. Also, you need to import `styles` on your manifest:
+
+```json
+  "builders": {
+    "styles": "1.x"
+  }
+```
+
+Also, create a `vtex.telemarketing.css` file in `styles/css` for your handlers customization.
+
 Below, we describe the tokens, their explanation and the component where it is located.
 
 | Token name         | Component          | Description                                            |
@@ -80,16 +90,6 @@ Below, we describe the tokens, their explanation and the component where it is l
 | `logoutForm`    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)   | Container of the logout form                     |
 | `popoverHeaderIcon`      | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)          | Container of the icon that appear in the popover header                      |
 | `popoverHeaderEmail`          | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)  | Container of the email that appear in the popover header                            |
-
-To override the default CSS, you need to import `styles` on your manifest:
-
-```json
-  "builders": {
-    "styles": "1.x"
-  }
-```
-
-Also, create a `vtex.telemarketing.css` file in `styles/css` for your handlers customization.
 
 ## Troubleshooting
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/telemarketing/issues). Also feel free to [open issues](https://github.com/vtex-apps/telemarketing/issues/new) or contribute with pull requests.
