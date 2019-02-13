@@ -56,12 +56,33 @@ This app has an interface that describes what rules must be implemented by a blo
 #### Configuration 
 Configuration NDA.
 
-### Styles API
-This app has CSS customization through `CSS Modules`. CSS Modules is a CSS file in which all class names and animation names are scoped locally by default. You can read more about CSS Modules [here](https://github.com/css-modules/css-modules) .
+## Styles API
 
-We use it `css-loader` to generate a CSS token on a HTML element. For example, the builder generate a CSS token based on app vendor, name and major version. Like `container` token declared in telemarketing, generate the classname `vtex.telemarketing-2-x-container`.
+This app provides some CSS classes as an API for style customization.
 
-To override the default CSS, you need to add it in the `manifest.json` as described in the [Usage](#usage) section. Also, you need to import `styles` on your manifest:
+| Class name         | Description          | Component Source                                            |
+| ------------------ | ----------         |------------------------------------------------------- |
+| `container`        | The main container of telemarketing| [index](https://github.com/vtex-apps/telemarketing/blob/master/react/Telemarketing.tsx)                                  |
+| `popoverArrowUp`          | Popover arrow up  | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)                                               |
+| `popoverBox`          | Popover box         | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            |
+| `popoverContentContainer`     |  Popover content container      | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            | 
+| `popoverContainer` |  Main container of the popover  | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)   |
+| `login`        | Login container   | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)                                  |
+| `loginForm`    | Login form container  | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)                     |
+| `loginFormMessage`     | Login form message container  | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)                     |
+| `emailInput`   | Container of the email input | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)               | 
+| `clientName`                 | Client name container    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                             | 
+| `clientNameBar`          | Client name container that appear in the bar    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                       |
+| `logout`    | Container of the logout  | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)       |
+| `logoutForm`    | Container of the logout form   | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                     |
+| `popoverHeaderIcon`        | Container of the icon that appear in the popover header          | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                    |
+| `popoverHeaderEmail`     | Container of the email that appear in the popover header             | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                      |
+
+### Usage
+
+To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
+
+1. Add the `styles` builder to your `manifest.json`:
 
 ```json
   "builders": {
@@ -69,27 +90,13 @@ To override the default CSS, you need to add it in the `manifest.json` as descri
   }
 ```
 
-Also, create a `vtex.telemarketing.css` file in `styles/css` for your handlers customization.
+2. Create a file called `vtex.telemarketing.css` inside the `styles/css` folder. Add your custom styles:
 
-Below, we describe the tokens, their explanation and the component where it is located.
-
-| Token name         | Component          | Description                                            |
-| ------------------ | ----------         |------------------------------------------------------- |
-| `container`        | [index](https://github.com/vtex-apps/telemarketing/blob/master/react/Telemarketing.tsx)           | The main container of telemarketing                         |
-| `popoverArrowUp`            | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            | Popover arrow up                                   |
-| `popoverBox`            | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            | Popover box        |
-| `popoverContentContainer`          | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            | Popover content container                                        |
-| `popoverContainer`    | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)   | Main container of the popover                     |
-| `login`          | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)           | Login container                        |
-| `loginForm`     | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)   | Login form container                   |
-| `loginFormMessage`     | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)  | Login form message container                     |
-| `emailInput`  | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)   | Container of the email input             | 
-| `clientName`              | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)            | Client name container                        | 
-| `clientNameBar`    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)           | Client name container that appear in the bar                      |
-| `logout`     | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)   | Container of the logout     |
-| `logoutForm`    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)   | Container of the logout form                     |
-| `popoverHeaderIcon`      | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)          | Container of the icon that appear in the popover header                      |
-| `popoverHeaderEmail`          | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)  | Container of the email that appear in the popover header                            |
+```css
+.container {
+  margin-top: 10px;
+}
+```
 
 ## Troubleshooting
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/telemarketing/issues). Also feel free to [open issues](https://github.com/vtex-apps/telemarketing/issues/new) or contribute with pull requests.
