@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "telemarketing",
-  "version": "2.7.1",
+  "version": "2.7.2",
   "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
   "description": "The VTEX telemarketing app",
