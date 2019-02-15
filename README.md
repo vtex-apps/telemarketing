@@ -6,10 +6,10 @@ The VTEX Telemarketing app is a store component that enables a call center opera
 :loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
 
 ## Release schedule
-| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Dreamstore Compatibility
+| Release  | Status              | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility
 | :--:     | :---:               |  :---:          | :---:                 | :---:       | :---: 
-| [1.x]    | **Maintenance LTS** |  2018-08-15     | 2018-11-08            | March 2019  | 1.x
 | [2.x]    | **Current Release** |  2018-11-08     |                       |             | 2.x
+| [1.x]    | **Maintenance LTS** |  2018-08-15     | 2018-11-08            | March 2019  | 1.x
 
 See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
 
@@ -38,6 +38,12 @@ To configure or customize this app, you need to import it in your dependencies i
 
 Then, add `telemarketing` block into your app theme as we do in our [Store theme app](https://github.com/vtex-apps/store-theme/blob/master/store/blocks.json). 
 
+Now, you can change the behavior of the telemarketing block that is in the store header. See an example of how to configure: 
+
+```json
+
+```
+
 :loudspeaker: **Disclaimer:** This component will only be displayed for the users that have the role of `2 - Televendas (Call center operator)` in their access profile.
 
 To give an user the permission of call center operator you need to follow these steps on VTEX admin management page:
@@ -60,7 +66,8 @@ When implementing this app as a block, various inner blocks may be available. Th
 As you can see, this app has no required or optional block.
 
 #### Configuration 
-Configuration NDA.
+
+This app has no configuration yet.
 
 ### Styles API
 
@@ -90,21 +97,21 @@ Below, we describe the namespaces that are defined in the telemarketing.
 
 | Class name         | Description          | Component Source                                            |
 | ------------------ | ----------         |------------------------------------------------------- |
-| `container`        | The main container of telemarketing| [index](https://github.com/vtex-apps/telemarketing/blob/master/react/Telemarketing.tsx)                                  |
-| `popoverArrowUp`          | Popover arrow up  | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)                                               |
-| `popoverBox`          | Popover box         | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            |
-| `popoverContentContainer`     |  Popover content container      | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)            | 
-| `popoverContainer` |  Main container of the popover  | [Popover](https://github.com/vtex-apps/telemarketing/blob/master/react/components/Popover.tsx)   |
-| `login`        | Login container   | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)                                  |
-| `loginForm`    | Login form container  | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)                     |
-| `loginFormMessage`     | Login form message container  | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)                     |
-| `emailInput`   | Container of the email input | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx)               | 
-| `clientName`                 | Client name container    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                             | 
-| `clientNameBar`          | Client name container that appear in the bar    | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                       |
-| `logout`    | Container of the logout  | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)       |
-| `logoutForm`    | Container of the logout form   | [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                     |
-| `popoverHeaderIcon`        | Container of the icon that appear in the popover header          | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                    |
-| `popoverHeaderEmail`     | Container of the email that appear in the popover header             | [LoginAsCustomer](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                      |
+| `container`        | The main container of telemarketing| [index](/react/Telemarketing.tsx)                                  |
+| `popoverArrowUp`          | Popover arrow up  | [Popover](/react/components/Popover.tsx)                                               |
+| `popoverBox`          | Popover box         | [Popover](/react/components/Popover.tsx)            |
+| `popoverContentContainer`     |  Popover content container      | [Popover](/react/components/Popover.tsx)            | 
+| `popoverContainer` |  Main container of the popover  | [Popover](/react/components/Popover.tsx)   |
+| `login`        | Login container   | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                  |
+| `loginForm`    | Login form container  | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                     |
+| `loginFormMessage`     | Login form message container  | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                     |
+| `emailInput`   | Container of the email input | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)               | 
+| `clientName`                 | Client name container    | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                             | 
+| `clientNameBar`          | Client name container that appear in the bar    | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                       |
+| `logout`    | Container of the logout  | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)       |
+| `logoutForm`    | Container of the logout form   | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                     |
+| `popoverHeaderIcon`        | Container of the icon that appear in the popover header          | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx)                    |
+| `popoverHeaderEmail`     | Container of the email that appear in the popover header             | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                      |
 
 ## Troubleshooting
 You can check if others are passing through similar issues [here](https://github.com/vtex-apps/telemarketing/issues). Also feel free to [open issues](https://github.com/vtex-apps/telemarketing/issues/new) or contribute with pull requests.
