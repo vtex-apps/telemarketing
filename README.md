@@ -36,13 +36,7 @@ To configure or customize this app, you need to import it in your dependencies i
   }
 ```
 
-Then, add `telemarketing` block into your app theme as we do in our [Store theme app](https://github.com/vtex-apps/store-theme/blob/master/store/blocks.json). 
-
-Now, you can change the behavior of the telemarketing block that is in the store header. See an example of how to configure: 
-
-```json
-
-```
+Then, add `telemarketing` block into your app theme as we do in our [Store theme app](https://github.com/vtex-apps/store-theme/blob/master/store/blocks.json).  
 
 :loudspeaker: **Disclaimer:** This component will only be displayed for the users that have the role of `2 - Televendas (Call center operator)` in their access profile.
 
