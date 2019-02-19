@@ -8,17 +8,17 @@ import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
 
 interface Props {
   /** Current signedin attendant email */
-  attendantEmail: string,
+  attendantEmail: string
   /** Input value */
-  emailInput: string,
+  emailInput: string
   /** Sets the state of the parent component with new email value */
-  onInputChange: (s: string) => void,
+  onInputChange: (s: string) => void
   /** Calls the setSession on the parent component */
-  onSetSession: (s: string) => void,
+  onSetSession: (s: string) => void
   /** Loading status */
-  loading: boolean,
+  loading: boolean
   /** Intl info */
-  intl: any,
+  intl: any
 }
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
@@ -35,12 +35,23 @@ export default class LoginAsCustomer extends Component<Props> {
 
     return (
       <div className={`${telemarketing.login}`}>
-        <Popover arrowClasses="bg-base--inverted" renderHeader={this.handleHeaderRendering}>
+        <Popover
+          arrowClasses="bg-base--inverted"
+          renderHeader={this.handleHeaderRendering}
+        >
           <div className="bg-base--inverted w-100 pa4">
             <div className={`${telemarketing.popoverHeaderIcon}`}>
-              <IconAssistantSales size={50} viewBox="0 0 21 21" activeClassName="white" />
+              <IconAssistantSales
+                size={50}
+                viewBox="0 0 21 21"
+                activeClassName="white"
+              />
             </div>
-            <div className={`${telemarketing.popoverHeaderEmail} white-50 mt3 c-on-base--inverted`}>
+            <div
+              className={`${
+                telemarketing.popoverHeaderEmail
+              } white-50 mt3 c-on-base--inverted`}
+            >
               {attendantEmail}
             </div>
           </div>
