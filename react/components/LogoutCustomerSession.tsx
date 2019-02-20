@@ -5,7 +5,7 @@ import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
 import translate from '../utils/translate'
 import Popover from './Popover'
 
-import style from '../telemarketing.css'
+import styles from '../telemarketing.css'
 
 interface Props {
   /** Intl info */
@@ -41,7 +41,7 @@ const LogoutCustomerSession = (props: Props) => {
     return (
       <div className={classBar}>
         <IconProfile size={25} activeClassName="white" />
-        <div className={`pa2 ${style.clientNameBar} w-100`}>
+        <div className={`pa2 ${styles.clientNameBar} w-100`}>
           {mobile ? clientName : client.email}
         </div>
       </div>
@@ -52,21 +52,23 @@ const LogoutCustomerSession = (props: Props) => {
   const header = useMemo(() => calculateHeader(mobile), [mobile])
 
   return (
-    <div className={`${style.logout} ${mobile && 'w-50'}`}>
+    <div className={`${styles.logout} ${mobile && 'w-50'}`}>
       <Popover arrowClasses="bg-emphasis" renderHeader={header}>
         <div className="bg-emphasis w-100 pa4">
-          <div className={`${style.popoverHeaderIcon} pa4`}>
+          <div className={`${styles.popoverHeaderIcon} pa4`}>
             <IconAssistantSales size={50} activeClassName="white" />
           </div>
-          <div className={`${style.popoverHeaderEmail} c-on-emphasis`}>
+          <div className={`${styles.popoverHeaderEmail} c-on-emphasis`}>
             {attendantEmail}
           </div>
         </div>
         <div className="bg-base w-100 pb4 ph4">
-          <div className={`${style.logoutForm} c-disabled`}>
+          <div className={`${styles.logoutForm} c-disabled`}>
             <div className="w-100 pb3 ph3 bw1 bb b--muted-5 flex-wrap">
               <div
-                className={`${style.clientName} w-100 t-heading-6 center b pa5`}
+                className={`${
+                  styles.clientName
+                } w-100 t-heading-6 center b pa5`}
               >
                 {clientName}
               </div>
