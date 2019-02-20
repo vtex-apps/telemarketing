@@ -1,5 +1,5 @@
 import { compose, path } from 'ramda'
-import React, { Component } from 'react'
+import React, { useState, useCallback } from 'react'
 import { graphql } from 'react-apollo'
 import { injectIntl } from 'react-intl'
 import { withSession } from 'vtex.render-runtime'
@@ -21,72 +21,36 @@ interface Props {
   impersonate: (s: {}) => Promise<void>
 }
 
-interface State {
-  loadingImpersonate: boolean
-  emailInput: string
-}
+const TelemarketingContainer = (props: Props) => {
+  const [emailInput, setEmailInput] = useState<string>('')
+  const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
 
-/** The Canonical Telemarketing component impersonates an attendant, with the right permissions, as a client. */
-class TelemarketingContainer extends Component<Props, State> {
-  public state = {
-    emailInput: '',
-    loadingImpersonate: false,
-  }
+  const { intl, session } = props
+  const processedSession = processSession(session)
 
-  public render() {
-    const { intl, session } = this.props
-    const { emailInput, loadingImpersonate } = this.state
-    const processedSession = processSession(session)
+  const handleInputChange = useCallback(
+    (event: any) => {
+      setEmailInput(event.target.value)
+    },
+    [event]
+  )
 
-    if (processedSession) {
-      const { client, canImpersonate, attendantEmail } = processedSession
-
-      return canImpersonate ? (
-        <Telemarketing
-          intl={intl}
-          client={client}
-          loading={loadingImpersonate}
-          emailInput={emailInput}
-          attendantEmail={attendantEmail}
-          onSetSession={this.handleSetSession}
-          onDepersonify={this.handleDepersonify}
-          onInputChange={this.handleInputChange}
-        />
-      ) : null
-    }
-
-    return null
-  }
-
-  private handleInputChange = (event: any) => {
-    this.setState({ emailInput: event.target.value })
-  }
-
-  private handleDepersonify = () => {
-    const { depersonify, session } = this.props
-
-    this.setState({ loadingImpersonate: true })
-
+  const handleDepersonify = useCallback(() => {
+    const { depersonify, session } = props
+    setloadingImpersonate(true)
     depersonify()
       .then(response => {
-        console.log('depers', response)
         const depersonifyData = path(['data', 'depersonify'], response)
-
-        if (depersonifyData) {
-          session.refetch()
-        }
-
-        this.setState({ loadingImpersonate: false, emailInput: '' })
+        !!depersonifyData && session.refetch()
+        setloadingImpersonate(false)
+        setEmailInput('')
       })
-      .catch(error => {
-        console.error(error)
-        this.setState({ loadingImpersonate: false })
-      })
-  }
+      .catch(() => setloadingImpersonate(false))
+  }, [])
 
-  private handleSetSession = (email: string) => {
-    const { impersonate, session } = this.props
-    this.setState({ loadingImpersonate: true })
+  const handleSetSession = useCallback((email: string) => {
+    const { impersonate, session } = props
+    setloadingImpersonate(true)
     const variables = { email }
     impersonate({ variables })
       .then(response => {
@@ -94,18 +58,29 @@ class TelemarketingContainer extends Component<Props, State> {
           ['data', 'impersonate', 'impersonate', 'profile'],
           response
         )
-
-        if (profile) {
-          session.refetch()
-        }
-
-        this.setState({ loadingImpersonate: false })
+        !!profile && session.refetch()
+        setloadingImpersonate(false)
       })
-      .catch(error => {
-        console.error(error)
-        this.setState({ loadingImpersonate: false })
-      })
+      .catch(() => setloadingImpersonate(false))
+  }, [])
+
+  if (processedSession) {
+    const { client, canImpersonate, attendantEmail } = processedSession
+    return canImpersonate ? (
+      <Telemarketing
+        intl={intl}
+        client={client}
+        loading={loadingImpersonate}
+        emailInput={emailInput}
+        attendantEmail={attendantEmail}
+        onSetSession={handleSetSession}
+        onDepersonify={handleDepersonify}
+        onInputChange={handleInputChange}
+      />
+    ) : null
   }
+
+  return null
 }
 
 const options = {
