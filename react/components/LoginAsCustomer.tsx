@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { useCallback } from 'react'
 import { Button, Input } from 'vtex.styleguide'
-
-import telemarketing from '../telemarketing.css'
+import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
 import translate from '../utils/translate'
 import Popover from './Popover'
-import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
+
+import styles from '../telemarketing.css'
 
 interface Props {
   /** Current signedin attendant email */
@@ -22,84 +22,82 @@ interface Props {
 }
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
-export default class LoginAsCustomer extends Component<Props> {
-  public render() {
-    const {
-      attendantEmail,
-      onInputChange,
-      onSetSession,
-      loading,
-      emailInput,
-      intl,
-    } = this.props
+const LoginAsCustomer = (props: Props) => {
+  const {
+    attendantEmail,
+    onInputChange,
+    onSetSession,
+    loading,
+    emailInput,
+    intl,
+  } = props
 
-    return (
-      <div className={`${telemarketing.login}`}>
-        <Popover
-          arrowClasses="bg-base--inverted"
-          renderHeader={this.handleHeaderRendering}
-        >
-          <div className="bg-base--inverted w-100 pa4">
-            <div className={`${telemarketing.popoverHeaderIcon}`}>
-              <IconAssistantSales
-                size={50}
-                viewBox="0 0 21 21"
-                activeClassName="white"
-              />
-            </div>
-            <div
-              className={`${
-                telemarketing.popoverHeaderEmail
-              } white-50 mt3 c-on-base--inverted`}
-            >
-              {attendantEmail}
-            </div>
-          </div>
-          <div className="bg-base w-100 pa4">
-            <div className={`${telemarketing.loginForm} c-disabled`}>
-              <div className={`${telemarketing.loginFormMessage} tl mv3`}>
-                {translate('telemarketing-login.message', intl)}
-              </div>
-              <div className={`${telemarketing.emailInput} mv3`}>
-                <Input
-                  value={emailInput}
-                  onChange={onInputChange}
-                  placeholder={'Ex: example@mail.com'}
-                  onKeyPress={this.handleKeyPress}
-                />
-              </div>
-              <Button
-                size="small"
-                onClick={() => onSetSession(emailInput)}
-                isLoading={loading}
-              >
-                {translate('telemarketing-login.button', intl)}
-              </Button>
-            </div>
-          </div>
-        </Popover>
-      </div>
-    )
-  }
-
-  private handleHeaderRendering = () => {
-    const { intl } = this.props
-
-    return (
+  const handleHeaderRendering = useCallback(
+    () => (
       <div className="flex items-center">
         <IconProfile size={25} className="white" />
         <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>
       </div>
-    )
-  }
+    ),
+    []
+  )
 
-  private handleKeyPress = (event: any) => {
-    const { onSetSession, emailInput } = this.props
+  const handleKeyPress = useCallback(
+    (event: any) => {
+      event.key === 'Enter' && onSetSession(emailInput)
+    },
+    [emailInput]
+  )
 
-    if (event.key === 'Enter') {
-      onSetSession(emailInput)
-    }
-  }
+  return (
+    <div className={`${styles.login}`}>
+      <Popover
+        arrowClasses="bg-base--inverted"
+        renderHeader={handleHeaderRendering}
+      >
+        <div className="bg-base--inverted w-100 pa4">
+          <div className={`${styles.popoverHeaderIcon}`}>
+            <IconAssistantSales
+              size={50}
+              viewBox="0 0 21 21"
+              activeClassName="white"
+            />
+          </div>
+          <div
+            className={`${
+              styles.popoverHeaderEmail
+            } white-50 mt3 c-on-base--inverted`}
+          >
+            {attendantEmail}
+          </div>
+        </div>
+        <div className="bg-base w-100 pa4">
+          <div className={`${styles.loginForm} c-disabled`}>
+            <div className={`${styles.loginFormMessage} tl mv3`}>
+              {translate('telemarketing-login.message', intl)}
+            </div>
+            <div className={`${styles.emailInput} mv3`}>
+              <Input
+                value={emailInput}
+                onChange={onInputChange}
+                placeholder={'Ex: example@mail.com'}
+                onKeyPress={handleKeyPress}
+              />
+            </div>
+            <Button
+              size="small"
+              onClick={() => onSetSession(emailInput)}
+              isLoading={loading}
+            >
+              {translate('telemarketing-login.button', intl)}
+            </Button>
+          </div>
+        </div>
+      </Popover>
+    </div>
+  )
 }
+
+export default LoginAsCustomer
