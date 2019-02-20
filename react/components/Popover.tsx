@@ -36,7 +36,10 @@ const Popover = (props: Props) => {
   const boxClasses = classnames(
     styles.popoverBox,
     'absolute top-2 z-max bb b--muted-3',
-    isBoxOpen ? 'flex' : 'dn'
+    isBoxOpen ? 'flex' : 'dn',
+    {
+      'fixed left-0 right-0': mobile,
+    }
   )
 
   return (
@@ -58,7 +61,7 @@ const Popover = (props: Props) => {
         <div
           className={`${
             styles.popoverContentContainer
-          } mt3-ns mt2-s bg-base shadow-3-ns`}
+          } mt3-ns bg-base shadow-3-ns`}
         >
           {children}
         </div>
