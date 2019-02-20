@@ -1,4 +1,4 @@
-import React, { ReactNode, useMemo } from 'react'
+import React, { ReactNode, useMemo, useCallback } from 'react'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
@@ -36,7 +36,7 @@ const LogoutCustomerSession = (props: Props) => {
         : client.name
       : null
 
-  const calculateHeader = (mobile: boolean) => {
+  const getHeader = (mobile: boolean) => {
     const classBar = mobile ? 'flex align-center w-100' : 'flex align-center'
     return (
       <div className={classBar}>
@@ -49,11 +49,11 @@ const LogoutCustomerSession = (props: Props) => {
   }
 
   const clientName = useMemo(() => getClientName(client), [client])
-  const header = useMemo(() => calculateHeader(mobile), [mobile])
+  const renderHeader = useCallback(() => getHeader(mobile), [mobile])
 
   return (
     <div className={`${styles.logout} ${mobile && 'w-50'}`}>
-      <Popover arrowClasses="bg-emphasis" renderHeader={header}>
+      <Popover arrowClasses="bg-emphasis" renderHeader={renderHeader}>
         <div className="bg-emphasis w-100 pa4">
           <div className={`${styles.popoverHeaderIcon} pa4`}>
             <IconAssistantSales size={50} activeClassName="white" />

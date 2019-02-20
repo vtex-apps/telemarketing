@@ -49,11 +49,9 @@ const Telemarketing = (props: Props) => {
   const containerClasses = classnames(
     styles.container,
     'flex justify-center tc c-on-emphasis h2 t-mini pa2',
-    {
-      'bg-emphasis': !!client,
-      'bg-base--inverted': !client,
-    }
+    !!client ? 'bg-emphasis' : 'bg-base--inverted'
   )
+
   return (
     <Container className={containerClasses}>
       <div className="flex justify-between w-100 mw9">
