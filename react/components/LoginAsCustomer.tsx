@@ -35,7 +35,7 @@ const LoginAsCustomer = (props: Props) => {
   const handleHeaderRendering = useCallback(
     () => (
       <div className="flex items-center">
-        <IconProfile size={25} className="white" />
+        <IconProfile className="white" />
         <div className="ml2">
           {translate('telemarketing-login.message', intl)}
         </div>
@@ -59,11 +59,7 @@ const LoginAsCustomer = (props: Props) => {
       >
         <div className="bg-base--inverted w-100 pa4">
           <div className={`${styles.popoverHeaderIcon}`}>
-            <IconAssistantSales
-              size={50}
-              viewBox="0 0 21 21"
-              activeClassName="white"
-            />
+            <IconAssistantSales size={50} activeClassName="white" />
           </div>
           <div
             className={`${

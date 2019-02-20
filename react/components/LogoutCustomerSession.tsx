@@ -40,7 +40,7 @@ const LogoutCustomerSession = (props: Props) => {
     const classBar = mobile ? 'flex align-center w-100' : 'flex align-center'
     return (
       <div className={classBar}>
-        <IconProfile size={25} activeClassName="white" />
+        <IconProfile activeClassName="white" />
         <div className={`pa2 ${styles.clientNameBar} w-100`}>
           {mobile ? clientName : client.email}
         </div>
