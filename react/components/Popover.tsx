@@ -25,7 +25,7 @@ const Popover = (props: Props) => {
   const handleOutsideClick = () => setBoxOpen(false)
   useOutsideClick(boxRef, handleOutsideClick, isBoxOpen)
 
-  const handleClick = useCallback(() => setBoxOpen(true), [])
+  const toggleBox = useCallback(() => setBoxOpen(!isBoxOpen), [])
 
   const boxPositionStyle = mobile
     ? {}
@@ -50,7 +50,7 @@ const Popover = (props: Props) => {
     >
       <div
         className="pointer w-100"
-        onClick={handleClick}
+        onMouseDown={toggleBox}
         ref={e => {
           iconRef.current = e
         }}
