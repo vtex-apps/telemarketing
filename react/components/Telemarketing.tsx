@@ -55,8 +55,8 @@ const Telemarketing = (props: Props) => {
   return (
     <Container className={containerClasses}>
       <div className="flex justify-between w-100 mw9">
-        <div className="flex items-center">
-          <IconAssistantSales className="white" />
+        <div className="flex items-center c-on-base--inverted">
+          <IconAssistantSales />
           <div className="ml2">
             {mobile ? (
               <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>

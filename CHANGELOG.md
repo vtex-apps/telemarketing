@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - No more class components due use of hooks.
+- Using design tokens instead of raw colors.
 
 ### Fixed
 

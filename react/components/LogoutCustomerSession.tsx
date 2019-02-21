@@ -1,4 +1,5 @@
 import React, { ReactNode, useMemo, useCallback } from 'react'
+import classnames from 'classnames'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
@@ -37,10 +38,13 @@ const LogoutCustomerSession = (props: Props) => {
       : null
 
   const getHeader = (mobile: boolean) => {
-    const classBar = mobile ? 'flex align-center w-100' : 'flex align-center'
+    const headerClasses = classnames(
+      'c-on-base--inverted',
+      mobile ? 'flex align-center w-100' : 'flex align-center'
+    )
     return (
-      <div className={classBar}>
-        <IconProfile activeClassName="white" />
+      <div className={headerClasses}>
+        <IconProfile />
         <div className={`pa2 ${styles.clientNameBar} w-100`}>
           {mobile ? clientName : client.email}
         </div>
@@ -55,8 +59,10 @@ const LogoutCustomerSession = (props: Props) => {
     <div className={`${styles.logout} ${mobile && 'w-50'}`}>
       <Popover arrowClasses="bg-emphasis" renderHeader={renderHeader}>
         <div className="bg-emphasis w-100 pa4">
-          <div className={`${styles.popoverHeaderIcon} pa4`}>
-            <IconAssistantSales size={50} activeClassName="white" />
+          <div
+            className={`${styles.popoverHeaderIcon} c-on-base--inverted pa4`}
+          >
+            <IconAssistantSales size={50} />
           </div>
           <div className={`${styles.popoverHeaderEmail} c-on-emphasis`}>
             {attendantEmail}
