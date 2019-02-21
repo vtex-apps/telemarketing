@@ -52,13 +52,13 @@ const LoginAsCustomer = (props: Props) => {
   )
 
   return (
-    <div className={`${styles.login}`}>
+    <div className={styles.login}>
       <Popover
         arrowClasses="bg-base--inverted"
         renderHeader={handleHeaderRendering}
       >
         <div className="bg-base--inverted w-100 pa4">
-          <div className={`${styles.popoverHeaderIcon}`}>
+          <div className={styles.popoverHeaderIcon}>
             <IconAssistantSales size={50} activeClassName="white" />
           </div>
           <div
