@@ -58,54 +58,52 @@ const LogoutCustomerSession = (props: Props) => {
   return (
     <div className={`${styles.logout} ${mobile && 'w-50'}`}>
       <Popover arrowClasses="bg-emphasis" renderHeader={renderHeader}>
-        <div className="bg-emphasis w-100 pa4">
-          <div
-            className={`${styles.popoverHeaderIcon} c-on-base--inverted pa4`}
-          >
+        <div className="bg-emphasis w-100 pa7">
+          <div className={`${styles.popoverHeaderIcon} c-on-base--inverted`}>
             <IconAssistantSales size={50} />
           </div>
           <div className={`${styles.popoverHeaderEmail} c-on-emphasis`}>
             {attendantEmail}
           </div>
         </div>
-        <div className="bg-base w-100 pb4 ph4">
+        <div className="bg-base w-100 pt7 pb5 ph5">
           <div className={`${styles.logoutForm} c-disabled`}>
-            <div className="w-100 pb3 ph3 bw1 bb b--muted-5 flex-wrap">
+            <div className="w-100 bw1 bb b--muted-5 flex-wrap">
               <div
                 className={`${
                   styles.clientName
-                } w-100 t-heading-6 center b pa5`}
+                } w-100 t-heading-5 center pb5 c-on-base`}
               >
                 {clientName}
               </div>
 
-              <div className="w-100 flex flex-wrap">
-                <div className="tl pa2">Email</div>
-                <div className="pa2 c-muted-3">{client.email}</div>
+              <div className="w-100 flex flex-wrap t-small">
+                <div className="tl pb5 pr2">Email</div>
+                <div className="pb5 pl2 c-muted-3">{client.email}</div>
               </div>
 
-              <div className="w-100 flex flex-wrap">
-                <div className="tl pa2">
+              <div className="w-100 flex flex-wrap t-small">
+                <div className="tl pb5 pr2">
                   {translate('telemarketing-logout.document-label', intl)}
                 </div>
-                <div className="pa2 c-muted-3">{client.document}</div>
+                <div className="pb5 pl2 c-muted-3">{client.document}</div>
               </div>
 
-              <div className="w-100 flex flex-wrap">
-                <div className="tl pa2">
+              <div className="w-100 flex flex-wrap t-small">
+                <div className="tl pb5 pr2">
                   {translate('telemarketing-logout.phone-label', intl)}
                 </div>
-                <div className="pa2 c-muted-3">{client.phone}</div>
+                <div className="pb5 pl2 c-muted-3">{client.phone}</div>
               </div>
             </div>
-            <div className="flex justify-around mt3">
+            <div className="flex justify-around mt5">
               <Link page="store.account">
-                <Button size="small">
+                <Button size="regular">
                   {translate('telemarketing-logout.button-orders', intl)}
                 </Button>
               </Link>
               <Button
-                size="small"
+                size="regular"
                 onClick={() => onDepersonify()}
                 isLoading={loading}
               >

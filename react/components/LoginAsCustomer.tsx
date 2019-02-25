@@ -57,7 +57,7 @@ const LoginAsCustomer = (props: Props) => {
         arrowClasses="bg-base--inverted"
         renderHeader={handleHeaderRendering}
       >
-        <div className="bg-base--inverted w-100 pa4 c-on-base--inverted">
+        <div className="bg-base--inverted w-100 pa7 c-on-base--inverted">
           <div className={styles.popoverHeaderIcon}>
             <IconAssistantSales size={50} />
           </div>
@@ -65,12 +65,12 @@ const LoginAsCustomer = (props: Props) => {
             {attendantEmail}
           </div>
         </div>
-        <div className="bg-base w-100 pa4">
+        <div className="bg-base w-100 ph5 pb5 pt7">
           <div className={`${styles.loginForm} c-disabled`}>
-            <div className={`${styles.loginFormMessage} tl mv3`}>
+            <div className={`${styles.loginFormMessage} t-small tl mb3`}>
               {translate('telemarketing-login.message', intl)}
             </div>
-            <div className={`${styles.emailInput} mv3`}>
+            <div className={`${styles.emailInput} mb5`}>
               <Input
                 value={emailInput}
                 onChange={onInputChange}
@@ -79,7 +79,7 @@ const LoginAsCustomer = (props: Props) => {
               />
             </div>
             <Button
-              size="small"
+              size="regular"
               onClick={() => onSetSession(emailInput)}
               isLoading={loading}
             >
