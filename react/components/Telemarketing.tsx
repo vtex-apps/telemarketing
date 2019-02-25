@@ -55,7 +55,7 @@ const Telemarketing = (props: Props) => {
   return (
     <Container className={containerClasses}>
       <div className="flex justify-between w-100 mw9">
-        <div className="flex items-center c-on-base--inverted">
+        <div className="flex pl3 w-50 items-center c-on-base--inverted">
           <IconAssistantSales />
           <div className="ml2">
             {mobile ? (

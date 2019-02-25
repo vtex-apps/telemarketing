@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { Button, Input } from 'vtex.styleguide'
+import { useRuntime } from 'vtex.render-runtime'
 import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
 import translate from '../utils/translate'
 import Popover from './Popover'
@@ -31,6 +32,9 @@ const LoginAsCustomer = (props: Props) => {
     emailInput,
     intl,
   } = props
+  const {
+    hints: { mobile },
+  } = useRuntime()
 
   const handleHeaderRendering = useCallback(
     () => (
@@ -52,7 +56,7 @@ const LoginAsCustomer = (props: Props) => {
   )
 
   return (
-    <div className={styles.login}>
+    <div className={`${styles.login} ${mobile && 'w-50'}`}>
       <Popover
         arrowClasses="bg-base--inverted"
         renderHeader={handleHeaderRendering}
