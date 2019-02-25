@@ -59,11 +59,13 @@ const Telemarketing = (props: Props) => {
           <IconAssistantSales />
           <div className="ml2">
             {mobile ? (
-              <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
+              <span>
+                {attendantEmail.slice(0, attendantEmail.indexOf('@'))}
+              </span>
             ) : (
               <Fragment>
                 {translate('telemarketing.attendant', intl)}
-                <b>{`: ${attendantEmail}`}</b>
+                <span>{`: ${attendantEmail}`}</span>
               </Fragment>
             )}
           </div>
