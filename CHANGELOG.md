@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
-- Added snapshot tests.
+- Add snapshot tests.
 
 ## [2.7.3] - 2019-02-14
 
