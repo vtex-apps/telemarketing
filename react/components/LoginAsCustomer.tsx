@@ -4,7 +4,7 @@ import { Button, Input } from 'vtex.styleguide'
 import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
 import Popover from './Popover'
-import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
+import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 
 interface Props {
   /** Current signedin attendant email */
