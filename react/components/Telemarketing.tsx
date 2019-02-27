@@ -1,33 +1,33 @@
-import { path } from "ramda";
-import React, { Component, Fragment, ReactNode } from "react";
-import { withRuntimeContext } from "vtex.render-runtime";
-import { Container } from "vtex.store-components";
-import { IconAssistantSales } from "vtex.store-icons";
+import { path } from 'ramda'
+import React, { Component, Fragment, ReactNode } from 'react'
+import { withRuntimeContext } from 'vtex.render-runtime'
+import { Container } from 'vtex.store-components'
+import { IconAssistantSales } from 'vtex.store-icons'
 
-import telemarketing from "../telemarketing.css";
-import translate from "../utils/translate";
-import LoginAsCustomer from "./LoginAsCustomer";
-import LogoutCustomerSession from "./LogoutCustomerSession";
+import telemarketing from '../telemarketing.css'
+import translate from '../utils/translate'
+import LoginAsCustomer from './LoginAsCustomer'
+import LogoutCustomerSession from './LogoutCustomerSession'
 
 interface Props {
   /** Attendant email */
-  attendantEmail: string;
+  attendantEmail: string
   /** Impersonated customer info */
-  client?: Client;
+  client?: Client
   /** Email input value */
-  emailInput: string;
+  emailInput: string
   /** Intl object */
-  intl: any;
+  intl: any
   /** Loading status */
-  loading: boolean;
+  loading: boolean
   /** Function to depersonify the impersonated customer */
-  onDepersonify: () => any;
+  onDepersonify: () => any
   /** Function to set the emailInput value */
-  onInputChange: (s: string) => void;
+  onInputChange: (s: string) => void
   /** Function to set the session */
-  onSetSession: (s: string) => void;
+  onSetSession: (s: string) => void
   /** Children */
-  readonly children?: ReactNode;
+  readonly children?: ReactNode
 }
 
 /** Telemarketing render component */
@@ -41,17 +41,17 @@ export class Telemarketing extends Component<Props> {
       onInputChange,
       onSetSession,
       onDepersonify,
-      attendantEmail
-    } = this.props;
+      attendantEmail,
+    } = this.props
 
-    const mobile = path(["__RUNTIME__", "hints", "mobile"], global);
+    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
 
     return (
       <Container
         className={`${
           telemarketing.container
         } flex justify-center tc c-on-emphasis h2 t-mini ${
-          client ? "bg-emphasis" : "bg-base--inverted"
+          client ? 'bg-emphasis' : 'bg-base--inverted'
         } pa2`}
       >
         <div className="flex justify-between w-100 mw9">
@@ -59,10 +59,10 @@ export class Telemarketing extends Component<Props> {
             <IconAssistantSales size={25} className="white" />
             <div className="ml2">
               {mobile ? (
-                <b>{attendantEmail.slice(0, attendantEmail.indexOf("@"))}</b>
+                <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
               ) : (
                 <Fragment>
-                  {translate("telemarketing.attendant", intl)}
+                  {translate('telemarketing.attendant', intl)}
                   <b>{`: ${attendantEmail}`}</b>
                 </Fragment>
               )}
@@ -88,8 +88,8 @@ export class Telemarketing extends Component<Props> {
           )}
         </div>
       </Container>
-    );
+    )
   }
 }
 
-export default withRuntimeContext(Telemarketing);
+export default withRuntimeContext(Telemarketing)
