@@ -1,1 +1,1 @@
-export const withRuntimeContext = comp => comp
+export const withRuntimeContext = (comp: any) => comp
