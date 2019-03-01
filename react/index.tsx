@@ -12,17 +12,17 @@ import processSession from './utils/processSession'
 
 interface Props {
   /** Intl object */
-  intl: any,
+  intl: any
   /** Query with the session */
-  session: Session,
+  session: Session
   /** Mutation to depersonify */
-  depersonify: () => Promise<void>,
+  depersonify: () => Promise<void>
   /** Mutation to impersonate a customer */
-  impersonate: (s: {}) => Promise<void>,
+  impersonate: (s: {}) => Promise<void>
 }
 
 interface State {
-  loadingImpersonate: boolean,
+  loadingImpersonate: boolean
   emailInput: string
 }
 
@@ -39,11 +39,7 @@ class TelemarketingContainer extends Component<Props, State> {
     const processedSession = processSession(session)
 
     if (processedSession) {
-      const {
-        client,
-        canImpersonate,
-        attendantEmail,
-      } = processedSession
+      const { client, canImpersonate, attendantEmail } = processedSession
 
       return canImpersonate ? (
         <Telemarketing
@@ -93,8 +89,11 @@ class TelemarketingContainer extends Component<Props, State> {
     this.setState({ loadingImpersonate: true })
     const variables = { email }
     impersonate({ variables })
-      .then((response) => {
-        const profile = path(['data', 'impersonate', 'impersonate', 'profile'], response)
+      .then(response => {
+        const profile = path(
+          ['data', 'impersonate', 'impersonate', 'profile'],
+          response
+        )
 
         if (profile) {
           session.refetch()
@@ -116,9 +115,11 @@ const options = {
   }),
 }
 
-export default withSession({ loading: React.Fragment })(compose(
-  injectIntl as any,
-  graphql(Queries.session, options),
-  graphql(depersonifyMutation, { name: 'depersonify' }),
-  graphql(impersonateMutation, { name: 'impersonate' })
-)(TelemarketingContainer as any))
+export default withSession({ loading: React.Fragment })(
+  compose(
+    injectIntl as any,
+    graphql(Queries.session, options),
+    graphql(depersonifyMutation, { name: 'depersonify' }),
+    graphql(impersonateMutation, { name: 'impersonate' })
+  )(TelemarketingContainer as any)
+)

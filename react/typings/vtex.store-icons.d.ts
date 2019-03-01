@@ -1,4 +1,4 @@
-declare module 'vtex.dreamstore-icons' {
+declare module 'vtex.store-icons' {
   import { ReactElement } from 'react'
 
   export const IconAssistantSales: ReactElement
