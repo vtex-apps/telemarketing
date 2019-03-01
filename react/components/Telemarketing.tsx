@@ -1,8 +1,9 @@
 import React, { Fragment, ReactNode } from 'react'
 import { useRuntime } from 'vtex.render-runtime'
 import { Container } from 'vtex.store-components'
-import { IconAssistantSales } from 'vtex.dreamstore-icons'
+import { IconAssistantSales } from 'vtex.store-icons'
 import classnames from 'classnames'
+
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'

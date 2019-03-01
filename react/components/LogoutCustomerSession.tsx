@@ -2,7 +2,8 @@ import React, { ReactNode, useMemo, useCallback } from 'react'
 import classnames from 'classnames'
 import { Link, useRuntime } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
-import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
+import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
+
 import translate from '../utils/translate'
 import Popover from './Popover'
 

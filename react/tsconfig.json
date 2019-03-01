@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["es2017","dom"],
-    "types": ["node"],
+    "lib": ["es2017", "dom"],
+    "types": ["node", "jest"],
     "typeRoots": ["node_modules/@types"],
     "target": "es2017",
     "module": "es6",
@@ -19,7 +19,8 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "skipLibCheck": true,
-    "strictPropertyInitialization": true
+    "strictPropertyInitialization": true,
+    "resolveJsonModule": true
   },
   "typeAcquisition": {
     "enable": false

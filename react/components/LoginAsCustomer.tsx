@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Button, Input } from 'vtex.styleguide'
 import { useRuntime } from 'vtex.render-runtime'
-import { IconAssistantSales, IconProfile } from 'vtex.dreamstore-icons'
+import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 import translate from '../utils/translate'
 import Popover from './Popover'
 

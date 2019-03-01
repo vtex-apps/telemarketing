@@ -16,7 +16,7 @@ declare module 'vtex.render-runtime' {
 
   export const ExtensionPoint: ReactElement
   export const Helmet: ReactElement
-  export const Link: ReactElement
+  export const Link: ComponentType<any>
   export const NoSSR: ReactElement
   export const RenderContextConsumer: ReactElement
   export const canUseDOM: boolean
