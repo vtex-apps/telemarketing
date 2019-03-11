@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-testing-library'
+import { render, fireEvent } from 'react-testing-library'
 
 import Telemarketing from '../components/Telemarketing'
 import messages from '../../messages/en-US.json'
@@ -120,5 +120,51 @@ describe('<Telemarketing /> component', () => {
 
     const email = getByText(client.email)
     expect(email).toBeTruthy()
+  })
+
+  it('should login when clicked', () => {
+    const onSetSession = jest.fn()
+    const { getByText } = render(
+      <Telemarketing
+        attendantEmail="attendant@vtex.com"
+        emailInput="email@vtex.com"
+        intl={intl}
+        loading={false}
+        onDepersonify={() => {}}
+        onInputChange={() => {}}
+        onSetSession={onSetSession}
+      />
+    )
+
+    fireEvent.click(getByText('Login'))
+
+    expect(onSetSession).toBeCalledTimes(1)
+  })
+
+  it('should logout when clicked', () => {
+    const onDepersonify = jest.fn()
+    const client: Client = {
+      document: 'my client document',
+      phone: '+9999999999999',
+      name: 'my client name',
+      email: 'client@vtex.com',
+    }
+
+    const { getByText } = render(
+      <Telemarketing
+        attendantEmail="attendant@vtex.com"
+        client={client}
+        emailInput="email@vtex.com"
+        intl={intl}
+        loading={false}
+        onDepersonify={onDepersonify}
+        onInputChange={() => {}}
+        onSetSession={() => {}}
+      />
+    )
+
+    fireEvent.click(getByText('Logout'))
+
+    expect(onDepersonify).toBeCalledTimes(1)
   })
 })

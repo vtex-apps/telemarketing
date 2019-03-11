@@ -154,13 +154,13 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                       <button
                         type="button"
                       >
-                         Orders 
+                        Orders
                       </button>
                     </a>
                     <button
                       type="button"
                     >
-                       Logout 
+                      Logout
                     </button>
                   </div>
                 </div>
@@ -287,7 +287,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                   <button
                     type="button"
                   >
-                     Login 
+                    Login
                   </button>
                 </div>
               </div>
