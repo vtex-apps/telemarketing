@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Icons sizes and viewboxes.
 - Remove left gap on mobile devices.
 
+### Changed
+
+- Upgrade test suite adding more complex tests.
+
 ## [2.7.4] - 2019-03-01
 
 ### Changed
