@@ -1,4 +1,5 @@
 import React from 'react'
+import { mergeDeepRight } from 'ramda'
 import { render, fireEvent } from 'react-testing-library'
 
 import Telemarketing from '../components/Telemarketing'
@@ -9,18 +10,24 @@ describe('<Telemarketing /> component', () => {
     formatMessage: ({ id = '' }) => messages[id],
   }
 
+  const renderComponent = (customProps = {}) => {
+    const defaultProps = {
+      attendantEmail: 'attendant@vtex.com',
+      emailInput: 'email@vtex.com',
+      intl: intl,
+      loading: false,
+      onDepersonify: () => {},
+      onInputChange: () => {},
+      onSetSession: () => {},
+    }
+
+    const props = mergeDeepRight(defaultProps, customProps)
+    return render(<Telemarketing {...props} />)
+  }
+
   it('should match snapshot without client', () => {
-    const { asFragment } = render(
-      <Telemarketing
-        attendantEmail="attendant@vtex.com"
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={() => {}}
-        onInputChange={() => {}}
-        onSetSession={() => {}}
-      />
-    )
+    const { asFragment } = renderComponent()
+
     expect(asFragment()).toMatchSnapshot()
   })
 
@@ -32,51 +39,21 @@ describe('<Telemarketing /> component', () => {
       email: 'client@vtex.com',
     }
 
-    const { asFragment } = render(
-      <Telemarketing
-        attendantEmail="attendant@vtex.com"
-        client={client}
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={() => {}}
-        onInputChange={() => {}}
-        onSetSession={() => {}}
-      />
-    )
+    const { asFragment } = renderComponent({ client: client })
+
     expect(asFragment()).toMatchSnapshot()
   })
 
   it('should show attendant email', () => {
-    const email = 'attendant@vtex.com'
-    const { getByText } = render(
-      <Telemarketing
-        attendantEmail={email}
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={() => {}}
-        onInputChange={() => {}}
-        onSetSession={() => {}}
-      />
-    )
+    const email = 'nice_attendant_email@vtex.com'
+    const { getByText } = renderComponent({ attendantEmail: email })
 
     const attendantEmail = getByText(email)
     expect(attendantEmail).toBeTruthy()
   })
 
   it('should show login button and form', () => {
-    const { getByText, getByPlaceholderText } = render(
-      <Telemarketing
-        attendantEmail="attendant@vtex.com"
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={() => {}}
-        onInputChange={() => {}}
-        onSetSession={() => {}}
-      />
-    )
+    const { getByText, getByPlaceholderText } = renderComponent()
 
     const loginAs = getByText('Login as')
     expect(loginAs).toBeTruthy()
@@ -96,18 +73,7 @@ describe('<Telemarketing /> component', () => {
       email: 'client@vtex.com',
     }
 
-    const { getByText } = render(
-      <Telemarketing
-        attendantEmail="attendant@vtex.com"
-        client={client}
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={() => {}}
-        onInputChange={() => {}}
-        onSetSession={() => {}}
-      />
-    )
+    const { getByText } = renderComponent({ client: client })
 
     const document = getByText(client.document)
     expect(document).toBeTruthy()
@@ -124,17 +90,7 @@ describe('<Telemarketing /> component', () => {
 
   it('should login when clicked', () => {
     const onSetSession = jest.fn()
-    const { getByText } = render(
-      <Telemarketing
-        attendantEmail="attendant@vtex.com"
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={() => {}}
-        onInputChange={() => {}}
-        onSetSession={onSetSession}
-      />
-    )
+    const { getByText } = renderComponent({ onSetSession: onSetSession })
 
     fireEvent.click(getByText('Login'))
 
@@ -150,18 +106,10 @@ describe('<Telemarketing /> component', () => {
       email: 'client@vtex.com',
     }
 
-    const { getByText } = render(
-      <Telemarketing
-        attendantEmail="attendant@vtex.com"
-        client={client}
-        emailInput="email@vtex.com"
-        intl={intl}
-        loading={false}
-        onDepersonify={onDepersonify}
-        onInputChange={() => {}}
-        onSetSession={() => {}}
-      />
-    )
+    const { getByText } = renderComponent({
+      client: client,
+      onDepersonify: onDepersonify,
+    })
 
     fireEvent.click(getByText('Logout'))
 
