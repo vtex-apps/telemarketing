@@ -3,7 +3,7 @@ import { mergeDeepRight } from 'ramda'
 import { render, fireEvent } from '@vtex/test-tools/react'
 
 import Telemarketing from '../components/Telemarketing'
-import messages from '../../messages/en-US.json'
+import messages from '../../messages/en.json'
 
 describe('<Telemarketing /> component', () => {
   const intl = {

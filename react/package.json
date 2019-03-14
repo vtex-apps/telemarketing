@@ -31,5 +31,8 @@
   },
   "vtexScriptsOverride": {
     "srcPath": "."
+  },
+  "vtexTestTools": {
+    "defaultLocale": "en"
   }
 }
