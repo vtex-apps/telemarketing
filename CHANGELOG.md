@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Upgrade test suite adding more complex tests.
+- Set width explicitly to `w-100`
 
 ## [2.7.4] - 2019-03-01
 
