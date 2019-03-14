@@ -50,7 +50,7 @@ export class Telemarketing extends Component<Props> {
       <Container
         className={`${
           telemarketing.container
-        } flex justify-center tc c-on-emphasis h2 t-mini ${
+        } flex w-100 justify-center tc c-on-emphasis h2 t-mini ${
           client ? 'bg-emphasis' : 'bg-base--inverted'
         } pa2`}
       >
