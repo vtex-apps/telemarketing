@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     "lib": ["es2017", "dom"],
-    "types": ["node", "jest"],
+    "types": ["node", "jest", "graphql"],
     "typeRoots": ["node_modules/@types"],
     "target": "es2017",
     "module": "es6",
     "sourceMap": true,
     "moduleResolution": "node",
     "jsx": "react",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "noEmitOnError": true,
     "noImplicitReturns": true,
