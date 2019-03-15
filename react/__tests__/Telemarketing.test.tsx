@@ -19,6 +19,7 @@ describe('<Telemarketing /> component', () => {
       onDepersonify: () => {},
       onInputChange: () => {},
       onSetSession: () => {},
+      mobile: false,
     }
 
     const props = mergeDeepRight(defaultProps, customProps)
