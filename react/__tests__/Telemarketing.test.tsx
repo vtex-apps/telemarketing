@@ -1,13 +1,13 @@
 import React from 'react'
 import { mergeDeepRight } from 'ramda'
-import { render, fireEvent } from 'react-testing-library'
+import { render, fireEvent } from '@vtex/test-tools/react'
 
 import Telemarketing from '../components/Telemarketing'
-import messages from '../../messages/en-US.json'
+import messages from '../../messages/en.json'
 
 describe('<Telemarketing /> component', () => {
   const intl = {
-    formatMessage: ({ id = '' }) => messages[id],
+    formatMessage: ({ id = '' }) => (messages as any)[id],
   }
 
   const renderComponent = (customProps = {}) => {

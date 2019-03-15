@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 
 const iconMock = ({
   name = '',
@@ -15,8 +15,16 @@ const iconMock = ({
   </svg>
 )
 
-export const IconAssistantSales = ({ size = 20, activeClassName = '' }) =>
-  iconMock({ name: 'IconAssistantSales', size, activeClassName })
+export const IconAssistantSales: FunctionComponent<{
+  size: number
+  className: string
+  activeClassName: string
+}> = ({ size = 20, className, activeClassName }) =>
+  iconMock({ name: 'IconAssistantSales', size, className, activeClassName })
 
-export const IconProfile = ({ size = 20, className = '' }) =>
-  iconMock({ name: 'IconProfile', size, className })
+export const IconProfile: FunctionComponent<{
+  size: number
+  className: string
+  activeClassName: string
+}> = ({ size = 20, className, activeClassName }) =>
+  iconMock({ name: 'IconProfile', size, className, activeClassName })

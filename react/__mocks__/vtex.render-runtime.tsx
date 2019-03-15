@@ -1,15 +1,11 @@
-import React, { ReactNode } from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 
 export const useRuntime = () => {
   const hints = { mobile: false, desktop: true }
   return { hints }
 }
 
-interface linkProps {
-  page: any
-  readonly children?: ReactNode
-}
-
-export const Link = ({ page, children }: linkProps) => (
-  <a href={page}>{children}</a>
-)
+export const Link: FunctionComponent<{ page: string; children: ReactNode }> = ({
+  page,
+  children,
+}) => <a href={page}>{children}</a>

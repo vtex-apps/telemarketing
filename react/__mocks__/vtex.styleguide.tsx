@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 
-export const Button = ({ children = undefined, onClick = () => {} }) => (
+export const Button: FunctionComponent<{
+  onClick: () => void
+  children: ReactNode
+}> = ({ onClick = () => {}, children }) => (
   <button type="button" onClick={onClick}>
     {children}
   </button>
 )
 
-export const Input = (props: any) => <input {...props} />
+export const Input: FunctionComponent = (props: any) => <input {...props} />
