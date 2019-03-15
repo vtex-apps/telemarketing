@@ -1,6 +1,6 @@
 import React, { ReactNode, useMemo, useCallback } from 'react'
 import classnames from 'classnames'
-import { Link, useRuntime } from 'vtex.render-runtime'
+import { Link } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 
@@ -20,16 +20,15 @@ interface Props {
   onDepersonify: () => any
   /** Current signedin attendant email */
   attendantEmail: string
+  /** If is mobile or not */
+  mobile: boolean
   /** Children */
   readonly children?: ReactNode
 }
 
 /** Component that shows the client info calls the setSession function  to logout. */
 const LogoutCustomerSession = (props: Props) => {
-  const { intl, client, loading, onDepersonify, attendantEmail } = props
-  const {
-    hints: { mobile },
-  } = useRuntime()
+  const { intl, client, loading, onDepersonify, attendantEmail, mobile } = props
 
   const getClientName = (client: any) =>
     !!client
@@ -58,7 +57,11 @@ const LogoutCustomerSession = (props: Props) => {
 
   return (
     <div className={`${styles.logout} ${mobile && 'w-50'}`}>
-      <Popover arrowClasses="bg-emphasis" renderHeader={renderHeader}>
+      <Popover
+        arrowClasses="bg-emphasis"
+        renderHeader={renderHeader}
+        mobile={mobile}
+      >
         <div className="bg-emphasis w-100 pa7">
           <div className={`${styles.popoverHeaderIcon} c-on-base--inverted`}>
             <IconAssistantSales size={50} />

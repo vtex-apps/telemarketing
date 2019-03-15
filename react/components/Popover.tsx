@@ -1,13 +1,16 @@
 import React, { ReactNode, useRef, useState, useCallback } from 'react'
 import classnames from 'classnames'
-import { useRuntime } from 'vtex.render-runtime'
 import useOutsideClick from '../hooks/useOutsideClick'
 import styles from '../telemarketing.css'
 
 interface Props {
   /** Function that will display the header */
   renderHeader: () => JSX.Element
+  /** Aditional classes for arrows */
   arrowClasses: string
+  /** If is mobile or not */
+  mobile: boolean
+  /** Children */
   readonly children: ReactNode
 }
 
@@ -16,11 +19,7 @@ const Popover = (props: Props) => {
   const boxRef = useRef<any>(null)
   const iconRef = useRef<any>(null)
   const [isBoxOpen, setBoxOpen] = useState(false)
-  const { renderHeader, children, arrowClasses } = props
-
-  const {
-    hints: { mobile },
-  } = useRuntime()
+  const { renderHeader, children, arrowClasses, mobile } = props
 
   const handleOutsideClick = () => setBoxOpen(false)
   useOutsideClick(boxRef, handleOutsideClick, isBoxOpen)

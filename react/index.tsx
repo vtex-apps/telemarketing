@@ -9,6 +9,7 @@ import Telemarketing from './components/Telemarketing'
 import depersonifyMutation from './mutations/depersonify.gql'
 import impersonateMutation from './mutations/impersonate.gql'
 import processSession from './utils/processSession'
+import useDevice from './hooks/useDevice'
 
 interface Props {
   /** Intl object */
@@ -24,6 +25,7 @@ interface Props {
 const TelemarketingContainer = (props: Props) => {
   const [emailInput, setEmailInput] = useState<string>('')
   const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
+  const { mobile } = useDevice()
 
   const { intl, session } = props
   const processedSession = processSession(session)
@@ -76,6 +78,7 @@ const TelemarketingContainer = (props: Props) => {
         onSetSession={handleSetSession}
         onDepersonify={handleDepersonify}
         onInputChange={handleInputChange}
+        mobile={mobile}
       />
     ) : null
   }

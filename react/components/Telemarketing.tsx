@@ -1,5 +1,4 @@
 import React, { Fragment, ReactNode } from 'react'
-import { useRuntime } from 'vtex.render-runtime'
 import { Container } from 'vtex.store-components'
 import { IconAssistantSales } from 'vtex.store-icons'
 import classnames from 'classnames'
@@ -26,6 +25,8 @@ interface Props {
   onInputChange: (s: string) => void
   /** Function to set the session */
   onSetSession: (s: string) => void
+  /** If is mobile or not */
+  mobile: boolean
   /** Children */
   readonly children?: ReactNode
 }
@@ -41,11 +42,8 @@ const Telemarketing = (props: Props) => {
     onSetSession,
     onDepersonify,
     attendantEmail,
+    mobile,
   } = props
-
-  const {
-    hints: { mobile },
-  } = useRuntime()
 
   const containerClasses = classnames(
     styles.container,
@@ -78,6 +76,7 @@ const Telemarketing = (props: Props) => {
             loading={loading}
             onDepersonify={onDepersonify}
             attendantEmail={attendantEmail}
+            mobile={mobile}
           />
         ) : (
           <LoginAsCustomer
@@ -87,6 +86,7 @@ const Telemarketing = (props: Props) => {
             onInputChange={onInputChange}
             onSetSession={onSetSession}
             attendantEmail={attendantEmail}
+            mobile={mobile}
           />
         )}
       </div>

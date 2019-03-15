@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import { Button, Input } from 'vtex.styleguide'
-import { useRuntime } from 'vtex.render-runtime'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 import translate from '../utils/translate'
 import Popover from './Popover'
@@ -20,6 +19,8 @@ interface Props {
   loading: boolean
   /** Intl info */
   intl: any
+  /** If is mobile or not */
+  mobile: boolean
 }
 
 /** Component that shows the email input and calls the setSession function using the Popover component. */
@@ -31,10 +32,8 @@ const LoginAsCustomer = (props: Props) => {
     loading,
     emailInput,
     intl,
+    mobile,
   } = props
-  const {
-    hints: { mobile },
-  } = useRuntime()
 
   const handleHeaderRendering = useCallback(
     () => (
@@ -60,6 +59,7 @@ const LoginAsCustomer = (props: Props) => {
       <Popover
         arrowClasses="bg-base--inverted"
         renderHeader={handleHeaderRendering}
+        mobile={mobile}
       >
         <div className="bg-base--inverted w-100 pa7 c-on-base--inverted">
           <div className={styles.popoverHeaderIcon}>
