@@ -23,7 +23,7 @@ const objectToString = (query: string | MediaQueryObject) => {
         return value ? feature : `not ${feature}`
       }
       if (typeof value === 'number' && /[height|width]$/.test(feature)) {
-        value = `${value}em`
+        return `(${feature}: ${value}em)`
       }
       return `(${feature}: ${value})`
     })
