@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.8.1] - 2019-03-20
+
+### Fixed
+
+- Infinite loop on useCallback.
+
 ## [2.8.0] - 2019-03-20
 
 ### Added
