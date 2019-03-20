@@ -47,7 +47,7 @@ const Telemarketing = (props: Props) => {
 
   const containerClasses = classnames(
     styles.container,
-    'flex justify-center tc c-on-emphasis h2 t-mini pa2',
+    'flex justify-center tc c-on-emphasis h2 t-mini pa2 w-100',
     !!client ? 'bg-emphasis' : 'bg-base--inverted'
   )
 

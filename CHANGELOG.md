@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.8.2] - 2019-03-20
+### Changed
+
+- Set width explicitly to `w-100` again
+
 ## [2.8.1] - 2019-03-20
 
 ### Fixed
