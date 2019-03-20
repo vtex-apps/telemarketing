@@ -3,7 +3,7 @@
 exports[`<Telemarketing /> component should match snapshot with client 1`] = `
 <DocumentFragment>
   <section
-    class="Container-mock container flex justify-center tc c-on-emphasis h2 t-mini pa2 bg-emphasis"
+    class="Container-mock container flex justify-center tc c-on-emphasis h2 t-mini pa2 w-100 bg-emphasis"
   >
     <div
       class="flex justify-between w-100 mw9"
@@ -180,7 +180,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
 exports[`<Telemarketing /> component should match snapshot without client 1`] = `
 <DocumentFragment>
   <section
-    class="Container-mock container flex justify-center tc c-on-emphasis h2 t-mini pa2 bg-base--inverted"
+    class="Container-mock container flex justify-center tc c-on-emphasis h2 t-mini pa2 w-100 bg-base--inverted"
   >
     <div
       class="flex justify-between w-100 mw9"
