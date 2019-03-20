@@ -1,108 +1,77 @@
-import { path } from 'ramda'
-import React, { Component, ReactNode } from 'react'
-import { withRuntimeContext } from 'vtex.render-runtime'
-
-import telemarketing from '../telemarketing.css'
+import React, { ReactNode, useRef, useState, useCallback } from 'react'
+import classnames from 'classnames'
+import useOutsideClick from '../hooks/useOutsideClick'
+import styles from '../telemarketing.css'
 
 interface Props {
   /** Function that will display the header */
-  renderHeader: () => any
+  renderHeader: () => JSX.Element
+  /** Aditional classes for arrows */
   arrowClasses: string
+  /** If is mobile or not */
+  mobile: boolean
+  /** Children */
   readonly children: ReactNode
 }
 
 /** Component that shows a content when it´s header is clicked */
-export class Popover extends Component<Props> {
-  public boxRef: any = React.createRef()
+const Popover = (props: Props) => {
+  const boxRef = useRef<any>(null)
+  const iconRef = useRef<any>(null)
+  const [isBoxOpen, setBoxOpen] = useState(false)
+  const { renderHeader, children, arrowClasses, mobile } = props
 
-  public state = {
-    isBoxOpen: false,
-  }
+  const handleOutsideClick = () => setBoxOpen(false)
+  useOutsideClick(boxRef, handleOutsideClick, isBoxOpen)
 
-  private iconRef: any
+  const toggleBox = useCallback(() => setBoxOpen(!isBoxOpen), [])
 
-  public componentWillUnmount() {
-    this.removeListeners()
-  }
+  const boxPositionStyle = mobile
+    ? {}
+    : {
+        right: iconRef.current && iconRef.current.offsetWidth - 43,
+      }
 
-  public render() {
-    const { renderHeader, children } = this.props
-    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+  const boxClasses = classnames(
+    styles.popoverBox,
+    'absolute top-2 z-max bb b--muted-3',
+    isBoxOpen ? 'flex' : 'dn',
+    {
+      'fixed left-0 right-0': mobile,
+    }
+  )
 
-    const boxPositionStyle = mobile
-      ? {}
-      : {
-          right: this.iconRef && this.iconRef.offsetWidth - 43,
-        }
-
-    return (
+  return (
+    <div
+      className={`${
+        styles.popoverContainer
+      } relative flex h-100 items-center pr4`}
+    >
       <div
-        className={`${
-          telemarketing.popoverContainer
-        } relative flex h-100 items-center pr4`}
+        className="pointer w-100"
+        onMouseDown={toggleBox}
+        ref={e => {
+          iconRef.current = e
+        }}
       >
+        {renderHeader()}
+      </div>
+      <div className={boxClasses} style={boxPositionStyle} ref={boxRef}>
         <div
-          className="pointer w-100"
-          onClick={this.handleHeaderClick}
-          ref={e => {
-            this.iconRef = e
-          }}
+          className={`${
+            styles.popoverContentContainer
+          } mt3-ns bg-base shadow-3-ns`}
         >
-          {renderHeader()}
+          {children}
         </div>
         <div
           className={`${
-            telemarketing.popoverBox
-          } absolute top-2 z-max bb b--muted-3 ${
-            this.state.isBoxOpen ? 'flex' : 'dn'
-          }`}
-          style={boxPositionStyle}
-          ref={this.boxRef}
-        >
-          <div
-            className={`${
-              telemarketing.popoverContentContainer
-            } mt3-ns mt2-s bg-base shadow-3-ns`}
-          >
-            {children}
-          </div>
-          <div
-            className={`${
-              telemarketing.popoverArrowUp
-            } absolute top-0 rotate-135 dib-ns dn-s ${this.props.arrowClasses}`}
-          />
-        </div>
+            styles.popoverArrowUp
+          } absolute top-0 rotate-135 dib-ns dn-s ${arrowClasses}`}
+        />
       </div>
-    )
-  }
-
-  private handleHeaderClick = () => {
-    document.addEventListener('mouseup', this.handleDocumentMouseUp)
-
-    this.setState({ isBoxOpen: !this.state.isBoxOpen })
-  }
-
-  private handleDocumentMouseUp = (e: any) => {
-    const { isBoxOpen } = this.state
-    const target = e.target
-
-    if (
-      this.boxRef.current &&
-      (!this.boxRef.current.contains(target) ||
-        target.hasAttribute('closeonclick'))
-    ) {
-      if (isBoxOpen) {
-        this.setState({ isBoxOpen: false })
-      }
-      this.removeListeners()
-
-      target.dispatchEvent(new Event('closeonclick'))
-    }
-  }
-
-  private removeListeners = () => {
-    document.removeEventListener('mouseup', this.handleDocumentMouseUp)
-  }
+    </div>
+  )
 }
 
-export default withRuntimeContext(Popover)
+export default Popover

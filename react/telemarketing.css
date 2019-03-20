@@ -35,17 +35,6 @@
   text-align: left;
 }
 
-@media only screen and (max-width: 27em) {
-  .popoverBox {
-    width: 100vw;
-    right: -1vw;
-  }
-
-  .container .popoverBox {
-    top: 5vw;
-  }
-}
-
 @media screen and (aspect-ratio: 40/71) {
   .popoverBox {
     right: -2.4vw;
@@ -54,21 +43,29 @@
   }
 }
 
-.login {}
+.login {
+}
 
-.popoverHeaderIcon {}
+.popoverHeaderIcon {
+}
 
-.popoverHeaderEmail {}
+.popoverHeaderEmail {
+}
 
-.loginForm {}
+.loginForm {
+}
 
-.loginFormMessage {}
+.loginFormMessage {
+}
 
-.emailInput {}
+.emailInput {
+}
 
-.logout {}
+.logout {
+}
 
-.logoutForm {}
+.logoutForm {
+}
 
-.popoverContainer {}
-
+.popoverContainer {
+}

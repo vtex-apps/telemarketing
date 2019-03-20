@@ -1,6 +1,9 @@
 import React, { FunctionComponent, ReactNode } from 'react'
 
-export const withRuntimeContext: FunctionComponent = (comp: any) => comp
+export const useRuntime = () => {
+  const hints = { mobile: false, desktop: true }
+  return { hints }
+}
 
 export const Link: FunctionComponent<{ page: string; children: ReactNode }> = ({
   page,

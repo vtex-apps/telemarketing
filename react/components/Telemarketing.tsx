@@ -1,13 +1,12 @@
-import { path } from 'ramda'
-import React, { Component, Fragment, ReactNode } from 'react'
-import { withRuntimeContext } from 'vtex.render-runtime'
+import React, { Fragment, ReactNode } from 'react'
 import { Container } from 'vtex.store-components'
 import { IconAssistantSales } from 'vtex.store-icons'
+import classnames from 'classnames'
 
-import telemarketing from '../telemarketing.css'
 import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
+import styles from '../telemarketing.css'
 
 interface Props {
   /** Attendant email */
@@ -26,70 +25,73 @@ interface Props {
   onInputChange: (s: string) => void
   /** Function to set the session */
   onSetSession: (s: string) => void
+  /** If is mobile or not */
+  mobile: boolean
   /** Children */
   readonly children?: ReactNode
 }
 
 /** Telemarketing render component */
-export class Telemarketing extends Component<Props> {
-  public render() {
-    const {
-      intl,
-      client,
-      loading,
-      emailInput,
-      onInputChange,
-      onSetSession,
-      onDepersonify,
-      attendantEmail,
-    } = this.props
+const Telemarketing = (props: Props) => {
+  const {
+    intl,
+    client,
+    loading,
+    emailInput,
+    onInputChange,
+    onSetSession,
+    onDepersonify,
+    attendantEmail,
+    mobile,
+  } = props
 
-    const mobile = path(['__RUNTIME__', 'hints', 'mobile'], global)
+  const containerClasses = classnames(
+    styles.container,
+    'flex justify-center tc c-on-emphasis h2 t-mini pa2',
+    !!client ? 'bg-emphasis' : 'bg-base--inverted'
+  )
 
-    return (
-      <Container
-        className={`${
-          telemarketing.container
-        } flex w-100 justify-center tc c-on-emphasis h2 t-mini ${
-          client ? 'bg-emphasis' : 'bg-base--inverted'
-        } pa2`}
-      >
-        <div className="flex justify-between w-100 mw9">
-          <div className="flex items-center">
-            <IconAssistantSales size={25} className="white" />
-            <div className="ml2">
-              {mobile ? (
-                <b>{attendantEmail.slice(0, attendantEmail.indexOf('@'))}</b>
-              ) : (
-                <Fragment>
-                  {translate('telemarketing.attendant', intl)}
-                  <b>{`: ${attendantEmail}`}</b>
-                </Fragment>
-              )}
-            </div>
+  return (
+    <Container className={containerClasses}>
+      <div className="flex justify-between w-100 mw9">
+        <div className="flex pl3 w-50 items-center c-on-base--inverted">
+          <IconAssistantSales />
+          <div className="ml2">
+            {mobile ? (
+              <span>
+                {attendantEmail.slice(0, attendantEmail.indexOf('@'))}
+              </span>
+            ) : (
+              <Fragment>
+                {translate('telemarketing.attendant', intl)}
+                <span>{`: ${attendantEmail}`}</span>
+              </Fragment>
+            )}
           </div>
-          {client ? (
-            <LogoutCustomerSession
-              intl={intl}
-              client={client}
-              loading={loading}
-              onDepersonify={onDepersonify}
-              attendantEmail={attendantEmail}
-            />
-          ) : (
-            <LoginAsCustomer
-              intl={intl}
-              loading={loading}
-              emailInput={emailInput}
-              onInputChange={onInputChange}
-              onSetSession={onSetSession}
-              attendantEmail={attendantEmail}
-            />
-          )}
         </div>
-      </Container>
-    )
-  }
+        {!!client ? (
+          <LogoutCustomerSession
+            intl={intl}
+            client={client}
+            loading={loading}
+            onDepersonify={onDepersonify}
+            attendantEmail={attendantEmail}
+            mobile={mobile}
+          />
+        ) : (
+          <LoginAsCustomer
+            intl={intl}
+            loading={loading}
+            emailInput={emailInput}
+            onInputChange={onInputChange}
+            onSetSession={onSetSession}
+            attendantEmail={attendantEmail}
+            mobile={mobile}
+          />
+        )}
+      </div>
+    </Container>
+  )
 }
 
-export default withRuntimeContext(Telemarketing)
+export default Telemarketing

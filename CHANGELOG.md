@@ -7,14 +7,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.8.0] - 2019-03-20
+
+### Added
+
+- Prettier.
+- Add useDevice hook to allow resize.
+
+### Changed
+
+- No more class components due use of hooks.
+- Using design tokens instead of raw colors.
+
+### Fixed
+
+- Icons sizes and viewboxes.
+- Remove left gap on mobile devices.
+
 ## [2.7.6] - 2019-03-14
 
 ### Changed
+
 - Set width explicitly to `w-100`
 
 ## [2.7.5] - 2019-03-14
 
 ### Changed
+
 - Change language files to most generic.
 - Upgrade test suite adding more complex tests.
 
