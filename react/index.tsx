@@ -30,12 +30,9 @@ const TelemarketingContainer = (props: Props) => {
   const { intl, session } = props
   const processedSession = processSession(session)
 
-  const handleInputChange = useCallback(
-    (event: any) => {
-      setEmailInput(event.target.value)
-    },
-    [event]
-  )
+  const handleInputChange = useCallback((event: any) => {
+    setEmailInput(event.target.value)
+  }, [])
 
   const handleDepersonify = useCallback(() => {
     const { depersonify, session } = props
