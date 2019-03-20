@@ -1,5 +1,5 @@
 import { compose, path } from 'ramda'
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import { graphql } from 'react-apollo'
 import { injectIntl } from 'react-intl'
 import { withSession } from 'vtex.render-runtime'
@@ -30,11 +30,11 @@ const TelemarketingContainer = (props: Props) => {
   const { intl, session } = props
   const processedSession = processSession(session)
 
-  const handleInputChange = useCallback((event: any) => {
+  const handleInputChange = (event: any) => {
     setEmailInput(event.target.value)
-  }, [])
+  }
 
-  const handleDepersonify = useCallback(() => {
+  const handleDepersonify = () => {
     const { depersonify, session } = props
     setloadingImpersonate(true)
     depersonify()
@@ -45,9 +45,9 @@ const TelemarketingContainer = (props: Props) => {
         setEmailInput('')
       })
       .catch(() => setloadingImpersonate(false))
-  }, [])
+  }
 
-  const handleSetSession = useCallback((email: string) => {
+  const handleSetSession = (email: string) => {
     const { impersonate, session } = props
     setloadingImpersonate(true)
     const variables = { email }
@@ -61,7 +61,7 @@ const TelemarketingContainer = (props: Props) => {
         setloadingImpersonate(false)
       })
       .catch(() => setloadingImpersonate(false))
-  }, [])
+  }
 
   if (processedSession) {
     const { client, canImpersonate, attendantEmail } = processedSession
