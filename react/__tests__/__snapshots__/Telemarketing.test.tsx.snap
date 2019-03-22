@@ -60,7 +60,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
             </div>
           </div>
           <div
-            class="popoverBox absolute top-2 z-max bb b--muted-3 dn"
+            class="popoverBox absolute-ns top-2 z-max bb b--muted-3 fixed-s dn"
           >
             <div
               class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
@@ -208,7 +208,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
         </div>
       </div>
       <div
-        class="login false"
+        class="login w-50 flex flex-row-reverse-ns flex-row-s"
       >
         <div
           class="popoverContainer relative flex h-100 items-center pr4"
@@ -237,7 +237,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
             </div>
           </div>
           <div
-            class="popoverBox absolute top-2 z-max bb b--muted-3 dn"
+            class="popoverBox absolute-ns top-2 z-max bb b--muted-3 fixed-s dn"
           >
             <div
               class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
