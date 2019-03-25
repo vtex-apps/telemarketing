@@ -55,7 +55,7 @@ const LoginAsCustomer = (props: Props) => {
   )
 
   return (
-    <div className={`${styles.login} ${mobile && 'w-50'}`}>
+    <div className={`${styles.login} w-50 flex flex-row-reverse-ns flex-row-s`}>
       <Popover
         arrowClasses="bg-base--inverted"
         renderHeader={handleHeaderRendering}

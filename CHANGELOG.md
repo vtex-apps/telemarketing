@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.8.3] - 2019-03-25
+
+### Changed
+
+- Using tokens to define responsive width.
+
 ## [2.8.2] - 2019-03-20
+
 ### Changed
 
 - Set width explicitly to `w-100` again

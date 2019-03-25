@@ -34,10 +34,10 @@ const Popover = (props: Props) => {
 
   const boxClasses = classnames(
     styles.popoverBox,
-    'absolute top-2 z-max bb b--muted-3',
+    'absolute-ns top-2 z-max bb b--muted-3 fixed-s',
     isBoxOpen ? 'flex' : 'dn',
     {
-      'fixed left-0 right-0': mobile,
+      'left-0 right-0': mobile,
     }
   )
 
