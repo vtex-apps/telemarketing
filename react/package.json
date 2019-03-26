@@ -3,6 +3,8 @@
   "scripts": {
     "pretest": "yarn",
     "test": "vtex-test-tools test",
+    "test:coverage": "vtex-test-tools test --collectCoverage",
+    "gen:coveralls": "yarn test:coverage && cat ./coverage/lcov.info | coveralls",
     "lint": "tsc --noEmit --pretty && tslint -c tslint.json './**/*.ts'"
   },
   "dependencies": {
@@ -30,6 +32,7 @@
     "@types/react-helmet": "^5.0.7",
     "@types/react-intl": "^2.3.11",
     "@vtex/test-tools": "^0.1.2",
+    "coveralls": "^3.0.3",
     "tslint": "^5.11.0",
     "tslint-config-vtex": "^2.0.0",
     "tslint-eslint-rules": "^5.4.0"
