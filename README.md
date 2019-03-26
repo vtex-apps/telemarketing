@@ -121,3 +121,4 @@ To execute our tests go to `react/` folder and run `yarn test`
 ### Travis CI
 
 [![Build Status](https://travis-ci.org/vtex-apps/telemarketing.svg?branch=master)](https://travis-ci.org/vtex-apps/telemarketing)
+[![Coverage Status](https://coveralls.io/repos/github/vtex-apps/telemarketing/badge.svg?branch=master)](https://coveralls.io/github/vtex-apps/telemarketing?branch=master)
