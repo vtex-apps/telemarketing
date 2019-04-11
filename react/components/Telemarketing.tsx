@@ -51,7 +51,7 @@ const Telemarketing = (props: Props) => {
   )
 
   return (
-    <div className={`w-100 ${styles.wrapper} ${!!client ? 'bg-emphasis c-on-emphasis' : 'bg-base--inverted c-on-base--inverted'}`}>
+    <div className={classnames('w-100', styles.wrapper, !!client ? 'bg-emphasis c-on-emphasis' : 'bg-base--inverted c-on-base--inverted')}>
       <Container className={containerClasses}>
         <div className="flex justify-between w-100 mw9">
           <div className="flex pl3 w-50 items-center c-on-base--inverted">
