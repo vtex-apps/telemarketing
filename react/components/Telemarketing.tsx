@@ -47,50 +47,51 @@ const Telemarketing = (props: Props) => {
 
   const containerClasses = classnames(
     styles.container,
-    'flex justify-center tc c-on-emphasis h2 t-mini pa2 w-100',
-    !!client ? 'bg-emphasis' : 'bg-base--inverted'
+    'flex justify-center tc h2 t-mini pa2 w-100'
   )
 
   return (
-    <Container className={containerClasses}>
-      <div className="flex justify-between w-100 mw9">
-        <div className="flex pl3 w-50 items-center c-on-base--inverted">
-          <IconAssistantSales />
-          <div className="ml2">
-            {mobile ? (
-              <span>
-                {attendantEmail.slice(0, attendantEmail.indexOf('@'))}
-              </span>
-            ) : (
-              <Fragment>
-                {translate('telemarketing.attendant', intl)}
-                <span>{`: ${attendantEmail}`}</span>
-              </Fragment>
-            )}
+    <div className={`w-100 ${styles.wrapper} ${!!client ? 'bg-emphasis c-on-emphasis' : 'bg-base--inverted c-on-base--inverted'}`}>
+      <Container className={containerClasses}>
+        <div className="flex justify-between w-100 mw9">
+          <div className="flex pl3 w-50 items-center c-on-base--inverted">
+            <IconAssistantSales />
+            <div className="ml2">
+              {mobile ? (
+                <span>
+                  {attendantEmail.slice(0, attendantEmail.indexOf('@'))}
+                </span>
+              ) : (
+                <Fragment>
+                  {translate('telemarketing.attendant', intl)}
+                  <span>{`: ${attendantEmail}`}</span>
+                </Fragment>
+              )}
+            </div>
           </div>
+          {!!client ? (
+            <LogoutCustomerSession
+              intl={intl}
+              client={client}
+              loading={loading}
+              onDepersonify={onDepersonify}
+              attendantEmail={attendantEmail}
+              mobile={mobile}
+            />
+          ) : (
+            <LoginAsCustomer
+              intl={intl}
+              loading={loading}
+              emailInput={emailInput}
+              onInputChange={onInputChange}
+              onSetSession={onSetSession}
+              attendantEmail={attendantEmail}
+              mobile={mobile}
+            />
+          )}
         </div>
-        {!!client ? (
-          <LogoutCustomerSession
-            intl={intl}
-            client={client}
-            loading={loading}
-            onDepersonify={onDepersonify}
-            attendantEmail={attendantEmail}
-            mobile={mobile}
-          />
-        ) : (
-          <LoginAsCustomer
-            intl={intl}
-            loading={loading}
-            emailInput={emailInput}
-            onInputChange={onInputChange}
-            onSetSession={onSetSession}
-            attendantEmail={attendantEmail}
-            mobile={mobile}
-          />
-        )}
-      </div>
-    </Container>
+      </Container>
+    </div>
   )
 }
 
