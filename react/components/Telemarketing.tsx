@@ -1,9 +1,9 @@
 import React, { Fragment, ReactNode } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { Container } from 'vtex.store-components'
 import { IconAssistantSales } from 'vtex.store-icons'
 import classnames from 'classnames'
 
-import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
 import styles from '../telemarketing.css'
@@ -15,8 +15,6 @@ interface Props {
   client?: Client
   /** Email input value */
   emailInput: string
-  /** Intl object */
-  intl: any
   /** Loading status */
   loading: boolean
   /** Function to depersonify the impersonated customer */
@@ -34,7 +32,6 @@ interface Props {
 /** Telemarketing render component */
 const Telemarketing = (props: Props) => {
   const {
-    intl,
     client,
     loading,
     emailInput,
@@ -63,7 +60,7 @@ const Telemarketing = (props: Props) => {
                 </span>
               ) : (
                 <Fragment>
-                  {translate('telemarketing.attendant', intl)}
+                  <FormattedMessage id="telemarketing.attendant" />
                   <span>{`: ${attendantEmail}`}</span>
                 </Fragment>
               )}
@@ -71,7 +68,6 @@ const Telemarketing = (props: Props) => {
           </div>
           {!!client ? (
             <LogoutCustomerSession
-              intl={intl}
               client={client}
               loading={loading}
               onDepersonify={onDepersonify}
@@ -80,7 +76,6 @@ const Telemarketing = (props: Props) => {
             />
           ) : (
             <LoginAsCustomer
-              intl={intl}
               loading={loading}
               emailInput={emailInput}
               onInputChange={onInputChange}

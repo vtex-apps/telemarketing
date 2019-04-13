@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
-import translate from '../utils/translate'
 import Popover from './Popover'
 
 import styles from '../telemarketing.css'
@@ -17,8 +17,6 @@ interface Props {
   onSetSession: (s: string) => void
   /** Loading status */
   loading: boolean
-  /** Intl info */
-  intl: any
   /** If is mobile or not */
   mobile: boolean
 }
@@ -31,7 +29,6 @@ const LoginAsCustomer = (props: Props) => {
     onSetSession,
     loading,
     emailInput,
-    intl,
     mobile,
   } = props
 
@@ -40,7 +37,7 @@ const LoginAsCustomer = (props: Props) => {
       <div className="flex items-center c-on-base--inverted">
         <IconProfile />
         <div className="ml2">
-          {translate('telemarketing-login.message', intl)}
+          <FormattedMessage id="telemarketing-login.message" />
         </div>
       </div>
     ),
@@ -72,7 +69,7 @@ const LoginAsCustomer = (props: Props) => {
         <div className="bg-base w-100 ph5 pb5 pt7">
           <div className={`${styles.loginForm} c-disabled`}>
             <div className={`${styles.loginFormMessage} t-small tl mb3`}>
-              {translate('telemarketing-login.message', intl)}
+              <FormattedMessage id="telemarketing-login.message" />
             </div>
             <div className={`${styles.emailInput} mb5`}>
               <Input
@@ -87,7 +84,7 @@ const LoginAsCustomer = (props: Props) => {
               onClick={() => onSetSession(emailInput)}
               isLoading={loading}
             >
-              {translate('telemarketing-login.button', intl)}
+              <FormattedMessage id="telemarketing-login.button" />
             </Button>
           </div>
         </div>

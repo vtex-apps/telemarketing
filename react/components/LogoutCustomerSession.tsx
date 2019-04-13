@@ -1,17 +1,15 @@
 import React, { ReactNode, useMemo, useCallback } from 'react'
+import { FormattedMessage } from 'react-intl'
 import classnames from 'classnames'
 import { Link } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 
-import translate from '../utils/translate'
 import Popover from './Popover'
 
 import styles from '../telemarketing.css'
 
 interface Props {
-  /** Intl info */
-  intl: any
   /** Signed in client */
   client: Client
   /** Loading Status */
@@ -28,7 +26,7 @@ interface Props {
 
 /** Component that shows the client info calls the setSession function  to logout. */
 const LogoutCustomerSession = (props: Props) => {
-  const { intl, client, loading, onDepersonify, attendantEmail, mobile } = props
+  const { client, loading, onDepersonify, attendantEmail, mobile } = props
 
   const getClientName = (client: any) =>
     !!client
@@ -88,14 +86,14 @@ const LogoutCustomerSession = (props: Props) => {
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">
-                  {translate('telemarketing-logout.document-label', intl)}
+                  <FormattedMessage id="telemarketing-logout.document-label" />
                 </div>
                 <div className="pb5 pl2 c-muted-3">{client.document}</div>
               </div>
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">
-                  {translate('telemarketing-logout.phone-label', intl)}
+                  <FormattedMessage id="telemarketing-logout.phone-label" />
                 </div>
                 <div className="pb5 pl2 c-muted-3">{client.phone}</div>
               </div>
@@ -103,7 +101,7 @@ const LogoutCustomerSession = (props: Props) => {
             <div className="flex justify-around mt5">
               <Link page="store.account">
                 <Button size="regular">
-                  {translate('telemarketing-logout.button-orders', intl)}
+                  <FormattedMessage id="telemarketing-logout.button-orders" />
                 </Button>
               </Link>
               <Button
@@ -111,7 +109,7 @@ const LogoutCustomerSession = (props: Props) => {
                 onClick={() => onDepersonify()}
                 isLoading={loading}
               >
-                {translate('telemarketing-logout.button', intl)}
+                <FormattedMessage id="telemarketing-logout.button" />
               </Button>
             </div>
           </div>
