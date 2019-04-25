@@ -40,7 +40,7 @@ const LoginAsCustomer = (props: Props) => {
       <div className="flex items-center c-on-base--inverted">
         <IconProfile />
         <div className="ml2">
-          {translate('telemarketing-login.message', intl)}
+          {translate('store/telemarketing-login.message', intl)}
         </div>
       </div>
     ),
@@ -72,7 +72,7 @@ const LoginAsCustomer = (props: Props) => {
         <div className="bg-base w-100 ph5 pb5 pt7">
           <div className={`${styles.loginForm} c-disabled`}>
             <div className={`${styles.loginFormMessage} t-small tl mb3`}>
-              {translate('telemarketing-login.message', intl)}
+              {translate('store/telemarketing-login.message', intl)}
             </div>
             <div className={`${styles.emailInput} mb5`}>
               <Input
@@ -87,7 +87,7 @@ const LoginAsCustomer = (props: Props) => {
               onClick={() => onSetSession(emailInput)}
               isLoading={loading}
             >
-              {translate('telemarketing-login.button', intl)}
+              {translate('store/telemarketing-login.button', intl)}
             </Button>
           </div>
         </div>
