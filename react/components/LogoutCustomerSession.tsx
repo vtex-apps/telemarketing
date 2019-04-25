@@ -88,14 +88,14 @@ const LogoutCustomerSession = (props: Props) => {
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">
-                  {translate('telemarketing-logout.document-label', intl)}
+                  {translate('store/telemarketing-logout.document-label', intl)}
                 </div>
                 <div className="pb5 pl2 c-muted-3">{client.document}</div>
               </div>
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">
-                  {translate('telemarketing-logout.phone-label', intl)}
+                  {translate('store/telemarketing-logout.phone-label', intl)}
                 </div>
                 <div className="pb5 pl2 c-muted-3">{client.phone}</div>
               </div>
@@ -103,7 +103,7 @@ const LogoutCustomerSession = (props: Props) => {
             <div className="flex justify-around mt5">
               <Link page="store.account">
                 <Button size="regular">
-                  {translate('telemarketing-logout.button-orders', intl)}
+                  {translate('store/telemarketing-logout.button-orders', intl)}
                 </Button>
               </Link>
               <Button
@@ -111,7 +111,7 @@ const LogoutCustomerSession = (props: Props) => {
                 onClick={() => onDepersonify()}
                 isLoading={loading}
               >
-                {translate('telemarketing-logout.button', intl)}
+                {translate('store/telemarketing-logout.button', intl)}
               </Button>
             </div>
           </div>

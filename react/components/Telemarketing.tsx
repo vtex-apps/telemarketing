@@ -63,7 +63,7 @@ const Telemarketing = (props: Props) => {
                 </span>
               ) : (
                 <Fragment>
-                  {translate('telemarketing.attendant', intl)}
+                  {translate('store/telemarketing.attendant', intl)}
                   <span>{`: ${attendantEmail}`}</span>
                 </Fragment>
               )}

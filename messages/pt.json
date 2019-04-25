@@ -1,10 +1,10 @@
 {
-  "telemarketing.attendant": "Atendente",
-  "telemarketing.client": "Cliente",
-  "telemarketing-login.message": "Entrar como cliente",
-  "telemarketing-login.button": "Entrar",
-  "telemarketing-logout.button": "Sair",
-  "telemarketing-logout.document-label": "Documento",
-  "telemarketing-logout.phone-label": "Telefone",
-  "telemarketing-logout.button-orders": "Pedidos"
+  "store/telemarketing.attendant": "Atendente",
+  "store/telemarketing.client": "Cliente",
+  "store/telemarketing-login.message": "Entrar como cliente",
+  "store/telemarketing-login.button": "Entrar",
+  "store/telemarketing-logout.button": "Sair",
+  "store/telemarketing-logout.document-label": "Documento",
+  "store/telemarketing-logout.phone-label": "Telefone",
+  "store/telemarketing-logout.button-orders": "Pedidos"
 }
