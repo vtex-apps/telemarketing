@@ -8,10 +8,6 @@
     "lint": "tsc --noEmit --pretty && tslint -c tslint.json './**/*.ts'"
   },
   "dependencies": {
-    "@types/classnames": "^2.2.7",
-    "@types/graphql": "^14.0.1",
-    "@types/node": "^11.9.6",
-    "@types/ramda": "^0.25.39",
     "apollo-client": "^2.4.7",
     "classnames": "^2.2.6",
     "debounce": "^1.2.0",
@@ -24,15 +20,18 @@
     "react-intl": "^2.4.0"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.7",
     "@types/debounce": "^1.2.0",
+    "@types/graphql": "^14.2.0",
     "@types/jest": "^24.0.9",
-    "@types/node": "^11.11.3",
-    "@types/prop-types": "^15.5.6",
+    "@types/node": "^12.0.2",
+    "@types/ramda": "^0.26.8",
     "@types/react": "^16.4.14",
     "@types/react-helmet": "^5.0.7",
     "@types/react-intl": "^2.3.11",
     "@vtex/test-tools": "^0.1.2",
     "coveralls": "^3.0.3",
+    "prettier": "^1.17.1",
     "tslint": "^5.11.0",
     "tslint-config-vtex": "^2.0.0",
     "tslint-eslint-rules": "^5.4.0"
