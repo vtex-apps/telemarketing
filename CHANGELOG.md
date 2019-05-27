@@ -7,12 +7,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [2.9.0] - 2019-04-25
+### Added
+
+- Prettier dependency.
+
 ### Changed
+
+- Eslint config.
+- Remove unused files.
+- Remove @types/prop-types dependency.
+
+## [2.9.0] - 2019-04-25
+
+### Changed
+
 - Scope messages by domain
 
 ## [2.8.5] - 2019-04-11
+
 ### Fixed
+
 - Fixed bug where the width would be limited by the Container's width.
 
 ## [2.8.4] - 2019-04-04
