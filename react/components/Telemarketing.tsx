@@ -79,15 +79,15 @@ const Telemarketing = (props: Props) => {
               mobile={mobile}
             />
           ) : (
-              <LoginAsCustomer
-                intl={intl}
-                loading={loading}
-                emailInput={emailInput}
-                onInputChange={onInputChange}
-                onSetSession={onSetSession}
-                attendantEmail={attendantEmail}
-                mobile={mobile}
-              />
+            <LoginAsCustomer
+              intl={intl}
+              loading={loading}
+              emailInput={emailInput}
+              onInputChange={onInputChange}
+              onSetSession={onSetSession}
+              attendantEmail={attendantEmail}
+              mobile={mobile}
+            />
           )}
         </div>
       </Container>
