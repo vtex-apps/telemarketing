@@ -62,116 +62,118 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              class="popoverBox absolute-ns top-2 z-max bb b--muted-3 fixed-s dn"
-            >
+            <div>
               <div
-                class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
+                class="popoverBox absolute-ns top-2 z-max bb b--muted-3 fixed-s dn"
               >
                 <div
-                  class="bg-emphasis w-100 pa7"
+                  class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
                 >
                   <div
-                    class="popoverHeaderIcon c-on-base--inverted"
+                    class="bg-emphasis w-100 pa7"
                   >
-                    <svg
-                      class="IconAssistantSales-mock  "
-                      height="50"
-                      width="50"
+                    <div
+                      class="popoverHeaderIcon c-on-base--inverted"
                     >
-                      <rect
+                      <svg
+                        class="IconAssistantSales-mock  "
                         height="50"
                         width="50"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="popoverHeaderEmail c-on-emphasis"
-                  >
-                    attendant@vtex.com
-                  </div>
-                </div>
-                <div
-                  class="bg-base w-100 pt7 pb5 ph5"
-                >
-                  <div
-                    class="logoutForm c-disabled"
-                  >
-                    <div
-                      class="w-100 bw1 bb b--muted-5 flex-wrap"
-                    >
-                      <div
-                        class="clientName w-100 t-heading-5 center pb5 c-on-base"
                       >
-                        name
-                      </div>
-                      <div
-                        class="w-100 flex flex-wrap t-small"
-                      >
-                        <div
-                          class="tl pb5 pr2"
-                        >
-                          Email
-                        </div>
-                        <div
-                          class="pb5 pl2 c-muted-3"
-                        >
-                          client@vtex.com
-                        </div>
-                      </div>
-                      <div
-                        class="w-100 flex flex-wrap t-small"
-                      >
-                        <div
-                          class="tl pb5 pr2"
-                        >
-                          Document
-                        </div>
-                        <div
-                          class="pb5 pl2 c-muted-3"
-                        >
-                          document
-                        </div>
-                      </div>
-                      <div
-                        class="w-100 flex flex-wrap t-small"
-                      >
-                        <div
-                          class="tl pb5 pr2"
-                        >
-                          Phone
-                        </div>
-                        <div
-                          class="pb5 pl2 c-muted-3"
-                        >
-                          phone
-                        </div>
-                      </div>
+                        <rect
+                          height="50"
+                          width="50"
+                        />
+                      </svg>
                     </div>
                     <div
-                      class="flex justify-around mt5"
+                      class="popoverHeaderEmail c-on-emphasis"
                     >
-                      <a
-                        href="store.account"
+                      attendant@vtex.com
+                    </div>
+                  </div>
+                  <div
+                    class="bg-base w-100 pt7 pb5 ph5"
+                  >
+                    <div
+                      class="logoutForm c-disabled"
+                    >
+                      <div
+                        class="w-100 bw1 bb b--muted-5 flex-wrap"
                       >
+                        <div
+                          class="clientName w-100 t-heading-5 center pb5 c-on-base"
+                        >
+                          name
+                        </div>
+                        <div
+                          class="w-100 flex flex-wrap t-small"
+                        >
+                          <div
+                            class="tl pb5 pr2"
+                          >
+                            Email
+                          </div>
+                          <div
+                            class="pb5 pl2 c-muted-3"
+                          >
+                            client@vtex.com
+                          </div>
+                        </div>
+                        <div
+                          class="w-100 flex flex-wrap t-small"
+                        >
+                          <div
+                            class="tl pb5 pr2"
+                          >
+                            Document
+                          </div>
+                          <div
+                            class="pb5 pl2 c-muted-3"
+                          >
+                            document
+                          </div>
+                        </div>
+                        <div
+                          class="w-100 flex flex-wrap t-small"
+                        >
+                          <div
+                            class="tl pb5 pr2"
+                          >
+                            Phone
+                          </div>
+                          <div
+                            class="pb5 pl2 c-muted-3"
+                          >
+                            phone
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="flex justify-around mt5"
+                      >
+                        <a
+                          href="store.account"
+                        >
+                          <button
+                            type="button"
+                          >
+                            Orders
+                          </button>
+                        </a>
                         <button
                           type="button"
                         >
-                          Orders
+                          Logout
                         </button>
-                      </a>
-                      <button
-                        type="button"
-                      >
-                        Logout
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div
+                  class="popoverArrowUp absolute top-0 rotate-135 dib-ns dn-s bg-emphasis"
+                />
               </div>
-              <div
-                class="popoverArrowUp absolute top-0 rotate-135 dib-ns dn-s bg-emphasis"
-              />
             </div>
           </div>
         </div>
@@ -243,65 +245,67 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                 </div>
               </div>
             </div>
-            <div
-              class="popoverBox absolute-ns top-2 z-max bb b--muted-3 fixed-s dn"
-            >
+            <div>
               <div
-                class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
+                class="popoverBox absolute-ns top-2 z-max bb b--muted-3 fixed-s dn"
               >
                 <div
-                  class="bg-base--inverted w-100 pa7 c-on-base--inverted"
+                  class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
                 >
                   <div
-                    class="popoverHeaderIcon"
+                    class="bg-base--inverted w-100 pa7 c-on-base--inverted"
                   >
-                    <svg
-                      class="IconAssistantSales-mock  "
-                      height="50"
-                      width="50"
+                    <div
+                      class="popoverHeaderIcon"
                     >
-                      <rect
+                      <svg
+                        class="IconAssistantSales-mock  "
                         height="50"
                         width="50"
-                      />
-                    </svg>
+                      >
+                        <rect
+                          height="50"
+                          width="50"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="popoverHeaderEmail white-50 mt3"
+                    >
+                      attendant@vtex.com
+                    </div>
                   </div>
                   <div
-                    class="popoverHeaderEmail white-50 mt3"
+                    class="bg-base w-100 ph5 pb5 pt7"
                   >
-                    attendant@vtex.com
+                    <div
+                      class="loginForm c-disabled"
+                    >
+                      <div
+                        class="loginFormMessage t-small tl mb3"
+                      >
+                        Login as
+                      </div>
+                      <div
+                        class="emailInput mb5"
+                      >
+                        <input
+                          placeholder="Ex: example@mail.com"
+                          value="email@vtex.com"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                      >
+                        Login
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div
-                  class="bg-base w-100 ph5 pb5 pt7"
-                >
-                  <div
-                    class="loginForm c-disabled"
-                  >
-                    <div
-                      class="loginFormMessage t-small tl mb3"
-                    >
-                      Login as
-                    </div>
-                    <div
-                      class="emailInput mb5"
-                    >
-                      <input
-                        placeholder="Ex: example@mail.com"
-                        value="email@vtex.com"
-                      />
-                    </div>
-                    <button
-                      type="button"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </div>
+                  class="popoverArrowUp absolute top-0 rotate-135 dib-ns dn-s bg-base--inverted"
+                />
               </div>
-              <div
-                class="popoverArrowUp absolute top-0 rotate-135 dib-ns dn-s bg-base--inverted"
-              />
             </div>
           </div>
         </div>
