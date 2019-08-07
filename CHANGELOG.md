@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- the problem where on some stores the popover wasn't being displayed correctly because of the z-index
+
 ## [2.9.2] - 2019-06-27
 
 ### Fixed
