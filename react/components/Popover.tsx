@@ -2,6 +2,7 @@ import React, { ReactNode, useRef, useState, useCallback } from 'react'
 import classnames from 'classnames'
 import useOutsideClick from '../hooks/useOutsideClick'
 import styles from '../telemarketing.css'
+import { Overlay } from 'vtex.react-portal'
 
 interface Props {
   /** Function that will display the header */
@@ -56,20 +57,22 @@ const Popover = (props: Props) => {
       >
         {renderHeader()}
       </div>
-      <div className={boxClasses} style={boxPositionStyle} ref={boxRef}>
-        <div
-          className={`${
-            styles.popoverContentContainer
-          } mt3-ns bg-base shadow-3-ns`}
-        >
-          {children}
+      <Overlay>
+        <div className={boxClasses} style={boxPositionStyle} ref={boxRef}>
+          <div
+            className={`${
+              styles.popoverContentContainer
+            } mt3-ns bg-base shadow-3-ns`}
+          >
+            {children}
+          </div>
+          <div
+            className={`${
+              styles.popoverArrowUp
+            } absolute top-0 rotate-135 dib-ns dn-s ${arrowClasses}`}
+          />
         </div>
-        <div
-          className={`${
-            styles.popoverArrowUp
-          } absolute top-0 rotate-135 dib-ns dn-s ${arrowClasses}`}
-        />
-      </div>
+      </Overlay> 
     </div>
   )
 }
