@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.3] - 2019-08-08
+
 ### Fixed
 
 - Issue with popover being displayed behind other elements.
