@@ -27,9 +27,8 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
           <div
             class="ml2"
           >
-            Attendant
             <span>
-              : attendant@vtex.com
+              Attendant: attendant@vtex.com
             </span>
           </div>
         </div>
@@ -43,7 +42,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
               class="pointer w-100"
             >
               <div
-                class="c-on-base--inverted flex align-center"
+                class="c-on-base--inverted flex items-center"
               >
                 <svg
                   class="IconProfile-mock  "
@@ -58,7 +57,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                 <div
                   class="pa2 clientNameBar w-100"
                 >
-                  client@vtex.com
+                  name
                 </div>
               </div>
             </div>
@@ -115,7 +114,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                             Email
                           </div>
                           <div
-                            class="pb5 pl2 c-muted-3"
+                            class="pb5 pl2 c-muted-1"
                           >
                             client@vtex.com
                           </div>
@@ -126,10 +125,12 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                           <div
                             class="tl pb5 pr2"
                           >
-                            Document
+                            <span>
+                              Document
+                            </span>
                           </div>
                           <div
-                            class="pb5 pl2 c-muted-3"
+                            class="pb5 pl2 c-muted-1"
                           >
                             document
                           </div>
@@ -140,10 +141,12 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                           <div
                             class="tl pb5 pr2"
                           >
-                            Phone
+                            <span>
+                              Phone
+                            </span>
                           </div>
                           <div
-                            class="pb5 pl2 c-muted-3"
+                            class="pb5 pl2 c-muted-1"
                           >
                             phone
                           </div>
@@ -158,13 +161,17 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                           <button
                             type="button"
                           >
-                            Orders
+                            <span>
+                              Orders
+                            </span>
                           </button>
                         </a>
                         <button
                           type="button"
                         >
-                          Logout
+                          <span>
+                            Logout
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -210,9 +217,8 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
           <div
             class="ml2"
           >
-            Attendant
             <span>
-              : attendant@vtex.com
+              Attendant: attendant@vtex.com
             </span>
           </div>
         </div>
@@ -241,7 +247,9 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                 <div
                   class="ml2"
                 >
-                  Login as
+                  <span>
+                    Login as
+                  </span>
                 </div>
               </div>
             </div>
@@ -284,7 +292,9 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                       <div
                         class="loginFormMessage t-small tl mb3"
                       >
-                        Login as
+                        <span>
+                          Login as
+                        </span>
                       </div>
                       <div
                         class="emailInput mb5"
@@ -297,7 +307,9 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                       <button
                         type="button"
                       >
-                        Login
+                        <span>
+                          Login
+                        </span>
                       </button>
                     </div>
                   </div>

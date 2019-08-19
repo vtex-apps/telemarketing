@@ -1,5 +1,5 @@
 {
-  "store/telemarketing.attendant": "Attendant",
+  "store/telemarketing.attendant": "Attendant: {attendant}",
   "store/telemarketing.client": "Client",
   "store/telemarketing-login.message": "Login as",
   "store/telemarketing-login.button": "Login",

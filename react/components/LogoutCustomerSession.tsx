@@ -4,14 +4,12 @@ import { Link } from 'vtex.render-runtime'
 import { Button } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 
-import translate from '../utils/translate'
 import Popover from './Popover'
 
 import styles from '../telemarketing.css'
+import { FormattedMessage } from 'react-intl';
 
 interface Props {
-  /** Intl info */
-  intl: any
   /** Signed in client */
   client: Client
   /** Loading Status */
@@ -28,7 +26,7 @@ interface Props {
 
 /** Component that shows the client info calls the setSession function  to logout. */
 const LogoutCustomerSession = (props: Props) => {
-  const { intl, client, loading, onDepersonify, attendantEmail, mobile } = props
+  const { client, loading, onDepersonify, attendantEmail, mobile } = props
 
   const getClientName = (client: any) =>
     !!client
@@ -40,13 +38,13 @@ const LogoutCustomerSession = (props: Props) => {
   const getHeader = (mobile: boolean) => {
     const headerClasses = classnames(
       'c-on-base--inverted',
-      mobile ? 'flex align-center w-100' : 'flex align-center'
+      mobile ? 'flex items-center w-100' : 'flex items-center'
     )
     return (
       <div className={headerClasses}>
         <IconProfile />
         <div className={`pa2 ${styles.clientNameBar} w-100`}>
-          {mobile ? clientName : client.email}
+          {clientName}
         </div>
       </div>
     )
@@ -83,27 +81,27 @@ const LogoutCustomerSession = (props: Props) => {
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">Email</div>
-                <div className="pb5 pl2 c-muted-3">{client.email}</div>
+                <div className="pb5 pl2 c-muted-1">{client.email}</div>
               </div>
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">
-                  {translate('store/telemarketing-logout.document-label', intl)}
+                  <FormattedMessage id="store/telemarketing-logout.document-label" />
                 </div>
-                <div className="pb5 pl2 c-muted-3">{client.document}</div>
+                <div className="pb5 pl2 c-muted-1">{client.document}</div>
               </div>
 
               <div className="w-100 flex flex-wrap t-small">
                 <div className="tl pb5 pr2">
-                  {translate('store/telemarketing-logout.phone-label', intl)}
+                  <FormattedMessage id="store/telemarketing-logout.phone-label" />
                 </div>
-                <div className="pb5 pl2 c-muted-3">{client.phone}</div>
+                <div className="pb5 pl2 c-muted-1">{client.phone}</div>
               </div>
             </div>
             <div className="flex justify-around mt5">
               <Link page="store.account">
                 <Button size="regular">
-                  {translate('store/telemarketing-logout.button-orders', intl)}
+                  <FormattedMessage id="store/telemarketing-logout.button-orders" />
                 </Button>
               </Link>
               <Button
@@ -111,7 +109,7 @@ const LogoutCustomerSession = (props: Props) => {
                 onClick={() => onDepersonify()}
                 isLoading={loading}
               >
-                {translate('store/telemarketing-logout.button', intl)}
+                <FormattedMessage id="store/telemarketing-logout.button" />
               </Button>
             </div>
           </div>
