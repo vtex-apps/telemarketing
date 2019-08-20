@@ -1,24 +1,43 @@
 import React from 'react'
-import { mergeDeepRight } from 'ramda'
 import { render, fireEvent } from '@vtex/test-tools/react'
 
 import Telemarketing from '../components/Telemarketing'
+import { useTelemarketingState, State, ErrorCode } from '../components/StateProvider'
+
+const useTelemarketingStateMocked = useTelemarketingState as jest.Mock<State>
+
+jest.mock('../components/StateProvider', () => {
+  const { ErrorCode } = jest.requireActual('../components/StateProvider')
+
+  return {
+    ErrorCode,
+    useTelemarketingState: jest.fn(),
+    useTelemarketingDispatch: jest.fn()
+  }
+})
 
 describe('<Telemarketing /> component', () => {
   const renderComponent = (customProps = {}) => {
     const defaultProps = {
       attendantEmail: 'attendant@vtex.com',
-      emailInput: 'email@vtex.com',
-      loading: false,
       onDepersonify: () => {},
       onInputChange: () => {},
       onImpersonate: () => {},
     }
 
-    return render(<Telemarketing {...defaultProps} {...customProps} />)
+    return render(
+      <Telemarketing {...defaultProps} {...customProps} />
+    )
   }
 
   it('should match snapshot without client', () => {
+    useTelemarketingStateMocked.mockImplementation(() => ({
+      email: '',
+      loading: false,
+      error: false,
+      errorCode: null,
+    }))
+
     const { asFragment } = renderComponent()
 
     expect(asFragment()).toMatchSnapshot()
@@ -104,5 +123,33 @@ describe('<Telemarketing /> component', () => {
     fireEvent.click(getByText('Logout'))
 
     expect(onDepersonify).toBeCalledTimes(1)
+  })
+
+  it('should handle invalid email', () => {
+    useTelemarketingStateMocked.mockImplementation(() => ({
+      email: '',
+      loading: false,
+      error: true,
+      errorCode: ErrorCode.BAD_USER_INPUT,
+    }))
+
+    const { getByText } = renderComponent()
+    const invalidEmail = getByText('Type a valid email.')
+
+    expect(invalidEmail).toBeTruthy()
+  })
+
+  it('should handle user not registered', () => {
+    useTelemarketingStateMocked.mockImplementation(() => ({
+      email: '',
+      loading: false,
+      error: true,
+      errorCode: ErrorCode.USER_NOT_REGISTERED,
+    }))
+
+    const { getByText } = renderComponent()
+    const invalidEmail = getByText('User not registered.')
+
+    expect(invalidEmail).toBeTruthy()
   })
 })

@@ -1,6 +1,6 @@
 import React, { useReducer, createContext, ComponentType, useContext, ReactChild } from 'react'
 
-interface State {
+export interface State {
   email: string
   loading: boolean
   error: boolean
@@ -71,7 +71,7 @@ type Dispatch = (action: Action) => void
 const StateContext = createContext<State>(initialState)
 const DispatchContext = createContext<Dispatch>(() => {})
 
-const TelemarketingStateProvider = ({ children }: { children: ReactChild }) => {
+export const TelemarketingStateProvider = ({ children }: { children: ReactChild }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
