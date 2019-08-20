@@ -6,5 +6,7 @@
   "store/telemarketing-logout.button": "Logout",
   "store/telemarketing-logout.document-label": "Document",
   "store/telemarketing-logout.phone-label": "Phone",
-  "store/telemarketing-logout.button-orders": "Orders"
+  "store/telemarketing-logout.button-orders": "Orders",
+  "store/telemarketing.error.user-not-registered": "User not registered.",
+  "store/telemarketing.error.bad-user-input": "Type a valid email."
 }

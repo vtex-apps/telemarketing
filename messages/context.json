@@ -6,5 +6,7 @@
   "store/telemarketing-logout.button": "store/telemarketing-logout.button",
   "store/telemarketing-logout.document-label": "store/telemarketing-logout.document-label",
   "store/telemarketing-logout.phone-label": "store/telemarketing-logout.phone-label",
-  "store/telemarketing-logout.button-orders": "store/telemarketing-logout.button-orders"
+  "store/telemarketing-logout.button-orders": "store/telemarketing-logout.button-orders",
+  "store/telemarketing.error.user-not-registered": "store/telemarketing.error.user-not-registered",
+  "store/telemarketing.error.bad-user-input": "store/telemarketing.error.bad-user-input"
 }

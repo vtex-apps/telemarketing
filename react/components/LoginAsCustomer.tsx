@@ -1,35 +1,31 @@
 import React, { useCallback } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 import Popover from './Popover'
 
 import styles from '../telemarketing.css'
+import { useTelemarketingDispatch, useTelemarketingState, ErrorCode } from './StateProvider'
 
 interface Props {
   /** Current signedin attendant email */
   attendantEmail: string
-  /** Input value */
-  emailInput: string
-  /** Sets the state of the parent component with new email value */
-  onInputChange: (s: string) => void
   /** Calls the impersonate on the parent component */
   onImpersonate: (s: string) => void
-  /** Loading status */
-  loading: boolean
   /** If is mobile or not */
   mobile: boolean
 }
 
 /** Component that shows the email input and calls the impersonate function using the Popover component. */
 const LoginAsCustomer = ({
+  intl,
   attendantEmail,
-  onInputChange,
   onImpersonate,
-  loading,
-  emailInput,
   mobile,
-}: Props) => {
+}: Props & InjectedIntlProps) => {
+  const { email, loading, error, errorCode } = useTelemarketingState()
+  const dispatch = useTelemarketingDispatch()
+
   const handleHeaderRendering = useCallback(
     () => (
       <div className="flex items-center c-on-base--inverted">
@@ -42,11 +38,17 @@ const LoginAsCustomer = ({
     []
   )
 
+  const onChange = useCallback(
+    (event) => {
+      dispatch({ type: 'SET_EMAIL', email: event.target.value })
+    }
+    , [dispatch])
+
   const handleKeyPress = useCallback(
     (event: any) => {
-      event.key === 'Enter' && onImpersonate(emailInput)
+      event.key === 'Enter' && onImpersonate(email)
     },
-    [emailInput]
+    [email]
   )
 
   return (
@@ -71,15 +73,24 @@ const LoginAsCustomer = ({
             </div>
             <div className={`${styles.emailInput} mb5`}>
               <Input
-                value={emailInput}
-                onChange={onInputChange}
+                value={email}
+                onChange={onChange}
                 placeholder={'Ex: example@mail.com'}
                 onKeyPress={handleKeyPress}
+                error={error}
+                errorMessage={error ?
+                  errorCode === ErrorCode.USER_NOT_REGISTERED
+                    ? intl.formatMessage({ id: 'store/telemarketing.error.user-not-registered' })
+                    : errorCode === ErrorCode.BAD_USER_INPUT
+                      ? intl.formatMessage({ id: 'store/telemarketing.error.bad-user-input' })
+                      : ''
+                  : ''
+                }
               />
             </div>
             <Button
               size="regular"
-              onClick={() => onImpersonate(emailInput)}
+              onClick={() => onImpersonate(email)}
               isLoading={loading}
             >
               <FormattedMessage id="store/telemarketing-login.button" />
@@ -91,4 +102,4 @@ const LoginAsCustomer = ({
   )
 }
 
-export default LoginAsCustomer
+export default injectIntl(LoginAsCustomer)

@@ -1,15 +1,18 @@
-import { compose, path, pathOr, includes } from 'ramda'
 import React, { useState, FC } from 'react'
+import { compose, path, pathOr, includes } from 'ramda'
 import { graphql } from 'react-apollo'
+import { IntlShape } from 'react-intl'
 import { withSession } from 'vtex.render-runtime'
 import { Queries } from 'vtex.store-resources'
 
+import { withTelemarketingStateProvider, useTelemarketingDispatch, ErrorCode } from './components/StateProvider'
 import Telemarketing from './components/Telemarketing'
 import depersonifyMutation from './mutations/depersonify.gql'
 import impersonateMutation from './mutations/impersonate.gql'
 import processSession from './utils/processSession'
 
 interface Props {
+  intl: IntlShape
   /** Query with the session */
   session?: Session
   /** Mutation to depersonify */
@@ -18,33 +21,25 @@ interface Props {
   impersonate: (s: {}) => Promise<void>
 }
 
-const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }) => {
-  const [emailInput, setEmailInput] = useState<string>('')
-  const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
-
+const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }: Props) => {
+  const dispatch = useTelemarketingDispatch()
   const processedSession = processSession(session)
 
-  if (!session || !processedSession || !processedSession.canImpersonate) {
-    return null
-  }
-
-  const handleInputChange = (event: any) => {
-    setEmailInput(event.target.value)
-  }
-
   const handleDepersonify = () => {
-    setloadingImpersonate(true)
+    dispatch({ type: 'SET_LOADING', loading: true })
     depersonify()
       .then(response => {
         const depersonifyData = path(['data', 'depersonify'], response)
         !!depersonifyData && session.refetch()
         window.location.reload()
       })
-      .catch(() => setloadingImpersonate(false))
+      .catch(() => {
+        dispatch({ type: 'SET_LOADING', loading: false })
+      })
   }
 
   const handleImpersonate = (email: string) => {
-    setloadingImpersonate(true)
+    dispatch({ type: 'SET_LOADING', loading: true })
     const variables = { email }
     impersonate({ variables })
       .then(response => {
@@ -52,10 +47,25 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
           ['data', 'impersonate', 'impersonate', 'profile'],
           response
         )
-        !!profile && session.refetch()
-        window.location.reload()
+        if (profile) {
+          session.refetch()
+          window.location.reload()
+        }
+
+        dispatch({ type: 'ERROR', code: ErrorCode.USER_NOT_REGISTERED })
       })
-      .catch(() => setloadingImpersonate(false))
+      .catch((error) => {
+        const badUserInput = path(['graphQLErrors', 0, 'originalError', 'code'], error) === 'BAD_USER_INPUT'
+        if (badUserInput) {
+          dispatch({ type: 'ERROR', code: ErrorCode.BAD_USER_INPUT })
+        } else {
+          dispatch({ type: 'SET_LOADING', loading: false })
+        }
+      })
+  }
+
+  if (!session || !processedSession || !processedSession.canImpersonate) {
+    return null
   }
 
   const { client, attendantEmail } = processedSession
@@ -63,12 +73,9 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
   return (
     <Telemarketing
       client={client}
-      loading={loadingImpersonate}
-      emailInput={emailInput}
       attendantEmail={attendantEmail}
       onImpersonate={handleImpersonate}
       onDepersonify={handleDepersonify}
-      onInputChange={handleInputChange}
     />
   )
 }
@@ -85,6 +92,11 @@ const options = {
 
 const EnhancedTelemarketing = withSession({ loading: React.Fragment })(
   compose(
+<<<<<<< HEAD
+=======
+    injectIntl as any,
+    withTelemarketingStateProvider,
+>>>>>>> Handle user not registered and invalid email errors
     graphql(Queries.session, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
     graphql(impersonateMutation, { name: 'impersonate' }),

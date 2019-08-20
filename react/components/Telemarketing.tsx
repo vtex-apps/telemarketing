@@ -14,14 +14,8 @@ interface Props {
   attendantEmail: string
   /** Impersonated customer info */
   client?: Client
-  /** Email input value */
-  emailInput: string
-  /** Loading status */
-  loading: boolean
   /** Function to depersonify the impersonated customer */
   onDepersonify: () => any
-  /** Function to set the emailInput value */
-  onInputChange: (s: string) => void
   /** Function to impersonate */
   onImpersonate: (s: string) => void
   /** Children */
@@ -31,9 +25,6 @@ interface Props {
 /** Telemarketing render component */
 const Telemarketing = ({
   client,
-  loading,
-  emailInput,
-  onInputChange,
   onImpersonate,
   onDepersonify,
   attendantEmail,
@@ -66,16 +57,12 @@ const Telemarketing = ({
           {!!client ? (
             <LogoutCustomerSession
               client={client}
-              loading={loading}
               onDepersonify={onDepersonify}
               attendantEmail={attendantEmail}
               mobile={isMobile}
             />
           ) : (
             <LoginAsCustomer
-              loading={loading}
-              emailInput={emailInput}
-              onInputChange={onInputChange}
               onImpersonate={onImpersonate}
               attendantEmail={attendantEmail}
               mobile={isMobile}

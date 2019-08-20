@@ -7,13 +7,12 @@ import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 import Popover from './Popover'
 
 import styles from '../telemarketing.css'
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl'
+import { useTelemarketingState } from './StateProvider'
 
 interface Props {
   /** Signed in client */
   client: Client
-  /** Loading Status */
-  loading: boolean
   /** Calls the depersonify on the parent component */
   onDepersonify: () => any
   /** Current signedin attendant email */
@@ -26,7 +25,8 @@ interface Props {
 
 /** Component that shows the client info calls the setSession function  to logout. */
 const LogoutCustomerSession = (props: Props) => {
-  const { client, loading, onDepersonify, attendantEmail, mobile } = props
+  const { loading } = useTelemarketingState()
+  const { client, onDepersonify, attendantEmail, mobile } = props
 
   const getClientName = (client: any) =>
     !!client
