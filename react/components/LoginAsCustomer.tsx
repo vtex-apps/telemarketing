@@ -38,18 +38,14 @@ const LoginAsCustomer = ({
     []
   )
 
-  const onChange = useCallback(
-    (event) => {
-      dispatch({ type: 'SET_EMAIL', email: event.target.value })
-    }
-    , [dispatch])
+  const onChange = useCallback((event) => {
+    dispatch({ type: 'SET_EMAIL', email: event.target.value })
+  }, [dispatch])
 
-  const handleKeyPress = useCallback(
-    (event: any) => {
-      event.key === 'Enter' && onImpersonate(email)
-    },
-    [email]
-  )
+  const onSubmit = useCallback((event) => {
+    event.preventDefault()
+    onImpersonate(email)
+  }, [email])
 
   return (
     <div className={`${styles.login} w-50 flex flex-row-reverse-ns flex-row-s`}>
@@ -67,16 +63,13 @@ const LoginAsCustomer = ({
           </div>
         </div>
         <div className="bg-base w-100 ph5 pb5 pt7">
-          <div className={`${styles.loginForm} c-disabled`}>
-            <div className={`${styles.loginFormMessage} t-small tl mb3`}>
-              <FormattedMessage id="store/telemarketing-login.message" />
-            </div>
+          <form onSubmit={onSubmit} className={`${styles.loginForm} c-disabled`}>
             <div className={`${styles.emailInput} mb5`}>
               <Input
+                label={intl.formatMessage({ id: 'store/telemarketing-login.message' })}
                 value={email}
                 onChange={onChange}
                 placeholder={'Ex: example@mail.com'}
-                onKeyPress={handleKeyPress}
                 error={error}
                 errorMessage={error ?
                   errorCode === ErrorCode.USER_NOT_REGISTERED
@@ -89,13 +82,14 @@ const LoginAsCustomer = ({
               />
             </div>
             <Button
+              type="submit"
               size="regular"
               onClick={() => onImpersonate(email)}
               isLoading={loading}
             >
               <FormattedMessage id="store/telemarketing-login.button" />
             </Button>
-          </div>
+          </form>
         </div>
       </Popover>
     </div>

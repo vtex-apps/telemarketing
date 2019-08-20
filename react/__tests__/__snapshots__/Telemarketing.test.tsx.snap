@@ -286,32 +286,28 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                   <div
                     class="bg-base w-100 ph5 pb5 pt7"
                   >
-                    <div
+                    <form
                       class="loginForm c-disabled"
                     >
                       <div
-                        class="loginFormMessage t-small tl mb3"
-                      >
-                        <span>
-                          Login as
-                        </span>
-                      </div>
-                      <div
                         class="emailInput mb5"
                       >
-                        <input
-                          placeholder="Ex: example@mail.com"
-                          value="email@vtex.com"
-                        />
+                        <label>
+                          Login as
+                          <input
+                            placeholder="Ex: example@mail.com"
+                            value=""
+                          />
+                        </label>
                       </div>
                       <button
-                        type="button"
+                        type="submit"
                       >
                         <span>
                           Login
                         </span>
                       </button>
-                    </div>
+                    </form>
                   </div>
                 </div>
                 <div
