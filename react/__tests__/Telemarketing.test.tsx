@@ -101,7 +101,8 @@ describe('<Telemarketing /> component', () => {
     const onImpersonate = jest.fn()
     const { getByText } = renderComponent({ onImpersonate: onImpersonate })
 
-    fireEvent.click(getByText('Login'))
+    const loginButton = getByText('Login')
+    fireEvent.click(loginButton)
 
     expect(onImpersonate).toBeCalledTimes(1)
   })

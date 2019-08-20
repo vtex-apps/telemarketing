@@ -303,9 +303,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                       <button
                         type="submit"
                       >
-                        <span>
-                          Login
-                        </span>
+                        Login
                       </button>
                     </form>
                   </div>

@@ -84,10 +84,9 @@ const LoginAsCustomer = ({
             <Button
               type="submit"
               size="regular"
-              onClick={() => onImpersonate(email)}
               isLoading={loading}
             >
-              <FormattedMessage id="store/telemarketing-login.button" />
+              {intl.formatMessage({ id: 'store/telemarketing-login.button' })}
             </Button>
           </form>
         </div>

@@ -47,9 +47,11 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
           ['data', 'impersonate', 'impersonate', 'profile'],
           response
         )
+
         if (profile) {
           session.refetch()
           window.location.reload()
+          return
         }
 
         dispatch({ type: 'ERROR', code: ErrorCode.USER_NOT_REGISTERED })
