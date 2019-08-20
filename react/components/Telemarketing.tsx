@@ -1,12 +1,13 @@
-import React, { Fragment, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { Container } from 'vtex.store-components'
 import { IconAssistantSales } from 'vtex.store-icons'
 import classnames from 'classnames'
+import useDevice from 'vtex.device-detector/useDevice'
 
-import translate from '../utils/translate'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
 import styles from '../telemarketing.css'
+import { FormattedMessage } from 'react-intl'
 
 interface Props {
   /** Attendant email */
@@ -15,35 +16,29 @@ interface Props {
   client?: Client
   /** Email input value */
   emailInput: string
-  /** Intl object */
-  intl: any
   /** Loading status */
   loading: boolean
   /** Function to depersonify the impersonated customer */
   onDepersonify: () => any
   /** Function to set the emailInput value */
   onInputChange: (s: string) => void
-  /** Function to set the session */
-  onSetSession: (s: string) => void
-  /** If is mobile or not */
-  mobile: boolean
+  /** Function to impersonate */
+  onImpersonate: (s: string) => void
   /** Children */
   readonly children?: ReactNode
 }
 
 /** Telemarketing render component */
-const Telemarketing = (props: Props) => {
-  const {
-    intl,
-    client,
-    loading,
-    emailInput,
-    onInputChange,
-    onSetSession,
-    onDepersonify,
-    attendantEmail,
-    mobile,
-  } = props
+const Telemarketing = ({
+  client,
+  loading,
+  emailInput,
+  onInputChange,
+  onImpersonate,
+  onDepersonify,
+  attendantEmail,
+}: Props) => {
+  const { isMobile } = useDevice()
 
   const containerClasses = classnames(
     styles.container,
@@ -57,36 +52,33 @@ const Telemarketing = (props: Props) => {
           <div className="flex pl3 w-50 items-center c-on-base--inverted">
             <IconAssistantSales />
             <div className="ml2">
-              {mobile ? (
+              {isMobile ? (
                 <span>
                   {attendantEmail.slice(0, attendantEmail.indexOf('@'))}
                 </span>
               ) : (
-                <Fragment>
-                  {translate('store/telemarketing.attendant', intl)}
-                  <span>{`: ${attendantEmail}`}</span>
-                </Fragment>
+                <FormattedMessage
+                  id="store/telemarketing.attendant"
+                  values={{ attendant: attendantEmail }} />
               )}
             </div>
           </div>
           {!!client ? (
             <LogoutCustomerSession
-              intl={intl}
               client={client}
               loading={loading}
               onDepersonify={onDepersonify}
               attendantEmail={attendantEmail}
-              mobile={mobile}
+              mobile={isMobile}
             />
           ) : (
             <LoginAsCustomer
-              intl={intl}
               loading={loading}
               emailInput={emailInput}
               onInputChange={onInputChange}
-              onSetSession={onSetSession}
+              onImpersonate={onImpersonate}
               attendantEmail={attendantEmail}
-              mobile={mobile}
+              mobile={isMobile}
             />
           )}
         </div>

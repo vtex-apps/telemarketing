@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
-import translate from '../utils/translate'
 import Popover from './Popover'
 
 import styles from '../telemarketing.css'
@@ -13,34 +13,29 @@ interface Props {
   emailInput: string
   /** Sets the state of the parent component with new email value */
   onInputChange: (s: string) => void
-  /** Calls the setSession on the parent component */
-  onSetSession: (s: string) => void
+  /** Calls the impersonate on the parent component */
+  onImpersonate: (s: string) => void
   /** Loading status */
   loading: boolean
-  /** Intl info */
-  intl: any
   /** If is mobile or not */
   mobile: boolean
 }
 
-/** Component that shows the email input and calls the setSession function using the Popover component. */
-const LoginAsCustomer = (props: Props) => {
-  const {
-    attendantEmail,
-    onInputChange,
-    onSetSession,
-    loading,
-    emailInput,
-    intl,
-    mobile,
-  } = props
-
+/** Component that shows the email input and calls the impersonate function using the Popover component. */
+const LoginAsCustomer = ({
+  attendantEmail,
+  onInputChange,
+  onImpersonate,
+  loading,
+  emailInput,
+  mobile,
+}: Props) => {
   const handleHeaderRendering = useCallback(
     () => (
       <div className="flex items-center c-on-base--inverted">
         <IconProfile />
         <div className="ml2">
-          {translate('store/telemarketing-login.message', intl)}
+          <FormattedMessage id="store/telemarketing-login.message" />
         </div>
       </div>
     ),
@@ -49,7 +44,7 @@ const LoginAsCustomer = (props: Props) => {
 
   const handleKeyPress = useCallback(
     (event: any) => {
-      event.key === 'Enter' && onSetSession(emailInput)
+      event.key === 'Enter' && onImpersonate(emailInput)
     },
     [emailInput]
   )
@@ -72,7 +67,7 @@ const LoginAsCustomer = (props: Props) => {
         <div className="bg-base w-100 ph5 pb5 pt7">
           <div className={`${styles.loginForm} c-disabled`}>
             <div className={`${styles.loginFormMessage} t-small tl mb3`}>
-              {translate('store/telemarketing-login.message', intl)}
+              <FormattedMessage id="store/telemarketing-login.message" />
             </div>
             <div className={`${styles.emailInput} mb5`}>
               <Input
@@ -84,10 +79,10 @@ const LoginAsCustomer = (props: Props) => {
             </div>
             <Button
               size="regular"
-              onClick={() => onSetSession(emailInput)}
+              onClick={() => onImpersonate(emailInput)}
               isLoading={loading}
             >
-              {translate('store/telemarketing-login.button', intl)}
+              <FormattedMessage id="store/telemarketing-login.button" />
             </Button>
           </div>
         </div>

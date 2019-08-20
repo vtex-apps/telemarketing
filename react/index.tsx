@@ -9,11 +9,8 @@ import Telemarketing from './components/Telemarketing'
 import depersonifyMutation from './mutations/depersonify.gql'
 import impersonateMutation from './mutations/impersonate.gql'
 import processSession from './utils/processSession'
-import { useMedia, presets } from './hooks/useMedia'
 
 interface Props {
-  /** Intl object */
-  intl: any
   /** Query with the session */
   session: Session
   /** Mutation to depersonify */
@@ -22,12 +19,10 @@ interface Props {
   impersonate: (s: {}) => Promise<void>
 }
 
-const TelemarketingContainer = (props: Props) => {
+const TelemarketingContainer = ({ depersonify, impersonate, session }: Props) => {
   const [emailInput, setEmailInput] = useState<string>('')
   const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
-  const mobile = useMedia(presets.mobile)
 
-  const { intl, session } = props
   const processedSession = processSession(session)
 
   const handleInputChange = (event: any) => {
@@ -35,20 +30,17 @@ const TelemarketingContainer = (props: Props) => {
   }
 
   const handleDepersonify = () => {
-    const { depersonify, session } = props
     setloadingImpersonate(true)
     depersonify()
       .then(response => {
         const depersonifyData = path(['data', 'depersonify'], response)
         !!depersonifyData && session.refetch()
-        setloadingImpersonate(false)
-        setEmailInput('')
+        window.location.reload()
       })
       .catch(() => setloadingImpersonate(false))
   }
 
-  const handleSetSession = (email: string) => {
-    const { impersonate, session } = props
+  const handleImpersonate = (email: string) => {
     setloadingImpersonate(true)
     const variables = { email }
     impersonate({ variables })
@@ -58,29 +50,28 @@ const TelemarketingContainer = (props: Props) => {
           response
         )
         !!profile && session.refetch()
-        setloadingImpersonate(false)
+        window.location.reload()
       })
       .catch(() => setloadingImpersonate(false))
   }
 
-  if (processedSession) {
-    const { client, canImpersonate, attendantEmail } = processedSession
-    return canImpersonate ? (
-      <Telemarketing
-        intl={intl}
-        client={client}
-        loading={loadingImpersonate}
-        emailInput={emailInput}
-        attendantEmail={attendantEmail}
-        onSetSession={handleSetSession}
-        onDepersonify={handleDepersonify}
-        onInputChange={handleInputChange}
-        mobile={mobile}
-      />
-    ) : null
+  if (!processedSession || !processedSession.canImpersonate) {
+    return null
   }
 
-  return null
+  const { client, attendantEmail } = processedSession
+
+  return (
+    <Telemarketing
+      client={client}
+      loading={loadingImpersonate}
+      emailInput={emailInput}
+      attendantEmail={attendantEmail}
+      onImpersonate={handleImpersonate}
+      onDepersonify={handleDepersonify}
+      onInputChange={handleInputChange}
+    />
+  )
 }
 
 const options = {
@@ -95,6 +86,6 @@ export default withSession({ loading: React.Fragment })(
     injectIntl as any,
     graphql(Queries.session, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
-    graphql(impersonateMutation, { name: 'impersonate' })
+    graphql(impersonateMutation, { name: 'impersonate' }),
   )(TelemarketingContainer as any)
 )

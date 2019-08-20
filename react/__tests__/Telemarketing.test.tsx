@@ -3,27 +3,19 @@ import { mergeDeepRight } from 'ramda'
 import { render, fireEvent } from '@vtex/test-tools/react'
 
 import Telemarketing from '../components/Telemarketing'
-import messages from '../../messages/en.json'
 
 describe('<Telemarketing /> component', () => {
-  const intl = {
-    formatMessage: ({ id = '' }) => (messages as any)[id],
-  }
-
   const renderComponent = (customProps = {}) => {
     const defaultProps = {
       attendantEmail: 'attendant@vtex.com',
       emailInput: 'email@vtex.com',
-      intl: intl,
       loading: false,
       onDepersonify: () => {},
       onInputChange: () => {},
-      onSetSession: () => {},
-      mobile: false,
+      onImpersonate: () => {},
     }
 
-    const props = mergeDeepRight(defaultProps, customProps)
-    return render(<Telemarketing {...props} />)
+    return render(<Telemarketing {...defaultProps} {...customProps} />)
   }
 
   it('should match snapshot without client', () => {
@@ -56,9 +48,6 @@ describe('<Telemarketing /> component', () => {
   it('should show login button and form', () => {
     const { getByText, getByPlaceholderText } = renderComponent()
 
-    const loginAs = getByText('Login as')
-    expect(loginAs).toBeTruthy()
-
     const emailPlaceholder = getByPlaceholderText('Ex: example@mail.com')
     expect(emailPlaceholder).toBeTruthy()
 
@@ -74,7 +63,7 @@ describe('<Telemarketing /> component', () => {
       email: 'client@vtex.com',
     }
 
-    const { getByText } = renderComponent({ client: client })
+    const { getByText, getAllByText } = renderComponent({ client: client })
 
     const document = getByText(client.document)
     expect(document).toBeTruthy()
@@ -82,7 +71,7 @@ describe('<Telemarketing /> component', () => {
     const phone = getByText(client.phone)
     expect(phone).toBeTruthy()
 
-    const name = getByText(client.name)
+    const name = getAllByText(client.name)
     expect(name).toBeTruthy()
 
     const email = getByText(client.email)
@@ -90,12 +79,12 @@ describe('<Telemarketing /> component', () => {
   })
 
   it('should login when clicked', () => {
-    const onSetSession = jest.fn()
-    const { getByText } = renderComponent({ onSetSession: onSetSession })
+    const onImpersonate = jest.fn()
+    const { getByText } = renderComponent({ onImpersonate: onImpersonate })
 
     fireEvent.click(getByText('Login'))
 
-    expect(onSetSession).toBeCalledTimes(1)
+    expect(onImpersonate).toBeCalledTimes(1)
   })
 
   it('should logout when clicked', () => {
