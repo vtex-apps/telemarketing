@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.5] - 2019-08-29
+
 ## [2.9.4] - 2019-08-20
 ### Fixed
 - Contrast of muted UI color
