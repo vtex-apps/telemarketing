@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Only render component under `myvtex.com`.
+- Only do session query when on myvtex.com domain.
 
 ## [2.9.6] - 2019-08-30
 ### Changed
