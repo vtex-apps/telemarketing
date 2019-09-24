@@ -1,7 +1,6 @@
-import { compose, path } from 'ramda'
-import React, { useState } from 'react'
+import { compose, path, pathOr, includes } from 'ramda'
+import React, { useState, FC } from 'react'
 import { graphql } from 'react-apollo'
-import { injectIntl } from 'react-intl'
 import { withSession } from 'vtex.render-runtime'
 import { Queries } from 'vtex.store-resources'
 
@@ -12,18 +11,22 @@ import processSession from './utils/processSession'
 
 interface Props {
   /** Query with the session */
-  session: Session
+  session?: Session
   /** Mutation to depersonify */
   depersonify: () => Promise<void>
   /** Mutation to impersonate a customer */
   impersonate: (s: {}) => Promise<void>
 }
 
-const TelemarketingContainer = ({ depersonify, impersonate, session }: Props) => {
+const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }) => {
   const [emailInput, setEmailInput] = useState<string>('')
   const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
 
   const processedSession = processSession(session)
+
+  if (!session || !processedSession || !processedSession.canImpersonate) {
+    return null
+  }
 
   const handleInputChange = (event: any) => {
     setEmailInput(event.target.value)
@@ -55,10 +58,6 @@ const TelemarketingContainer = ({ depersonify, impersonate, session }: Props) =>
       .catch(() => setloadingImpersonate(false))
   }
 
-  if (!processedSession || !processedSession.canImpersonate) {
-    return null
-  }
-
   const { client, attendantEmail } = processedSession
 
   return (
@@ -74,18 +73,22 @@ const TelemarketingContainer = ({ depersonify, impersonate, session }: Props) =>
   )
 }
 
+const hasMyVtex = compose(includes('myvtex.com'), pathOr('', ['location', 'hostname']))
+
 const options = {
   name: 'session',
+  skip: () => !hasMyVtex(window),
   options: () => ({
     ssr: false,
   }),
 }
 
-export default withSession({ loading: React.Fragment })(
+const EnhancedTelemarketing = withSession({ loading: React.Fragment })(
   compose(
-    injectIntl as any,
     graphql(Queries.session, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
     graphql(impersonateMutation, { name: 'impersonate' }),
   )(TelemarketingContainer as any)
 )
+
+export default EnhancedTelemarketing
