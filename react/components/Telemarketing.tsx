@@ -42,13 +42,13 @@ const Telemarketing = ({
 
   const containerClasses = classnames(
     styles.container,
-    'flex justify-center tc h2 t-mini pa2 w-100'
+    'flex justify-center tc h2 pa2'
   )
 
   return (
     <div className={classnames('w-100', styles.wrapper, !!client ? 'bg-emphasis c-on-emphasis' : 'bg-base--inverted c-on-base--inverted')}>
       <Container className={containerClasses}>
-        <div className="flex justify-between w-100 mw9">
+        <div className="flex justify-between w-100 mw9 t-mini">
           <div className="flex pl3 w-50 items-center c-on-base--inverted">
             <IconAssistantSales />
             <div className="ml2">
