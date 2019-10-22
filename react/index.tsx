@@ -57,7 +57,7 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
         dispatch({ type: 'ERROR', code: ErrorCode.USER_NOT_REGISTERED })
       })
       .catch((error) => {
-        const badUserInput = path(['graphQLErrors', 0, 'originalError', 'code'], error) === 'BAD_USER_INPUT'
+        const badUserInput = path(['graphQLErrors', 0, 'extensions', 'exception', 'code'], error) === 'BAD_USER_INPUT'
         if (badUserInput) {
           dispatch({ type: 'ERROR', code: ErrorCode.BAD_USER_INPUT })
         } else {
