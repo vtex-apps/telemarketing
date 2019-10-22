@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { FormattedMessage, injectIntl, InjectedIntlProps } from 'react-intl'
+import { FormattedMessage, injectIntl, InjectedIntlProps, defineMessages } from 'react-intl'
 import { Button, Input } from 'vtex.styleguide'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 import Popover from './Popover'
@@ -15,6 +15,25 @@ interface Props {
   /** If is mobile or not */
   mobile: boolean
 }
+
+const messages = defineMessages({
+  label: {
+    id: 'store/telemarketing-login.message',
+    defaultMessage: '',
+  },
+  userNotRegistered: {
+    id: 'store/telemarketing.error.user-not-registered',
+    defaultMessage: '',
+  },
+  badUserInput: {
+    id: 'store/telemarketing.error.bad-user-input',
+    defaultMessage: '',
+  },
+  login: {
+    id: 'store/telemarketing-login.button',
+    defaultMessage: '',
+  }
+})
 
 /** Component that shows the email input and calls the impersonate function using the Popover component. */
 const LoginAsCustomer = ({
@@ -66,16 +85,16 @@ const LoginAsCustomer = ({
           <form onSubmit={onSubmit} className={`${styles.loginForm} c-disabled`}>
             <div className={`${styles.emailInput} mb5`}>
               <Input
-                label={intl.formatMessage({ id: 'store/telemarketing-login.message' })}
+                label={intl.formatMessage(messages.label)}
                 value={email}
                 onChange={onChange}
                 placeholder={'Ex: example@mail.com'}
                 error={error}
                 errorMessage={error ?
                   errorCode === ErrorCode.USER_NOT_REGISTERED
-                    ? intl.formatMessage({ id: 'store/telemarketing.error.user-not-registered' })
+                    ? intl.formatMessage(messages.userNotRegistered)
                     : errorCode === ErrorCode.BAD_USER_INPUT
-                      ? intl.formatMessage({ id: 'store/telemarketing.error.bad-user-input' })
+                      ? intl.formatMessage(messages.badUserInput)
                       : ''
                   : ''
                 }
@@ -86,7 +105,7 @@ const LoginAsCustomer = ({
               size="regular"
               isLoading={loading}
             >
-              {intl.formatMessage({ id: 'store/telemarketing-login.button' })}
+              {intl.formatMessage(messages.login)}
             </Button>
           </form>
         </div>

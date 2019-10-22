@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 import { compose, path, pathOr, includes } from 'ramda'
 import { graphql } from 'react-apollo'
-import { injectIntl, IntlShape } from 'react-intl'
 import { withSession } from 'vtex.render-runtime'
 import { Queries } from 'vtex.store-resources'
 
@@ -12,7 +11,6 @@ import impersonateMutation from './mutations/impersonate.gql'
 import processSession from './utils/processSession'
 
 interface Props {
-  intl: IntlShape
   /** Query with the session */
   session?: Session
   /** Mutation to depersonify */
@@ -94,7 +92,6 @@ const options = {
 
 const EnhancedTelemarketing = withSession({ loading: React.Fragment })(
   compose(
-    injectIntl as any,
     withTelemarketingStateProvider,
     graphql(Queries.session, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
