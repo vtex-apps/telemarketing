@@ -1,4 +1,4 @@
-export default (session: Session): ProcessedSession | null => {
+export default (session?: Session): ProcessedSession | null => {
   try {
     if (session && session.getSession && !session.loading) {
       const {
