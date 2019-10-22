@@ -1,7 +1,7 @@
-import React, { useState, FC } from 'react'
+import React, { FC } from 'react'
 import { compose, path, pathOr, includes } from 'ramda'
 import { graphql } from 'react-apollo'
-import { IntlShape } from 'react-intl'
+import { injectIntl, IntlShape } from 'react-intl'
 import { withSession } from 'vtex.render-runtime'
 import { Queries } from 'vtex.store-resources'
 
@@ -30,7 +30,7 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
     depersonify()
       .then(response => {
         const depersonifyData = path(['data', 'depersonify'], response)
-        !!depersonifyData && session.refetch()
+        !!depersonifyData && session && session.refetch()
         window.location.reload()
       })
       .catch(() => {
@@ -48,7 +48,7 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
           response
         )
 
-        if (profile) {
+        if (profile && session) {
           session.refetch()
           window.location.reload()
           return
@@ -94,11 +94,8 @@ const options = {
 
 const EnhancedTelemarketing = withSession({ loading: React.Fragment })(
   compose(
-<<<<<<< HEAD
-=======
     injectIntl as any,
     withTelemarketingStateProvider,
->>>>>>> Handle user not registered and invalid email errors
     graphql(Queries.session, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
     graphql(impersonateMutation, { name: 'impersonate' }),
