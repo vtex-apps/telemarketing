@@ -41,6 +41,7 @@ const LoginAsCustomer = ({
   emailInput,
   mobile,
 }: Props) => {
+  const handles = useCssHandles(CSS_HANDLES)
   const handleHeaderRendering = useCallback(
     () => (
       <div className={`${handles.loginButton} flex items-center c-on-base--inverted`}>
@@ -52,8 +53,6 @@ const LoginAsCustomer = ({
     ),
     []
   )
-
-  const handles = useCssHandles(CSS_HANDLES)
 
   const handleKeyPress = useCallback(
     (event: any) => {
