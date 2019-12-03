@@ -89,27 +89,46 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 }
 ```
 
-#### CSS namespaces
+#### Customization
 
-Below, we describe the namespaces that are defined in the telemarketing.
+| CSS Handles               |
+| ------------------------- |
+| `container`               |
+| `popoverArrowUp`          |
+| `popoverBox`              |
+| `popoverContentContainer` |
+| `popoverContainer`        |
+| `login`                   |
+| `loginForm`               |
+| `loginFormMessage`        |
+| `emailInput`              |
+| `clientName`              |
+| `clientNameBar`           |
+| `logout`                  |
+| `logoutForm`              |
+| `popoverHeaderIcon`       |
+| `popoverHeaderEmail`      |
+| `loginButton`             |
+| `loginAsText`             |
+| `popoverHeader`           | 
+| `loginFormContainer`      | 
+| `logoutInfoContainer`     |
+| `emailContainer`          |
+| `emailField`              |
+| `emailValue`              |
+| `documentContainer`       |
+| `documentField`           |
+| `documentValue`           |
+| `phoneContainer`          |
+| `phoneField`              |
+| `phoneValue`              |
+| `logoutButtonsContainer`  |
+| `wrapper`                 |
+| `telemarketingBar`        |
+| `attendantContainer`      |
+| `attendantEmail`          |
 
-| Class name                | Description                                              | Component Source                                                                                                                                                                     |
-| ------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `container`               | The main container of telemarketing                      | [index](/react/Telemarketing.tsx)                                                                                                                                                    |
-| `popoverArrowUp`          | Popover arrow up                                         | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `popoverBox`              | Popover box                                              | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `popoverContentContainer` | Popover content container                                | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `popoverContainer`        | Main container of the popover                            | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `login`                   | Login container                                          | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `loginForm`               | Login form container                                     | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `loginFormMessage`        | Login form message container                             | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `emailInput`              | Container of the email input                             | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `clientName`              | Client name container                                    | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `clientNameBar`           | Client name container that appear in the bar             | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `logout`                  | Container of the logout                                  | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `logoutForm`              | Container of the logout form                             | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `popoverHeaderIcon`       | Container of the icon that appear in the popover header  | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx) |
-| `popoverHeaderEmail`      | Container of the email that appear in the popover header | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                       |
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization)
 
 ## Troubleshooting
 

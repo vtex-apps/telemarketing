@@ -1,11 +1,22 @@
 import React, { useCallback } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { Button, Input } from 'vtex.styleguide'
+import { useCssHandles } from 'vtex.css-handles'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
+import { Button, Input } from 'vtex.styleguide'
 import Popover from './Popover'
 
-import styles from '../telemarketing.css'
-
+const CSS_HANDLES = [
+  'login',
+  'popoverHeaderIcon',
+  'popoverHeaderEmail',
+  'loginForm',
+  'loginFormMessage',
+  'emailInput',
+  'loginButton',
+  'loginAsText',
+  'popoverHeader',
+  'loginFormContainer',
+] as const
 interface Props {
   /** Current signedin attendant email */
   attendantEmail: string
@@ -32,15 +43,17 @@ const LoginAsCustomer = ({
 }: Props) => {
   const handleHeaderRendering = useCallback(
     () => (
-      <div className="flex items-center c-on-base--inverted">
+      <div className={`${handles.loginButton} flex items-center c-on-base--inverted`}>
         <IconProfile />
-        <div className="ml2">
+        <div className={`${handles.loginAsText} ml2`}>
           <FormattedMessage id="store/telemarketing-login.message" />
         </div>
       </div>
     ),
     []
   )
+
+  const handles = useCssHandles(CSS_HANDLES)
 
   const handleKeyPress = useCallback(
     (event: any) => {
@@ -50,26 +63,26 @@ const LoginAsCustomer = ({
   )
 
   return (
-    <div className={`${styles.login} w-50 flex flex-row-reverse-ns flex-row-s`}>
+    <div className={`${handles.login} w-50 flex flex-row-reverse-ns flex-row-s`}>
       <Popover
         arrowClasses="bg-base--inverted"
         renderHeader={handleHeaderRendering}
         mobile={mobile}
       >
-        <div className="bg-base--inverted w-100 pa7 c-on-base--inverted">
-          <div className={styles.popoverHeaderIcon}>
+        <div className={`${handles.popoverHeader} bg-base--inverted w-100 pa7 c-on-base--inverted`}>
+          <div className={handles.popoverHeaderIcon}>
             <IconAssistantSales size={50} />
           </div>
-          <div className={`${styles.popoverHeaderEmail} white-50 mt3`}>
+          <div className={`${handles.popoverHeaderEmail} white-50 mt3`}>
             {attendantEmail}
           </div>
         </div>
-        <div className="bg-base w-100 ph5 pb5 pt7">
-          <div className={`${styles.loginForm} c-disabled`}>
-            <div className={`${styles.loginFormMessage} t-small tl mb3`}>
+        <div className={`${handles.loginFormContainer} bg-base w-100 ph5 pb5 pt7`}>
+          <div className={`${handles.loginForm} c-disabled`}>
+            <div className={`${handles.loginFormMessage} t-small tl mb3`}>
               <FormattedMessage id="store/telemarketing-login.message" />
             </div>
-            <div className={`${styles.emailInput} mb5`}>
+            <div className={`${handles.emailInput} mb5`}>
               <Input
                 value={emailInput}
                 onChange={onInputChange}
