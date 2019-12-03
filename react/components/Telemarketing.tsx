@@ -1,14 +1,21 @@
+import classnames from 'classnames'
 import React, { ReactNode } from 'react'
+import { useCssHandles } from 'vtex.css-handles'
+import useDevice from 'vtex.device-detector/useDevice'
 import { Container } from 'vtex.store-components'
 import { IconAssistantSales } from 'vtex.store-icons'
-import classnames from 'classnames'
-import useDevice from 'vtex.device-detector/useDevice'
 
+import { FormattedMessage } from 'react-intl'
+import styles from '../telemarketing.css'
 import LoginAsCustomer from './LoginAsCustomer'
 import LogoutCustomerSession from './LogoutCustomerSession'
-import styles from '../telemarketing.css'
-import { FormattedMessage } from 'react-intl'
 
+const CSS_HANDLES = [
+  'wrapper',
+  'telemarketingBar',
+  'attendantContainer',
+  'attendantEmail',
+] as const
 interface Props {
   /** Attendant email */
   attendantEmail: string
@@ -39,6 +46,7 @@ const Telemarketing = ({
   attendantEmail,
 }: Props) => {
   const { isMobile } = useDevice()
+  const handles = useCssHandles(CSS_HANDLES)
 
   const containerClasses = classnames(
     styles.container,
@@ -46,12 +54,20 @@ const Telemarketing = ({
   )
 
   return (
-    <div className={classnames('w-100', styles.wrapper, !!client ? 'bg-emphasis c-on-emphasis' : 'bg-base--inverted c-on-base--inverted')}>
+    <div
+      className={classnames(
+        'w-100',
+        handles.wrapper,
+        !!client
+          ? 'bg-emphasis c-on-emphasis'
+          : 'bg-base--inverted c-on-base--inverted'
+      )}
+    >
       <Container className={containerClasses}>
-        <div className="flex justify-between w-100 mw9">
-          <div className="flex pl3 w-50 items-center c-on-base--inverted">
+        <div className={`${handles.telemarketingBar} flex justify-between w-100 mw9`}>
+          <div className={`${handles.attendantContainer} flex pl3 w-50 items-center c-on-base--inverted`}>
             <IconAssistantSales />
-            <div className="ml2">
+            <div className={`${handles.attendantEmail} ml2`}>
               {isMobile ? (
                 <span>
                   {attendantEmail.slice(0, attendantEmail.indexOf('@'))}
@@ -59,7 +75,8 @@ const Telemarketing = ({
               ) : (
                 <FormattedMessage
                   id="store/telemarketing.attendant"
-                  values={{ attendant: attendantEmail }} />
+                  values={{ attendant: attendantEmail }}
+                />
               )}
             </div>
           </div>
