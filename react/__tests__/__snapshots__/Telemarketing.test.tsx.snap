@@ -9,10 +9,10 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
       class="Container-mock container flex justify-center tc h2 t-mini pa2 w-100"
     >
       <div
-        class="flex justify-between w-100 mw9"
+        class="telemarketingBar flex justify-between w-100 mw9"
       >
         <div
-          class="flex pl3 w-50 items-center c-on-base--inverted"
+          class="attendantContainer flex pl3 w-50 items-center c-on-base--inverted"
         >
           <svg
             class="IconAssistantSales-mock  "
@@ -25,7 +25,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
             />
           </svg>
           <div
-            class="ml2"
+            class="attendantEmail ml2"
           >
             <span>
               Attendant: attendant@vtex.com
@@ -42,7 +42,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
               class="pointer w-100"
             >
               <div
-                class="c-on-base--inverted flex items-center"
+                class="logoutHeader c-on-base--inverted flex items-center"
               >
                 <svg
                   class="IconProfile-mock  "
@@ -69,7 +69,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                   class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
                 >
                   <div
-                    class="bg-emphasis w-100 pa7"
+                    class="popoverHeader bg-emphasis w-100 pa7"
                   >
                     <div
                       class="popoverHeaderIcon c-on-base--inverted"
@@ -92,7 +92,7 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                     </div>
                   </div>
                   <div
-                    class="bg-base w-100 pt7 pb5 ph5"
+                    class="logoutInfoContainer bg-base w-100 pt7 pb5 ph5"
                   >
                     <div
                       class="logoutForm c-disabled"
@@ -106,54 +106,54 @@ exports[`<Telemarketing /> component should match snapshot with client 1`] = `
                           name
                         </div>
                         <div
-                          class="w-100 flex flex-wrap t-small"
+                          class="emailContainer w-100 flex flex-wrap t-small"
                         >
                           <div
-                            class="tl pb5 pr2"
+                            class="emailField tl pb5 pr2"
                           >
                             Email
                           </div>
                           <div
-                            class="pb5 pl2 c-muted-1"
+                            class="emailValue pb5 pl2 c-muted-1"
                           >
                             client@vtex.com
                           </div>
                         </div>
                         <div
-                          class="w-100 flex flex-wrap t-small"
+                          class="documentContainer w-100 flex flex-wrap t-small"
                         >
                           <div
-                            class="tl pb5 pr2"
+                            class="documentField tl pb5 pr2"
                           >
                             <span>
                               Document
                             </span>
                           </div>
                           <div
-                            class="pb5 pl2 c-muted-1"
+                            class="documentValue pb5 pl2 c-muted-1"
                           >
                             document
                           </div>
                         </div>
                         <div
-                          class="w-100 flex flex-wrap t-small"
+                          class="phoneContainer w-100 flex flex-wrap t-small"
                         >
                           <div
-                            class="tl pb5 pr2"
+                            class="phoneField tl pb5 pr2"
                           >
                             <span>
                               Phone
                             </span>
                           </div>
                           <div
-                            class="pb5 pl2 c-muted-1"
+                            class="phoneValue pb5 pl2 c-muted-1"
                           >
                             phone
                           </div>
                         </div>
                       </div>
                       <div
-                        class="flex justify-around mt5"
+                        class="logoutButtonsContainer flex justify-around mt5"
                       >
                         <a
                           href="store.account"
@@ -199,10 +199,10 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
       class="Container-mock container flex justify-center tc h2 t-mini pa2 w-100"
     >
       <div
-        class="flex justify-between w-100 mw9"
+        class="telemarketingBar flex justify-between w-100 mw9"
       >
         <div
-          class="flex pl3 w-50 items-center c-on-base--inverted"
+          class="attendantContainer flex pl3 w-50 items-center c-on-base--inverted"
         >
           <svg
             class="IconAssistantSales-mock  "
@@ -215,7 +215,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
             />
           </svg>
           <div
-            class="ml2"
+            class="attendantEmail ml2"
           >
             <span>
               Attendant: attendant@vtex.com
@@ -232,7 +232,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
               class="pointer w-100"
             >
               <div
-                class="flex items-center c-on-base--inverted"
+                class="loginButton flex items-center c-on-base--inverted"
               >
                 <svg
                   class="IconProfile-mock  "
@@ -245,7 +245,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                   />
                 </svg>
                 <div
-                  class="ml2"
+                  class="loginAsText ml2"
                 >
                   <span>
                     Login as
@@ -261,7 +261,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                   class="popoverContentContainer mt3-ns bg-base shadow-3-ns"
                 >
                   <div
-                    class="bg-base--inverted w-100 pa7 c-on-base--inverted"
+                    class="popoverHeader bg-base--inverted w-100 pa7 c-on-base--inverted"
                   >
                     <div
                       class="popoverHeaderIcon"
@@ -284,7 +284,7 @@ exports[`<Telemarketing /> component should match snapshot without client 1`] = 
                     </div>
                   </div>
                   <div
-                    class="bg-base w-100 ph5 pb5 pt7"
+                    class="loginFormContainer bg-base w-100 ph5 pb5 pt7"
                   >
                     <div
                       class="loginForm c-disabled"
