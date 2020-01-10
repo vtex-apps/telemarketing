@@ -4,7 +4,7 @@
     "types": ["node", "jest", "graphql"],
     "typeRoots": ["node_modules/@types"],
     "target": "es2017",
-    "module": "es6",
+    "module": "esnext",
     "sourceMap": true,
     "moduleResolution": "node",
     "jsx": "react",
