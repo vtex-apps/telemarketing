@@ -1,13 +1,14 @@
-import { compose, path, pathOr, includes } from 'ramda'
-import React, { useState, FC } from 'react'
+import { compose, path } from 'ramda'
+import React, { FC, useState } from 'react'
 import { graphql } from 'react-apollo'
 import { withSession } from 'vtex.render-runtime'
 import { Queries } from 'vtex.store-resources'
 
-import Telemarketing from './Telemarketing'
 import depersonifyMutation from '../mutations/depersonify.gql'
 import impersonateMutation from '../mutations/impersonate.gql'
+import isMyVtex from '../utils/isMyVtex'
 import processSession from '../utils/processSession'
+import Telemarketing from './Telemarketing'
 
 interface Props {
   /** Query with the session */
@@ -73,11 +74,9 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
   )
 }
 
-const hasMyVtex = compose(includes('myvtex.com'), pathOr('', ['location', 'hostname']))
-
 const options = {
   name: 'session',
-  skip: () => !hasMyVtex(window),
+  skip: () => !isMyVtex(),
   options: () => ({
     ssr: false,
   }),

@@ -1,11 +1,11 @@
-import { compose, pathOr, includes } from 'ramda'
 import React, { FC, Suspense } from 'react'
 import { NoSSR } from 'vtex.render-runtime'
+import isMyVtex from './utils/isMyVtex'
 
 const TelemarketingContainer = React.lazy(() => import('./components/TelemarketingContainer'))
 
 const Telemarketing: FC = (props) => {
-  if (!hasMyVtex(window)) {
+  if (!isMyVtex()) {
     return null
   }
 
@@ -17,7 +17,5 @@ const Telemarketing: FC = (props) => {
     </NoSSR>
   )
 }
-
-const hasMyVtex = compose(includes('myvtex.com'), pathOr('', ['location', 'hostname']))
 
 export default Telemarketing
