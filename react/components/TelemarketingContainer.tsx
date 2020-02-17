@@ -2,7 +2,7 @@ import { compose, path } from 'ramda'
 import React, { FC, useState } from 'react'
 import { graphql } from 'react-apollo'
 import { withSession } from 'vtex.render-runtime'
-import { Queries } from 'vtex.store-resources'
+import sessionQuery from 'vtex.store-resources/QuerySession'
 
 import depersonifyMutation from '../mutations/depersonify.gql'
 import impersonateMutation from '../mutations/impersonate.gql'
@@ -84,7 +84,7 @@ const options = {
 
 const EnhancedTelemarketing = withSession({ loading: React.Fragment })(
   compose(
-    graphql(Queries.session, options),
+    graphql(sessionQuery, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
     graphql(impersonateMutation, { name: 'impersonate' }),
   )(TelemarketingContainer as any)

@@ -1,3 +1,4 @@
-declare module 'vtex.store-resources' {
-  export const Queries = { session: any }
+declare module 'vtex.store-resources/QuerySession' {
+  const Session: any
+  export default Session
 }
