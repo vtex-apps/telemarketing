@@ -6,7 +6,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-The Telemarketing app is a store component that enables a call center operator to personify a customer in the store and shop online on his behalf.
+The Telemarketing app is a store component that enables a call center operator to represent a customer in the store and shop on their behalf.
 
 ![telemarketing](https://user-images.githubusercontent.com/52087100/71182442-dab34380-2254-11ea-8a86-e8ef4d3f09f1.png)
 
