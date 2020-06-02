@@ -1,129 +1,96 @@
-# VTEX Telemarketing
+📢 Use this project, [contribute](https://github.com/vtex-apps/telemarketing) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-## Description
+# Telemarketing
 
-The VTEX Telemarketing app is a store component that enables a call center operator impersonate a costumer in the store, and this app is used by store theme.
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-:loudspeaker: **Disclaimer:** Don't fork this project, use, contribute, or open issue with your feature request.
+The Telemarketing app is a store component that enables a call center operator to personify a customer in the store and shop online on his behalf.
 
-## Release schedule
+![telemarketing](https://user-images.githubusercontent.com/52087100/71182442-dab34380-2254-11ea-8a86-e8ef4d3f09f1.png)
 
-| Release |       Status        | Initial Release | Maintenance LTS Start | End-of-life | Store Compatibility |
-| :-----: | :-----------------: | :-------------: | :-------------------: | :---------: | :-----------------: |
-|  [2.x]  | **Current Release** |   2018-11-08    |                       |             |         2.x         |
-|  [1.x]  | **Maintenance LTS** |   2018-08-15    |      2018-11-08       | March 2019  |         1.x         |
+## Configuration
 
-See our [LTS policy](https://github.com/vtex-apps/awesome-io#lts-policy) for more information.
+1. In your theme's `manifest.json`, add the Telemarketing app as a dependency:
 
-## Table of Contents
-
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS namespaces](#css-namespaces)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [Tests](#tests)
-
-## Usage
-
-This app uses our store builder with the blocks architecture. To know more about the Store Builder [click here](https://help.vtex.com/en/tutorial/understanding-storebuilder-and-stylesbuilder#structuring-and-configuring-our-store-with-object-object).
-
-We add the telemarketing as a block in our [Store Header](https://github.com/vtex-apps/store-header/blob/master/store/interfaces.json).
-
-To configure or customize this app, you need to import it in your dependencies in `manifest.json`.
-
-```json
+```diff
   dependencies: {
-    "vtex.telemarketing": "2.x"
++   "vtex.telemarketing": "2.x"
   }
 ```
 
-Then, add `telemarketing` block into your app theme as we do in our [Store theme app](https://github.com/vtex-apps/store-theme/blob/master/store/blocks.json).
-
-:loudspeaker: **Disclaimer:** This component will only be displayed for the users that have the role of `2 - Televendas (Call center operator)` in their access profile.
-
-To give an user the permission of call center operator you need to follow these steps on VTEX admin management page:
-
-- Access the page: Account Management -> Access Profiles -> Click in New Profile -> Select `2 - Televendas (Call center operator)`
-- Add the email of the users that are responsable for impersonating customers(call center operators).
-
-### Blocks API
-
-When implementing this app as a block, various inner blocks may be available. The following interface lists the available blocks within telemarketing and describes if they are required or optional.
+2. Add the `telemarketing` block in your store's header. For example:
 
 ```json
 {
-  "telemarketing": {
-    "component": "index"
-  }
-}
+  "header": {
+    "blocks": ["header-layout.desktop", "header-layout.mobile"]
+  },
+  "header.full": {
+    "blocks": ["header-layout.desktop", "header-layout.mobile"]
+  },
+  "header-layout.desktop": {
+    "children": [
+      "flex-layout.row#1-desktop",
+      "flex-layout.row#2-desktop",
+      "flex-layout.row#3-desktop",
+      "sticky-layout#4-desktop"
+    ]
+  },
+
+  "flex-layout.row#1-desktop": {
+    "children": ["telemarketing"],
+    "props": {
+      "fullWidth": true
+    }
+  },
 ```
 
-As you can see, this app has no required or optional block.
+Once you added it to the header, no further actions are needed once the block does not require props. In other words, the Telemarketing component is ready to be rendered. 
 
-#### Configuration
+## Modus Operandi
 
-This app has no configuration yet.
+**This component will only be displayed and properly work for users whose role is `2 - Televendas (Call center operator)` in their access profile.**
 
-### Styles API
+To understand how the permissions work for your account, including the call center operator permission, access the learning track on [Accounts & Permissions](https://help.vtex.com/tracks/contas-e-permissoes--5PxyAgZrtiYlaYZBTlhJ2A/4T2vusW9RRUmVjGSuKNO2H) on VTEX Help Center.
 
-This app provides some CSS classes as an API for style customization.
+## Customization
 
-To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).
 
-1. Add the `styles` builder to your `manifest.json`:
+| CSS Handles | 
+| `clientName`              |
+| `clientNameBar`           | 
+| `container`               | 
+| `emailInput`              | 
+| `login`                   | 
+| `loginForm`               |                                                                                               
+| `loginFormMessage`        | 
+| `logout`                  |
+| `logoutForm`              | 
+| `popoverArrowUp`          |                                                                                               
+| `popoverBox`              | 
+| `popoverContentContainer` |                                                                                               
+| `popoverContainer`        | 
+| `popoverHeaderIcon`       | 
+| `popoverHeaderEmail`      | 
 
-```json
-  "builders": {
-    "styles": "1.x"
-  }
-```
 
-2. Create a file called `vtex.telemarketing.css` inside the `styles/css` folder. Add your custom styles:
+<!-- DOCS-IGNORE:start -->
 
-```css
-.container {
-  margin-top: 10px;
-}
-```
+## Contributors ✨
 
-#### CSS namespaces
+Thanks goes to these wonderful people:
 
-Below, we describe the namespaces that are defined in the telemarketing.
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-| Class name                | Description                                              | Component Source                                                                                                                                                                     |
-| ------------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `container`               | The main container of telemarketing                      | [index](/react/Telemarketing.tsx)                                                                                                                                                    |
-| `popoverArrowUp`          | Popover arrow up                                         | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `popoverBox`              | Popover box                                              | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `popoverContentContainer` | Popover content container                                | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `popoverContainer`        | Main container of the popover                            | [Popover](/react/components/Popover.tsx)                                                                                                                                             |
-| `login`                   | Login container                                          | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `loginForm`               | Login form container                                     | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `loginFormMessage`        | Login form message container                             | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `emailInput`              | Container of the email input                             | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx)                                                                                                                             |
-| `clientName`              | Client name container                                    | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `clientNameBar`           | Client name container that appear in the bar             | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `logout`                  | Container of the logout                                  | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `logoutForm`              | Container of the logout form                             | [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                                                                                 |
-| `popoverHeaderIcon`       | Container of the icon that appear in the popover header  | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](https://github.com/vtex-apps/telemarketing/blob/master/react/components/LogoutCustomerSession.tsx) |
-| `popoverHeaderEmail`      | Container of the email that appear in the popover header | [LoginAsCustomer](/react/components/LoginAsCustomer.tsx), [LogoutCustomerSession](/react/components/LogoutCustomerSession.tsx)                                                       |
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
-## Troubleshooting
+<!-- DOCS-IGNORE:end -->
 
-You can check if others are passing through similar issues [here](https://github.com/vtex-apps/telemarketing/issues). Also feel free to [open issues](https://github.com/vtex-apps/telemarketing/issues/new) or contribute with pull requests.
-
-## Contributing
-
-Check it out [how to contribute](https://github.com/vtex-apps/awesome-io#contributing) with this project. 
-
-## Tests
-
-To execute our tests go to `react/` folder and run `yarn test`
-
-### Travis CI
-
-[![Build Status](https://travis-ci.org/vtex-apps/telemarketing.svg?branch=master)](https://travis-ci.org/vtex-apps/telemarketing)
-[![Coverage Status](https://coveralls.io/repos/github/vtex-apps/telemarketing/badge.svg?branch=master)](https://coveralls.io/github/vtex-apps/telemarketing?branch=master)
