@@ -25,6 +25,8 @@ interface Props {
   emailInput: string
   /** Loading status */
   loading: boolean
+  /** Feedback message */
+  feedback: string
   /** Function to depersonify the impersonated customer */
   onDepersonify: () => any
   /** Function to set the emailInput value */
@@ -44,6 +46,7 @@ const Telemarketing = ({
   onImpersonate,
   onDepersonify,
   attendantEmail,
+  feedback,
 }: Props) => {
   const { isMobile } = useDevice()
   const handles = useCssHandles(CSS_HANDLES)
@@ -96,6 +99,7 @@ const Telemarketing = ({
               onImpersonate={onImpersonate}
               attendantEmail={attendantEmail}
               mobile={isMobile}
+              feedback={feedback}
             />
           )}
         </div>

@@ -17,11 +17,17 @@ interface Props {
   depersonify: () => Promise<void>
   /** Mutation to impersonate a customer */
   impersonate: (s: {}) => Promise<void>
+  /** Message to display when the email typed has no corresponding user */
+  nonexistentUserMessage: string
+  /* Prevent page to refresh and show feedback message */
+  feedbackForNonexistentUser: boolean 
 }
 
-const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }) => {
+const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session, nonexistentUserMessage, feedbackForNonexistentUser }) => {
   const [emailInput, setEmailInput] = useState<string>('')
   const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
+  const [feedback, setFeedback] = useState<string>('')
+  const defaultNonexistentUserMessage = 'There are no users with this email';
 
   const processedSession = processSession(session)
 
@@ -53,8 +59,16 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
           ['data', 'impersonate', 'impersonate', 'profile'],
           response
         )
-        !!profile && session.refetch()
-        window.location.reload()
+        if (profile) {
+          session.refetch()
+          window.location.reload()
+        }
+        if (!profile && feedbackForNonexistentUser) {
+          setFeedback(nonexistentUserMessage || defaultNonexistentUserMessage)
+          setloadingImpersonate(false);
+        } else {
+          window.location.reload()
+        }
       })
       .catch(() => setloadingImpersonate(false))
   }
@@ -70,6 +84,7 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
       onImpersonate={handleImpersonate}
       onDepersonify={handleDepersonify}
       onInputChange={handleInputChange}
+      feedback={feedback}
     />
   )
 }
