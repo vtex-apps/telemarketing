@@ -49,6 +49,16 @@ The Telemarketing app is a store component that enables a call center operator t
 
 Once you added it to the header, no further actions are needed once the block does not require props. In other words, the Telemarketing component is ready to be rendered. 
 
+
+### Props
+
+| Prop name                   | Type                              | Description                                                                                                             | Default value                                   |
+| --------------------------  | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `feedbackForNonexistentUser`| `String`                          | Give a feedback message when the user to be personated was not found.                                                   | `false`                                         |
+| `nonexistentUserMessage`    | `Boolean`                         | Message to display when the `feedbackForNonexistentUser` prop is set as `true`.                                         | `"There are no users with this email"`          |
+
+
+
 ## Modus Operandi
 
 **This component will only be displayed and properly work for users whose role is `2 - Televendas (Call center operator)` in their access profile.**
