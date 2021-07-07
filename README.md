@@ -54,8 +54,8 @@ Once you added it to the header, no further actions are needed once the block do
 
 | Prop name                   | Type                              | Description                                                                                                             | Default value                                   |
 | --------------------------  | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `feedbackForNonexistentUser`| `String`                          | Give a feedback message when the user to be personated was not found.                                                   | `false`                                         |
-| `nonexistentUserMessage`    | `Boolean`                         | Message to display when the `feedbackForNonexistentUser` prop is set as `true`.                                         | `"There are no users with this email"`          |
+| `feedbackForNonexistentUser`| `Boolean`                         | Give a feedback message when the user to be personated was not found.                                                   | `false`                                         |
+| `nonexistentUserMessage`    | `String`                          | Message to display when the `feedbackForNonexistentUser` prop is set as `true`.                                         | `"There are no users with this email"`          |
 
 
 

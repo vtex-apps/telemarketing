@@ -93,8 +93,8 @@ To use this CSS API, you must add the `styles` builder and create an app styling
 
 | Prop name                   | Type                              | Description                                                                                                             | Default value                                   |
 | --------------------------  | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `feedbackForNonexistentUser`| `String`                          | Give a feedback message when the user to be personated was not found.                                                   | `false`                                         |
-| `nonexistentUserMessage`    | `Boolean`                         | Message to display when the `feedbackForNonexistentUser` prop is set as `true`.                                         | `"There are no users with this email"`          |
+| `feedbackForNonexistentUser`| `Boolean`                         | Give a feedback message when the user to be personated was not found.                                                   | `false`                                         |
+| `nonexistentUserMessage`    | `String`                          | Message to display when the `feedbackForNonexistentUser` prop is set as `true`.                                         | `"There are no users with this email"`          |
 
 
 #### Customization
