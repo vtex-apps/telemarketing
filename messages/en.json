@@ -6,5 +6,6 @@
   "store/telemarketing-logout.button": "Logout",
   "store/telemarketing-logout.document-label": "Document",
   "store/telemarketing-logout.phone-label": "Phone",
-  "store/telemarketing-logout.button-orders": "Orders"
+  "store/telemarketing-logout.button-orders": "Orders",
+  "store/telemarketing-user-not-found": "User not found"
 }

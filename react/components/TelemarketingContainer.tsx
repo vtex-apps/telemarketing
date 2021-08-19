@@ -18,16 +18,14 @@ interface Props {
   /** Mutation to impersonate a customer */
   impersonate: (s: {}) => Promise<void>
   /** Message to display when the email typed has no corresponding user */
-  nonexistentUserMessage: string
   /* Prevent page to refresh and show feedback message */
   feedbackForNonexistentUser: boolean 
 }
 
-const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session, nonexistentUserMessage, feedbackForNonexistentUser }) => {
+const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session, feedbackForNonexistentUser }) => {
   const [emailInput, setEmailInput] = useState<string>('')
   const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
-  const [feedback, setFeedback] = useState<string>('')
-  const defaultNonexistentUserMessage = 'There are no users with this email';
+  const [feedback, setFeedback] = useState<boolean>(false)
 
   const processedSession = processSession(session)
 
@@ -64,7 +62,7 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session, 
           window.location.reload()
         }
         if (!profile && feedbackForNonexistentUser) {
-          setFeedback(nonexistentUserMessage || defaultNonexistentUserMessage)
+          setFeedback(true)
           setloadingImpersonate(false);
         } else {
           window.location.reload()

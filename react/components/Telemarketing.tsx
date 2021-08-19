@@ -26,7 +26,7 @@ interface Props {
   /** Loading status */
   loading: boolean
   /** Feedback message */
-  feedback: string
+  feedback: boolean
   /** Function to depersonify the impersonated customer */
   onDepersonify: () => any
   /** Function to set the emailInput value */

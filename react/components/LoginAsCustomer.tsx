@@ -31,7 +31,7 @@ interface Props {
   /** If is mobile or not */
   mobile: boolean
   /** Feedback message */
-  feedback: string
+  feedback: boolean
 }
 
 /** Component that shows the email input and calls the impersonate function using the Popover component. */
@@ -100,9 +100,9 @@ const LoginAsCustomer = ({
               <FormattedMessage id="store/telemarketing-login.button" />
             </Button>
             {
-              feedback && feedback.length ? (
+              feedback ? (
                 <p className="tc bg-danger white pa3 f7 br2">
-                  {feedback}
+                  <FormattedMessage id="store/telemarketing-user-not-found" />
                 </p>
               ) : <></>
             }
