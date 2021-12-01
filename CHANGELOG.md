@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added:
+
+- Info that you only will be able to access the telemarketing bar accessing through {accountName}.myvtex.com
+- Related articles about the feature in Help Center
+
 ## [2.10.2] - 2020-06-02
 
 ### Fixed
