@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added:
+
+- `CustomerClass` field to the impersonating box
+
 ## [2.10.3] - 2021-12-09
 
 ### Added:

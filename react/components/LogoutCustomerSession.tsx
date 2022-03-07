@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React, { ReactNode, useCallback, useMemo } from 'react'
+import React, { ReactNode, useCallback, useEffect, useMemo, useState } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 import { Link } from 'vtex.render-runtime'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
@@ -8,6 +8,7 @@ import { Button } from 'vtex.styleguide'
 import Popover from './Popover'
 
 import { FormattedMessage } from 'react-intl'
+import { useOrderForm } from 'vtex.order-manager/OrderForm'
 
 const CSS_HANDLES = [
   'logoutHeader',
@@ -29,6 +30,9 @@ const CSS_HANDLES = [
   'phoneField',
   'phoneValue',
   'logoutButtonsContainer',
+  'customerClassContainer',
+  'customerClassField',
+  'customerClassValue',
 ] as const
 interface Props {
   /** Signed in client */
@@ -49,19 +53,41 @@ interface Props {
 const LogoutCustomerSession = (props: Props) => {
   const { client, loading, onDepersonify, attendantEmail, mobile } = props
   const handles = useCssHandles(CSS_HANDLES)
+  const { orderForm } = useOrderForm()
 
-  const getClientName = (client: any) =>
-    !!client
-      ? client.name.includes('null')
-        ? client.email.slice(0, client.email.indexOf('@'))
-        : client.name
-      : null
+  const { id } = orderForm
 
-  const getHeader = (mobile: boolean) => {
+  const [customerClass, setCustomerClass] = useState('')
+
+  useEffect(()=> {
+    async function getCustomerClass() {
+      const data = await fetch(`/api/checkout/pub/orderForm/${id}`).then(res => res.json())
+      
+      if (data && data.clientProfileData && data.clientProfileData.customerClass) {
+        setCustomerClass(data.clientProfileData.customerClass)
+      }
+    }
+
+    getCustomerClass()
+  }, [])
+
+  const getClientName = (user: Client) => {
+    if (!user) {
+      return null 
+    }
+   
+    if (user.name.includes('null')) {
+      return user.email.slice(0, user.email.indexOf('@'))
+    }
+   
+    return user.name
+  }
+    
+  const getHeader = (isMobile: boolean) => {
     const headerClasses = classnames(
       handles.logoutHeader,
       'c-on-base--inverted',
-      mobile ? 'flex items-center w-100' : 'flex items-center'
+      isMobile ? 'flex items-center w-100' : 'flex items-center'
     )
     return (
       <div className={headerClasses}>
@@ -116,6 +142,10 @@ const LogoutCustomerSession = (props: Props) => {
                 </div>
                 <div className={`${handles.phoneValue} pb5 pl2 c-muted-1`}>{client.phone}</div>
               </div>
+              {!!customerClass && <div className={`${handles.customerClassContainer} w-100 flex flex-wrap t-small`}>
+                <div className={`${handles.customerClassField} tl pb5 pr2`}>CustomerClass</div>
+                <div className={`${handles.customerClassValue} pb5 pl2 c-muted-1`}>{customerClass}</div>
+              </div>}
             </div>
             <div className={`${handles.logoutButtonsContainer} flex justify-around mt5`}>
               <Link page="store.account">
