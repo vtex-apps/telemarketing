@@ -5,6 +5,6 @@
   "store/telemarketing-login.button": "تسجيل الدخول",
   "store/telemarketing-logout.button": "تسجيل الخروج",
   "store/telemarketing-logout.document-label": "المستند",
-  "store/telemarketing-logout.phone-label": "الهاتف",
-  "store/telemarketing-logout.button-orders": "الطلبات"
+  "store/telemarketing-logout.phone-label": "رقم الهاتف",
+  "store/telemarketing-logout.button-orders": "طلباتي"
 }
