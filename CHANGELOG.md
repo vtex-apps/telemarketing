@@ -8,8 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 
 ### Added:
-
 - `CustomerClass` field to the impersonating box
+
+## [2.11.1] - 2022-03-16
+
+### Fixed
+- Arabic translation.
+
+## [2.11.0] - 2022-03-08
+
+### Added
+- Arabic and Norwegian translation.
 
 ## [2.10.3] - 2021-12-09
 

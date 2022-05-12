@@ -36,5 +36,5 @@
     "tslint-config-vtex": "^2.0.0",
     "tslint-eslint-rules": "^5.4.0"
   },
-  "version": "2.10.3"
+  "version": "2.11.1"
 }

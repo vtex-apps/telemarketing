@@ -1,0 +1,10 @@
+{
+  "store/telemarketing.attendant": "المنتظرون: {attendant}",
+  "store/telemarketing.client": "العميل",
+  "store/telemarketing-login.message": "تسجيل الدخول كـ",
+  "store/telemarketing-login.button": "تسجيل الدخول",
+  "store/telemarketing-logout.button": "تسجيل الخروج",
+  "store/telemarketing-logout.document-label": "المستند",
+  "store/telemarketing-logout.phone-label": "رقم الهاتف",
+  "store/telemarketing-logout.button-orders": "طلباتي"
+}
