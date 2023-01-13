@@ -1,5 +1,5 @@
 import { compose, path } from 'ramda'
-import React, { FC, useState } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 import { graphql } from 'react-apollo'
 import { withSession } from 'vtex.render-runtime'
 import sessionQuery from 'vtex.store-resources/QuerySession'
@@ -9,6 +9,7 @@ import impersonateMutation from '../mutations/impersonate.gql'
 import isMyVtex from '../utils/isMyVtex'
 import processSession from '../utils/processSession'
 import Telemarketing from './Telemarketing'
+import { formatDocument, getUserEmail } from '../utils'
 
 interface Props {
   /** Query with the session */
@@ -19,19 +20,33 @@ interface Props {
   impersonate: (s: {}) => Promise<void>
 }
 
-const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }) => {
+const TelemarketingContainer: FC<Props> = ({
+  depersonify,
+  impersonate,
+  session,
+}) => {
   const [emailInput, setEmailInput] = useState<string>('')
   const [loadingImpersonate, setloadingImpersonate] = useState<boolean>(false)
 
   const processedSession = processSession(session)
 
+  const maskInput = (value: string) => {
+    const strippedValue = value.replace(/[\/.-]/g, '')
+    const hasText = !/^\d+$/.test(strippedValue)
+
+    if (hasText) {
+      return value
+    }
+
+    return formatDocument(strippedValue)
+  }
+
   if (!session || !processedSession || !processedSession.canImpersonate) {
     return null
   }
 
-  const handleInputChange = (event: any) => {
-    setEmailInput(event.target.value)
-  }
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => 
+    setEmailInput(maskInput(event.target.value))
 
   const handleDepersonify = () => {
     setloadingImpersonate(true)
@@ -44,9 +59,13 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
       .catch(() => setloadingImpersonate(false))
   }
 
-  const handleImpersonate = (email: string) => {
+  const handleImpersonate = async (emailOrDocuments: string) => {
+    const userEmail = await getUserEmail(emailOrDocuments)
+
+    console.log('useremail', userEmail)
+
     setloadingImpersonate(true)
-    const variables = { email }
+    const variables = { userEmail }
     impersonate({ variables })
       .then(response => {
         const profile = path(
@@ -60,6 +79,8 @@ const TelemarketingContainer: FC<Props> = ({ depersonify, impersonate, session }
   }
 
   const { client, attendantEmail } = processedSession
+
+  console.log('emailinput', emailInput)
 
   return (
     <Telemarketing
@@ -86,9 +107,8 @@ const EnhancedTelemarketing = withSession({ loading: React.Fragment })(
   compose(
     graphql(sessionQuery, options),
     graphql(depersonifyMutation, { name: 'depersonify' }),
-    graphql(impersonateMutation, { name: 'impersonate' }),
+    graphql(impersonateMutation, { name: 'impersonate' })
   )(TelemarketingContainer as any)
 )
 
 export default EnhancedTelemarketing
-

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { ChangeEvent, useCallback } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
@@ -23,7 +23,7 @@ interface Props {
   /** Input value */
   emailInput: string
   /** Sets the state of the parent component with new email value */
-  onInputChange: (s: string) => void
+  onInputChange: (s: ChangeEvent<HTMLInputElement>) => void
   /** Calls the impersonate on the parent component */
   onImpersonate: (s: string) => void
   /** Loading status */

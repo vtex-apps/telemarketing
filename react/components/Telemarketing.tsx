@@ -1,5 +1,5 @@
 import classnames from 'classnames'
-import React, { ReactNode } from 'react'
+import React, { ChangeEvent, ReactNode } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 import useDevice from 'vtex.device-detector/useDevice'
 import { Container } from 'vtex.store-components'
@@ -28,7 +28,7 @@ interface Props {
   /** Function to depersonify the impersonated customer */
   onDepersonify: () => any
   /** Function to set the emailInput value */
-  onInputChange: (s: string) => void
+  onInputChange: (s: ChangeEvent<HTMLInputElement>) => void
   /** Function to impersonate */
   onImpersonate: (s: string) => void
   /** Children */
