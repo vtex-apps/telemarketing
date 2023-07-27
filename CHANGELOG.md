@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## Added
+### Added
 - pointer down event for mobile
 
 ## [2.12.0] - 2022-12-23
