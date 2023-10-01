@@ -57,6 +57,14 @@ Once you have added the block to the header, the Telemarketing component is read
 > 
 > The telemarketing bar is accessed via browser by the following URL, where `{accountName}` should be replaced by the name of your account: `{accountName}.myvtex.com` 
 
+
+### Props
+
+| Prop name                   | Type                              | Description                                                                                                             | Default value                                   |
+| --------------------------  | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `feedbackForNonexistentUser`| `Boolean`                         | Give a feedback message when the user to be personated was not found.                                                   | `false`                                         |
+
+
 ## Modus Operandi
 
 This component will only be displayed and properly work for users whose role is `2 - Televendas (Call center operator)` in their access profile.
