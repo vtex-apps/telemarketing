@@ -1,0 +1,10 @@
+{
+  "store/telemarketing.attendant": "Representative: {attendant}",
+  "store/telemarketing.client": "Customer",
+  "store/telemarketing-login.message": "Log in as",
+  "store/telemarketing-login.button": "Log In",
+  "store/telemarketing-logout.button": "Log Out",
+  "store/telemarketing-logout.document-label": "Document",
+  "store/telemarketing-logout.phone-label": "Phone",
+  "store/telemarketing-logout.button-orders": "Orders"
+}
