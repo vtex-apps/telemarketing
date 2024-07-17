@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "telemarketing",
-  "version": "2.12.1",
+  "version": "2.12.1-beta.1",
   "title": "VTEX Telemarketing",
   "defaultLocale": "pt-BR",
   "description": "The VTEX telemarketing app",
@@ -24,6 +24,7 @@
     "vtex.react-portal": "0.x",
     "vtex.store-icons": "0.x",
     "vtex.device-detector": "0.x",
+    "vtex.order-manager": "0.x",
     "vtex.css-handles": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"

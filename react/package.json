@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "apollo-client": "^2.4.7",
+    "axios": "^1.7.2",
     "classnames": "^2.2.6",
     "debounce": "^1.2.0",
     "graphql": "^14.0.2",
@@ -34,7 +35,8 @@
     "prettier": "^1.17.1",
     "tslint": "^5.11.0",
     "tslint-config-vtex": "^2.0.0",
-    "tslint-eslint-rules": "^5.4.0"
+    "tslint-eslint-rules": "^5.4.0",
+    "vtex.order-manager": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.order-manager@0.9.0/public/@types/vtex.order-manager"
   },
   "version": "2.12.1"
 }

@@ -1,7 +1,7 @@
 import classnames from 'classnames'
 import React, { ReactNode, useCallback, useMemo } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
-import { Link } from 'vtex.render-runtime'
+// import { Link } from 'vtex.render-runtime'
 import { IconAssistantSales, IconProfile } from 'vtex.store-icons'
 import { Button } from 'vtex.styleguide'
 
@@ -117,12 +117,12 @@ const LogoutCustomerSession = (props: Props) => {
                 <div className={`${handles.phoneValue} pb5 pl2 c-muted-1`}>{client.phone}</div>
               </div>
             </div>
-            <div className={`${handles.logoutButtonsContainer} flex justify-around mt5`}>
-              <Link page="store.account">
+            <div className={`${handles.logoutButtonsContainer} mt5`}>
+              {/* <Link page="store.account">
                 <Button size="regular">
                   <FormattedMessage id="store/telemarketing-logout.button-orders" />
                 </Button>
-              </Link>
+              </Link> */}
               <Button
                 size="regular"
                 onClick={() => onDepersonify()}
