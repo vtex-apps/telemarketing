@@ -1,0 +1,11 @@
+query searchUser(
+    $acronym: String!,
+    $where: String
+  ) {
+  documents(
+    acronym: $acronym
+    where: $where
+  ) @context(provider: "vtex.store-graphql") {
+    id
+  }
+}
