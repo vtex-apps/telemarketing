@@ -9,6 +9,33 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - `createUser` mutation to add the user when it doesn't exist
 
+## [2.12.1] - 2023-08-01
+
+### Added
+- pointer down event for mobile
+
+## [2.12.0] - 2022-12-23
+
+### Added
+- Indonesian translation.
+
+## [2.11.1] - 2022-03-16
+
+### Fixed
+- Arabic translation.
+
+## [2.11.0] - 2022-03-08
+
+### Added
+- Arabic and Norwegian translation.
+
+## [2.10.3] - 2021-12-09
+
+### Added:
+
+- Info that you only will be able to access the telemarketing bar accessing through {accountName}.myvtex.com
+- Related articles about the feature in Help Center
+
 ## [2.10.2] - 2020-06-02
 
 ### Fixed

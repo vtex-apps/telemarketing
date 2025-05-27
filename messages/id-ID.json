@@ -1,0 +1,10 @@
+{
+  "store/telemarketing.attendant": "Staf: {attendant}",
+  "store/telemarketing.client": "Klien",
+  "store/telemarketing-login.message": "Masuk sebagai",
+  "store/telemarketing-login.button": "Masuk",
+  "store/telemarketing-logout.button": "Keluar",
+  "store/telemarketing-logout.document-label": "Dokumen",
+  "store/telemarketing-logout.phone-label": "Telepon",
+  "store/telemarketing-logout.button-orders": "Pesanan"
+}

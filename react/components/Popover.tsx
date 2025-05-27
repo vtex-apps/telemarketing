@@ -50,7 +50,7 @@ const Popover = (props: Props) => {
     >
       <div
         className="pointer w-100"
-        onMouseDown={toggleBox}
+        onClick={toggleBox}
         ref={e => {
           iconRef.current = e
         }}

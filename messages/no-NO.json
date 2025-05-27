@@ -1,0 +1,10 @@
+{
+  "store/telemarketing.attendant": "Deltaker: {attendant}",
+  "store/telemarketing.client": "Klient",
+  "store/telemarketing-login.message": "Logg inn som",
+  "store/telemarketing-login.button": "Logg inn",
+  "store/telemarketing-logout.button": "Logg ut",
+  "store/telemarketing-logout.document-label": "Dokument",
+  "store/telemarketing-logout.phone-label": "Telefon",
+  "store/telemarketing-logout.button-orders": "Bestillinger"
+}
